@@ -1,0 +1,44 @@
+@use "../abstracts/functions" as fn;
+@use "../abstracts/variables" as v;
+
+%btn_base {
+	border: 2px solid transparent;
+	padding: 1rem 1.375rem;
+	display: inline-block;
+	font-size: 1em;
+	font-weight: 500;
+	transform: translateY(0);
+	text-transform: uppercase;
+	transition: fn.transition(
+		(background-color, border-color, transform, box-shadow, color)
+	);
+
+	&:hover {
+		box-shadow: 2px 4px 8px rgba(black, 0.35);
+		transform: translateY(-2px);
+	}
+
+	a {
+		color: inherit;
+	}
+}
+
+.btn {
+	@extend %btn_base;
+
+	&__primary {
+		&--fill {
+			@extend %btn_base;
+			background-color: var(--color-primary);
+			color: white;
+
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: transparent;
+				border-color: var(--color-primary);
+				color: var(--color-primary);
+			}
+		}
+	}
+}

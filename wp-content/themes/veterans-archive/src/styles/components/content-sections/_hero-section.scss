@@ -1,0 +1,12 @@
+@use "../../abstracts/mixins" as m;
+@use "../../abstracts/variables" as v;
+
+.hero {
+	&__headline {
+		animation: fadeIn 1s;
+	}
+	&__btn {
+		align-self: center;
+		font-size: 1.35em;
+	}
+}
