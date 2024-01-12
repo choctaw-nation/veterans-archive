@@ -23,18 +23,27 @@ class Theme_Init {
 	/** Load required files. */
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
-		require_once $base_path . '/component-classes/class-cno-content-sections.php';
 		require_once $base_path . '/theme/theme-functions.php';
 
 		$acf_classes = array(
 			'generator',
 			'image',
-			'hero',
+			'veteran-data',
+			'veteran',
 		);
 		foreach ( $acf_classes as $acf_class ) {
 			require_once $base_path . '/acf/acf-classes/class-' . $acf_class . '.php';
 		}
-		require_once $base_path . '/acf/acf-fields/initial-acf-fields.php';
+
+		$veteran_data_types = array(
+			'dates-of-service',
+			'decorations',
+			'additional-material',
+			'choctaw-veteran-of-the-month',
+		);
+		foreach ( $veteran_data_types as $veteran_data_type ) {
+			require_once $base_path . '/acf/acf-classes/veteran-data-types/class-' . $veteran_data_type . '.php';
+		}
 
 		$asset_loaders = array( 'enum-enqueue-type', 'class-asset-loader' );
 		foreach ( $asset_loaders as $asset_loader ) {

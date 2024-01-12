@@ -13,19 +13,33 @@ use ChoctawNation\Enqueue_Type;
 $loader = new Asset_Loader( 'frontPage', Enqueue_Type::both, 'pages' );
 
 get_header(); ?>
-<main class="site-content">
-	<?php get_template_part( 'template-parts/section', 'hero', array( 'id' => $post->ID ) ); ?>
-	<section id="section-2" class="py-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">Blank on purpose.</div>
-				<div class="col-lg-6 bg-secondary py-5 border border-2 rounded-2">
-					<h2 class="text-white">A text element</h2>
-					<p>A subheadline element that has a lot of text. Hopefully if I keep typing there will be enough characters to break onto a second line.</p>
-				</div>
+<div class="container">
+	<section class="py-5 my-5 px-3 mx-auto">
+		<div class="row">
+			<?php get_template_part( 'template-parts/search', 'search-bar' ); ?>
+		</div>
+	</section>
+	<section class="about">
+		<hr class="my-3" />
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<h2 class="display-2 mb-3">
+					About the Choctaw Veterans Archive
+				</h2>
+				<p>
+					The Choctaw Veterans Archive is a collection of stories from
+					Choctaw veterans of the United States Armed Forces. The goal
+					of this project is to preserve the stories of veterans and
+					make them accessible to the public.
+				</p>
+				<p>
+					Choctaw veterans have served in every major conflict since
+					the Choctaw Code Talkers of World War I. The Choctaw Nation
+					is proud of its veterans and their service to our country.
+				</p>
 			</div>
 		</div>
 	</section>
-</main>
+</div>
 <?php
 get_footer();

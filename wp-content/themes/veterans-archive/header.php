@@ -22,7 +22,7 @@ use ChoctawNation\Navwalker;
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class('w-100 overflow-x-hidden'); ?>>
 	<?php wp_body_open(); ?>
 	<header class="d-flex sticky-top text-bg-primary" id="site-header">
 		<div class="container">
