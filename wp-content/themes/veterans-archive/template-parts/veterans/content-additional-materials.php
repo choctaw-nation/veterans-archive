@@ -6,32 +6,38 @@
  * @package ChoctawNation
  */
 
-$veteran              = $args[0];
-$additional_materials = $veteran->get_the_additional_materials();
+/**
+ * The Veteran class
+ *
+ * @var \ChoctawNation\ACF\Veteran Veteran $veteran */
+$veteran = $args[0];
 ?>
 <section class="additional-material my-5">
 	<h2>Additional Material</h2>
 	<div class="row row-cols-lg-3 justify-content-between gap-5">
-		<?php foreach ( $additional_materials as $additional_material ) : ?>
-		<div class="card gx-0 flex-grow-1" aria-hidden="true">
-			<div class="row">
-				<div class="col-4">
-					<!-- <img src={placeholder.src} class="card-img-top w-100 h-100 object-fit-cover" alt="placeholder image" /> -->
-				</div>
-				<div class="col-8">
-					<div class="card-body">
-						<h5 class="card-title placeholder-glow">
-							<!-- <span class="placeholder col-6" /> -->
-						</h5>
-						<p class="card-text placeholder-glow">
-							<!-- <span class="placeholder col-7" />
-							<span class="placeholder col-4" />
-							<span class="placeholder col-4" />
-							<span class="placeholder col-6" />
-							<span class="placeholder col-8" /> -->
-						</p>
-						<a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
-					</div>
+		<?php
+		foreach ( $veteran->additional_materials as $additional_material ) :
+			switch ( $additional_material->type ) {
+				case 'audio':
+					$icon = '<i class="fa-2xl fa-solid fa-volume-high"></i>';
+					break;
+				case 'photo-gallery':
+					$icon = '<i class="fa-2xl fa-solid fa-images"></i>';
+					break;
+				default:
+					$icon = '<i class="fa-2xl fa-solid fa-link"></i>';
+			}
+			?>
+		<div class="card gx-0 flex-grow-1 flex-row">
+			<div class="col-4 text-white bg-secondary p-5 d-flex justify-content-center align-items-center">
+				<?php echo $icon; ?>
+			</div>
+			<div class="col-8">
+				<div class="card-body">
+					<h3 class="card-title mb-5">
+						<?php echo $additional_material->description; ?>
+					</h3>
+					<a target="_blank" rel="noopener noreferrer" href="<?php echo $additional_material->url; ?>" class="btn btn-primary mt-auto">View</a>
 				</div>
 			</div>
 		</div>

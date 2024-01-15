@@ -165,7 +165,7 @@ class Veteran extends Veteran_Data {
 	}
 
 	/**
-	 * Echoes the Veteran's wars
+	 * Echoes the Veteran's wars as a string
 	 */
 	public function the_wars() {
 		echo $this->get_the_wars();

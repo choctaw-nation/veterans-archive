@@ -5,7 +5,7 @@
  * @package ChoctawNation
  */
 
-get_header();
+get_header( 'search' );
 ?>
 <?php if ( ! have_posts() ) : ?>
 <div class="container">
@@ -16,16 +16,16 @@ get_header();
 	</div>
 </div>
 <?php else : ?>
-<?php while ( have_posts() ) : ?>
-<?php the_post(); ?>
-<div class="container-fluid">
-	<div class="row row-cols-auto row-cols-lg-4">
+<div class="container my-5 py-5">
+	<div class="row row-cols-auto row-cols-lg-4 row-gap-4">
+		<?php while ( have_posts() ) : ?>
+			<?php the_post(); ?>
 		<div class="col">
 			<?php get_template_part( 'template-parts/veterans/content', 'veteran-preview' ); ?>
 		</div>
+		<?php endwhile; ?>
 	</div>
 </div>
-<?php endwhile; ?>
-<?php
+	<?php
 endif;
 get_footer();

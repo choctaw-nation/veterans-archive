@@ -23,7 +23,7 @@ get_header(); ?>
 		<hr class="my-3" />
 		<div class="row justify-content-center">
 			<div class="col-md-8">
-				<h2 class="display-2 mb-3">
+				<h2 class="display-2 mb-3 fw-normal">
 					About the Choctaw Veterans Archive
 				</h2>
 				<p>
