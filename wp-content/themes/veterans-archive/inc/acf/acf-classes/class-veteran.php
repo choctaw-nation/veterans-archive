@@ -332,4 +332,16 @@ class Veteran extends Veteran_Data {
 	public function the_additional_materials() {
 		echo $this->get_the_additional_materials();
 	}
+
+	/**
+	 * Whether the veteran has content to display inside of 'tabbed content'
+	 *
+	 * @return bool
+	 */
+	public function has_tabbed_content(): bool {
+		return ! empty( $this->get_the_decorations() )
+			|| ! empty( $this->advanced_training )
+			|| ! empty( $this->overseas_duty )
+			|| ! empty( $this->jobs );
+	}
 }

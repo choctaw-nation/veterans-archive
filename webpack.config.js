@@ -28,6 +28,7 @@ module.exports = {
 				global: `.${ THEME_DIR }/src/index.js`,
 				'vendors/fontawesome': `.${ THEME_DIR }/src/styles/vendors/fontawesome.scss`,
 				'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
+				'vendors/bootstrapTab': `.${ THEME_DIR }/src/js/vendors/bs-tab.js`,
 				...addEntries( appNames, 'pages' ),
 				...addEntries( styleSheets, 'styles' ),
 			};

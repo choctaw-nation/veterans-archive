@@ -7,7 +7,7 @@
 
 use ChoctawNation\ACF\Veteran;
 
-get_header();
+get_header( 'search' );
 $acf_fields = array(
 	'bio'                      => get_field( 'bio' ),
 	'service_information'      => get_field( 'service_information' ),
@@ -68,28 +68,30 @@ $veteran    = new Veteran( get_the_ID(), $acf_fields );
 					<div class="service-info my-4">
 						<h2 class="h3">Service Information</h2>
 						<ul class="service-info-list list-unstyled">
-						<?php
-						if ( $veteran->get_the_service_dates() ) {
-							echo "<li class='service-info-list__item'><b>Dates of Service:</b> {$veteran->get_the_service_dates()}</li>";
-						}
-						if ( $veteran->get_the_wars() ) {
-							echo "<li class='service-info-list__item'><b>" . ( 1 < count( $veteran->wars ) ? 'Wars' : 'War' ) . ":</b> {$veteran->get_the_wars()}</li>";
-						}
-						if ( $veteran->get_the_service_branches() ) {
-							echo "<li class='service-info-list__item'><b>" . ( 1 < count( $veteran->branches_of_service ) ? 'Branches of Service' : 'Branch of Service' ) . ":</b> {$veteran->get_the_service_branches()}</li>";
-						}
-						if ( $veteran->get_the_highest_achieved_rank() ) {
-							echo "<li class='service-info-list__item'><b>Highest Achieved Rank:</b> {$veteran->get_the_highest_achieved_rank()}</li>";
-						}
-						?>
+							<?php
+							if ( $veteran->get_the_service_dates() ) {
+								echo "<li class='service-info-list__item'><b>Dates of Service:</b> {$veteran->get_the_service_dates()}</li>";
+							}
+							if ( $veteran->get_the_wars() ) {
+								echo "<li class='service-info-list__item'><b>" . ( 1 < count( $veteran->wars ) ? 'Wars' : 'War' ) . ":</b> {$veteran->get_the_wars()}</li>";
+							}
+							if ( $veteran->get_the_service_branches() ) {
+								echo "<li class='service-info-list__item'><b>" . ( 1 < count( $veteran->branches_of_service ) ? 'Branches of Service' : 'Branch of Service' ) . ":</b> {$veteran->get_the_service_branches()}</li>";
+							}
+							if ( $veteran->get_the_highest_achieved_rank() ) {
+								echo "<li class='service-info-list__item'><b>Highest Achieved Rank:</b> {$veteran->get_the_highest_achieved_rank()}</li>";
+							}
+							?>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
+		<?php if ( $veteran->has_tabbed_content() ) : ?>
 		<section class="service bg-secondary-subtle mb-5 pb-2 overflow-x-scroll border border-1 border-black rounded rounded-3">
 			<?php get_template_part( 'template-parts/veterans/content', 'tabs', array( $veteran ) ); ?>
 		</section>
+		<?php endif; ?>
 		<?php
 		if ( $veteran->has_additional_materials ) {
 			get_template_part( 'template-parts/veterans/content', 'additional-materials', array( $veteran ) );

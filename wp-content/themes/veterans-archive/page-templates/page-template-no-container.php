@@ -1,10 +1,8 @@
 <?php
 /**
- * Page Template: Blank, No Container
- * 
+ * Template Name: Blank, No Container
+ *
  * @package ChoctawNation
  */
 
-get_header();
-?>
-
+get_header( 'search' );

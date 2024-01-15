@@ -6,8 +6,8 @@
 /**
 * Colors
 */
-$primary: v.$color-darkblue;
-$secondary: v.$color-darkblue--light;
+$primary: v.$color-blue;
+// $secondary: v.$color-blue--light;
 // $light: #f8f4fb;
 // $dark: #08040b;
 
@@ -29,17 +29,15 @@ $font-size-base: 1.6rem; // Sets the base font size to 16px
 
 // LINKS
 $link-decoration: none;
-$link-color: v.$color-darkblue--light;
-$link-hover-color: rgba(v.$color-darkblue--light, 0.8);
+$link-color: v.$color-blue;
+$link-hover-color: rgba(v.$color-blue, 0.8);
 
 // HEADINGS
 // $headings-font-family: v.$font-headings;
 $headings-font-weight: 600;
-$headings-color: v.$color-darkblue;
+$headings-color: v.$color-blue;
 
 $dropdown-font-size: 2.16rem;
-
-$body-color: v.$color-black;
 
 // ================================================
 
@@ -60,12 +58,12 @@ $spacer: 1.6rem; // 16px
 */
 
 $navbar-light-color: white;
-$navbar-light-active-color: v.$color-darkblue--light;
-$navbar-light-hover-color: v.$color-darkblue--light;
+$navbar-light-active-color: v.$color-blue;
+$navbar-light-hover-color: v.$color-blue;
 $navbar-light-icon-color: white;
 $navbar-light-toggler-border-color: white;
 $navbar-light-brand-color: white;
-$navbar-light-brand-hover-color: v.$color-darkblue--light;
+$navbar-light-brand-hover-color: v.$color-blue;
 
 // ================================================
 

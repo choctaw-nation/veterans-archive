@@ -1,9 +1,11 @@
 <?php
 /**
- * Page Template: Blank, Container
+ * Template Name: Blank, Container
+ *
+ * @package ChoctawNation
  */
 
-get_header();
+get_header( 'search' );
 ?>
 <div class="container">
 	<?php the_content(); ?>

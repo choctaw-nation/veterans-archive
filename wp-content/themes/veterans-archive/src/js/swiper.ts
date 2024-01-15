@@ -1,13 +1,13 @@
 import Swiper from 'swiper';
-import Navigation from 'swiper';
-import Pagination from 'swiper';
-import 'swiper.scss';
+import { Navigation, Pagination, A11y } from 'swiper/modules';
+
+import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 
 const defaultArgs = {
-	modules: [ Navigation, Pagination ],
+	modules: [ Navigation, Pagination, A11y ],
 	direction: 'horizontal',
 	loop: false,
 

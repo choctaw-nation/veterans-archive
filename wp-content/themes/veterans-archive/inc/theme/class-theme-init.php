@@ -121,7 +121,14 @@ class Theme_Init {
 			)
 		);
 
-		// $fontawesome = new Asset_Loader( 'fontawesome', Enqueue_Type::script, 'vendors' );
+		$bs_tab = require_once get_template_directory() . '/dist/vendors/bootstrapTab.asset.php';
+		wp_register_script(
+			'bsTab',
+			get_template_directory_uri() . '/dist/vendors/bootstrapTab.js',
+			$bs_tab['dependencies'],
+			$bs_tab['version'],
+			array( 'strategy' => 'defer' )
+		);
 		$fontawesome = new Asset_Loader( 'fontawesome', Enqueue_Type::style, 'vendors' );
 
 		$global_scripts = new Asset_Loader(

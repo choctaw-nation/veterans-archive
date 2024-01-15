@@ -167,11 +167,25 @@ class Veteran_Data extends Generator {
 
 	// phpcs:ignore
 	public function init_props( array $acf ) {
+		$validated = $this->validate_acf( $acf );
+		if ( ! $validated ) {
+			return;
+		}
 		$this->set_the_bio( $acf['bio'] );
 		$this->set_the_service_information( $acf['service_information'] );
 		$this->has_additional_materials = $acf['has_additional_materials'];
 		if ( $this->has_additional_materials ) {
 			$this->set_the_additional_materials( $acf['additional_materials'] );
+		}
+	}
+
+	private function validate_acf( array $acf ): bool {
+		foreach ( $acf as $field ) {
+			if ( ! $field ) {
+				return false;
+			} else {
+				return true;
+			}
 		}
 	}
 
@@ -189,7 +203,8 @@ class Veteran_Data extends Generator {
 
 	// phpcs:ignore
 	private function set_the_service_information(array $acf) {
-		$this->branches_of_service = $acf['military_branch'];
+		$this->branches_of_service = $acf['military_branch'] ?: null;
+
 		if ( $acf['dates_of_service'] ) {
 			foreach ( $acf['dates_of_service'] as $date_of_service ) {
 				$this->dates_of_service[] = new Dates_Of_Service( $date_of_service );
@@ -197,21 +212,31 @@ class Veteran_Data extends Generator {
 		} else {
 			$this->dates_of_service = null;
 		}
-		$this->wars = $acf['war'];
-		if ( $acf['decorations'] ) {
-			$decorations = new Decorations( $acf['decorations'] );
-			if ( $decorations->have_decorations() ) {
-				$this->decorations = $decorations;
-			}
+
+		$this->wars = $acf['war'] ?: null;
+
+		$decorations = new Decorations( $acf['decorations'] );
+		if ( $decorations->have_decorations() ) {
+			$this->decorations = $decorations;
+		} else {
+			$this->decorations = null;
 		}
-		$this->overseas_duty         = $acf['overseas_duty'] ? $this->flatten_acf_repeater( $acf['overseas_duty'], 'location' ) : null;
+
+		$this->overseas_duty = $acf['overseas_duty'] ? $this->flatten_acf_repeater( $acf['overseas_duty'], 'location' ) : null;
+
 		$this->stateside_assignments = $acf['stateside_assignments'] ? $this->flatten_acf_repeater( $acf['stateside_assignments'], 'assignment' ) : null;
-		$this->jobs                  = $acf['jobs'] ? $this->flatten_acf_repeater( $acf['jobs'], 'job' ) : null;
+
+		$this->jobs = $acf['jobs'] ? $this->flatten_acf_repeater( $acf['jobs'], 'job' ) : null;
+
 		$this->advanced_training     = $acf['advanced_training'] ? $this->flatten_acf_repeater( $acf['advanced_training'], 'advanced_training_description' ) : null;
 		$this->highest_achieved_rank = $acf['highest_rank_achieved'] ? $acf['highest_rank_achieved'][0] : null;
-		$this->military_units        = $acf['military_units'] ? $this->flatten_acf_repeater( $acf['military_units'], 'military_unit' ) : null;
+
+		$this->military_units = $acf['military_units'] ? $this->flatten_acf_repeater( $acf['military_units'], 'military_unit' ) : null;
+
 		if ( $acf['choctaw_veteran_of_the_month'] ) {
 			$this->choctaw_veteran_of_the_month = new Choctaw_Veteran_Of_The_Month( $acf['choctaw_veteran_of_the_month'] );
+		} else {
+			$this->choctaw_veteran_of_the_month = null;
 		}
 	}
 
