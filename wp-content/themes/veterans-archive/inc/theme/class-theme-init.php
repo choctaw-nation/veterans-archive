@@ -24,6 +24,7 @@ class Theme_Init {
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
 		require_once $base_path . '/theme/theme-functions.php';
+		require_once $base_path . '/veteran-submission/rest-route.php';
 
 		$acf_classes = array(
 			'generator',
@@ -140,7 +141,14 @@ class Theme_Init {
 				'styles'  => array( 'bootstrap' ),
 			)
 		);
-		wp_localize_script( 'global', 'cnoSiteData', array( 'rootUrl' => home_url() ) );
+		wp_localize_script(
+			'global',
+			'cnoSiteData',
+			array(
+				'rootUrl' => home_url(),
+				'nonce'   => wp_create_nonce( 'wp_rest' ),
+			)
+		);
 
 		// style.css
 		wp_enqueue_style(
