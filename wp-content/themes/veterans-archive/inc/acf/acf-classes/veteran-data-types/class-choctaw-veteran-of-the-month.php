@@ -32,7 +32,7 @@ class Choctaw_Veteran_Of_The_Month {
 	 * @param array $acf ACF data
 	 */
 	public function __construct( array $acf ) {
-		$this->district = $acf['district'];
-		$this->year     = $acf['year'];
+		$this->district = absint( $acf['district'] );
+		$this->year     = absint( $acf['year_received'] );
 	}
 }

@@ -63,16 +63,16 @@ class Veteran_Data extends Generator {
 	/**
 	 * Date of Birth
 	 *
-	 * @var \DateTime $birth
+	 * @var int $birth
 	 */
-	public ?\DateTime $birth;
+	public ?int $birth;
 
 	/**
 	 * Date of Death
 	 *
-	 * @var ?\DateTime $death
+	 * @var ?int $death
 	 */
-	public ?\DateTime $death;
+	public ?int $death;
 
 	/**
 	 * Military Branches served in
@@ -147,9 +147,9 @@ class Veteran_Data extends Generator {
 	/**
 	 * When the veteran was Choctaw Veteran of the Month
 	 *
-	 * @var Choctaw_Veteran_Of_The_Month $choctaw_veteran_of_the_month
+	 * @var ?Choctaw_Veteran_Of_The_Month[] $choctaw_veteran_of_the_month
 	 */
-	public ?Choctaw_Veteran_Of_The_Month $choctaw_veteran_of_the_month;
+	public ?array $choctaw_veteran_of_the_month;
 
 	/**
 	 * Whether additional materials exist
@@ -197,8 +197,8 @@ class Veteran_Data extends Generator {
 		$this->middle_name = esc_textarea( $acf['middle_name'] );
 		$this->nickname    = esc_textarea( $acf['nickname'] );
 		$this->home        = esc_textarea( $acf['home'] );
-		$this->birth       = $acf['date_of_birth'] ? new \DateTime( $acf['date_of_birth'] ) : null;
-		$this->death       = $acf['date_of_death'] ? new \DateTime( $acf['date_of_death'] ) : null;
+		$this->birth       = $acf['year_of_birth'] ?: null;
+		$this->death       = $acf['year_of_death'] ?: null;
 	}
 
 	// phpcs:ignore
@@ -234,7 +234,10 @@ class Veteran_Data extends Generator {
 		$this->military_units = $acf['military_units'] ? $this->flatten_acf_repeater( $acf['military_units'], 'military_unit' ) : null;
 
 		if ( $acf['choctaw_veteran_of_the_month'] ) {
-			$this->choctaw_veteran_of_the_month = new Choctaw_Veteran_Of_The_Month( $acf['choctaw_veteran_of_the_month'] );
+			foreach ( $acf['choctaw_veteran_of_the_month'] as $nomination ) {
+				$this->choctaw_veteran_of_the_month[] = new Choctaw_Veteran_Of_The_Month( $nomination );
+
+			}
 		} else {
 			$this->choctaw_veteran_of_the_month = null;
 		}

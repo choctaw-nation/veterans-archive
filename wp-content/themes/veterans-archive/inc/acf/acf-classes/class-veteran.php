@@ -70,8 +70,8 @@ class Veteran extends Veteran_Data {
 	/**
 	 * Get the Veteran's birth date (year only)
 	 */
-	public function get_the_birth_date(): ?string {
-		return $this->birth ? $this->birth->format( 'Y' ) : null;
+	public function get_the_birth_date(): ?int {
+		return $this->birth ?: null;
 	}
 
 	/**
@@ -84,8 +84,8 @@ class Veteran extends Veteran_Data {
 	/**
 	 * Get the Veteran's death date (year only)
 	 */
-	public function get_the_death_date(): ?string {
-			return $this->death ? $this->death->format( 'Y' ) : null;
+	public function get_the_death_date(): ?int {
+			return $this->death ?: null;
 	}
 
 	/**
@@ -158,6 +158,9 @@ class Veteran extends Veteran_Data {
 	 */
 	public function get_the_wars(): ?string {
 		$wars = array();
+		if ( ! $this->wars || ! is_array( $this->wars ) || empty( $this->wars ) ) {
+			return null;
+		}
 		foreach ( $this->wars as $war ) {
 			$wars[] = $war->name;
 		}
