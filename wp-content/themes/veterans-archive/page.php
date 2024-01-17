@@ -6,16 +6,13 @@
  */
 
 get_header();
-echo "<main class='site-content {$post->post_name}'>";
-get_template_part( 'template-parts/section', 'hero', array( 'id' => $post->ID ) );
-switch ( $post->post_name ) {
-	case 'sample-page':
-		get_template_part( 'template-parts/page', 'sample-page' );
-		break;
-	default:
-		echo '<article class="container">';
-		the_content();
-		echo '</article>';
-}
-echo '</main>';
+?>
+<main class='site-content <?php echo $post->post_name; ?>'>
+	<?php get_template_part( 'template-parts/section', 'hero' ); ?>
+	<article class="container py-5">
+		<?php the_content(); ?>
+	</article>
+
+</main>
+<?php
 get_footer();
