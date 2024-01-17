@@ -13,3 +13,16 @@
 	--color-green: #{v.$color-green};
 	--color-green--light: #{v.$color-green--light};
 }
+
+.hero {
+	background-color: var(--bs-primary);
+	color: white;
+	height: clamp(40rem, 40dvh, 60rem);
+
+	&__bg {
+		background-position: center top;
+		background-repeat: no-repeat;
+		max-width: 192rem;
+		margin: 0 auto;
+	}
+}
