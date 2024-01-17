@@ -18,12 +18,7 @@ class Veteran_Factory {
 	 * @var int
 	 */
 	public $id;
-	/**
-	 * The request parameters
-	 *
-	 * @var array
-	 */
-	private array $params;
+
 
 	public function __construct( array $params ) {
 		$this->params = $params;

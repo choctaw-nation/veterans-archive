@@ -24,13 +24,20 @@ class Theme_Init {
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
 		require_once $base_path . '/theme/theme-functions.php';
-		require_once $base_path . '/veteran-submission/rest-route.php';
-		require_once $base_path . '/veteran-submission/class-veteran-factory.php';
+
+		$veteran_classes = array(
+			'class-veteran-data',
+			'class-veteran-factory',
+			'rest-route',
+		);
+		foreach ( $veteran_classes as $veteran_class ) {
+			require_once $base_path . '/veteran/' . $veteran_class . '.php';
+		}
 
 		$acf_classes = array(
 			'generator',
 			'image',
-			'veteran-data',
+			'veteran-setter',
 			'veteran',
 		);
 		foreach ( $acf_classes as $acf_class ) {

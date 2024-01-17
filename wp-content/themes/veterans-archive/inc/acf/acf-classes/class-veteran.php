@@ -12,7 +12,15 @@ namespace ChoctawNation\ACF;
 /**
  * Creates WP-like API to generate markup
  */
-class Veteran extends Veteran_Data {
+class Veteran extends Veteran_Setter {
+	public int $post_id;
+
+	public function __construct( $post_id, $acf_fields ) {
+		$this->post_id = $post_id;
+		$this->init_props( $acf_fields );
+	}
+
+
 	public function get_the_gender() {
 		return $this->gender;
 	}
