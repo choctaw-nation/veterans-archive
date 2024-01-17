@@ -1,6 +1,6 @@
 {
 	"name": "cno-starter",
-	"version": "2.1.0",
+	"version": "1.1.0",
 	"description": "Custom WP theme for CNO sites",
 	"main": "wp-content/themes/starter-theme/src/index.js",
 	"prettier": "@wordpress/prettier-config",

@@ -161,9 +161,9 @@ class Theme_Init {
 		$this->remove_wordpress_styles(
 			array(
 				'classic-theme-styles',
-				'wp-block-library',
+				// 'wp-block-library',
 				'dashicons',
-				'global-styles',
+				// 'global-styles',
 			)
 		);
 
@@ -206,6 +206,8 @@ class Theme_Init {
 	public function cno_theme_support() {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'title-tag' );
+		add_image_size( 'front-page-thumb', 1280, 720 );
+		add_image_size( 'hero', 3840, 2160 );
 
 		register_nav_menus(
 			array(
@@ -228,7 +230,7 @@ class Theme_Init {
 	 * @param string $post_type the post type to remove supports from.
 	 */
 	private function disable_post_type_support( string $post_type ) {
-		$supports = array( 'editor', 'comments', 'trackbacks', 'revisions', 'author' );
+		$supports = array( 'comments', 'trackbacks', 'revisions', 'author' );
 		foreach ( $supports as $support ) {
 			if ( post_type_supports( $post_type, $support ) ) {
 				remove_post_type_support( $post_type, $support );

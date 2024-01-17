@@ -1,0 +1,12 @@
+.home {
+	.hero {
+		&__bg {
+			background-position: left top;
+		}
+	}
+}
+
+#search-bar {
+	margin-top: -8rem;
+	z-index: 2;
+}

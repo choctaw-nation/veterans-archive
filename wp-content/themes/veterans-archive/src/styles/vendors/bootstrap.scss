@@ -16,7 +16,7 @@ $primary: v.$color-blue;
 /**
 * Typography
 */
-$font-family-sans-serif: "Gill Sans Nova", "Helvetica Neue", "Noto Sans",
+$font-family-sans-serif: "gill-sans-nova", "Helvetica Neue", "Noto Sans",
 	"Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
 	"Segoe UI Symbol", "Noto Color Emoji";
 $font-family-monospace:
@@ -57,13 +57,13 @@ $spacer: 1.6rem; // 16px
 * Navbar
 */
 
-$navbar-light-color: white;
-$navbar-light-active-color: v.$color-blue;
-$navbar-light-hover-color: v.$color-blue;
-$navbar-light-icon-color: white;
-$navbar-light-toggler-border-color: white;
-$navbar-light-brand-color: white;
-$navbar-light-brand-hover-color: v.$color-blue;
+$navbar-light-color: v.$color-blue;
+$navbar-light-active-color: v.$color-blue--light;
+$navbar-light-hover-color: v.$color-blue--light;
+$navbar-light-icon-color: v.$color-blue;
+$navbar-light-toggler-border-color: v.$color-blue;
+$navbar-light-brand-color: v.$color-blue;
+$navbar-light-brand-hover-color: v.$color-blue--light;
 
 // ================================================
 
@@ -71,8 +71,8 @@ $navbar-light-brand-hover-color: v.$color-blue;
 * Offcanvas
 */
 
-$offcanvas-bg-color: $primary;
-$offcanvas-color: white;
+// $offcanvas-bg-color: $primary;
+// $offcanvas-color: white;
 
 // ================================================
 
