@@ -1,0 +1,1021 @@
+[
+	{
+		"key": "group_65a04a589b083",
+		"title": "Post Type — Veterans",
+		"fields": [
+			{
+				"key": "field_65a04a5814fe4",
+				"label": "Bio",
+				"name": "bio",
+				"aria-label": "",
+				"type": "group",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "block",
+				"sub_fields": [
+					{
+						"key": "field_65a04a8114fe5",
+						"label": "Gender",
+						"name": "gender",
+						"aria-label": "",
+						"type": "radio",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"choices": {
+							"Male": "Male",
+							"Female": "Female"
+						},
+						"default_value": "",
+						"return_format": "value",
+						"allow_null": 0,
+						"other_choice": 0,
+						"layout": "vertical",
+						"save_other_choice": 0
+					},
+					{
+						"key": "field_65a05f50b107b",
+						"label": "Middle Name or Initial",
+						"name": "middle_name",
+						"aria-label": "",
+						"type": "text",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"placeholder": "",
+						"prepend": "",
+						"append": "",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "middleName",
+						"graphql_non_null": 0
+					},
+					{
+						"key": "field_65a151793506d",
+						"label": "Name Suffix",
+						"name": "name_suffix",
+						"aria-label": "",
+						"type": "radio",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"choices": {
+							"Jr.": "Jr.",
+							"Sr.": "Sr."
+						},
+						"default_value": "",
+						"return_format": "value",
+						"allow_null": 1,
+						"other_choice": 1,
+						"save_other_choice": 1,
+						"layout": "vertical",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "nameSuffix",
+						"graphql_non_null": 0
+					},
+					{
+						"key": "field_65a05fbdc7129",
+						"label": "Nickname",
+						"name": "nickname",
+						"aria-label": "",
+						"type": "text",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"placeholder": "",
+						"prepend": "",
+						"append": ""
+					},
+					{
+						"key": "field_65a05b60200cc",
+						"label": "Maiden Name",
+						"name": "maiden_name",
+						"aria-label": "",
+						"type": "text",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": [
+							[
+								{
+									"field": "field_65a04a8114fe5",
+									"operator": "==",
+									"value": "Female"
+								}
+							]
+						],
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"placeholder": "",
+						"prepend": "",
+						"append": ""
+					},
+					{
+						"key": "field_65a05b8c200cd",
+						"label": "Home Town(s)",
+						"name": "home",
+						"aria-label": "",
+						"type": "text",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"placeholder": "",
+						"prepend": "",
+						"append": "",
+						"show_in_graphql": 0
+					},
+					{
+						"key": "field_65a05bb0200ce",
+						"label": "Year of Birth",
+						"name": "year_of_birth",
+						"aria-label": "",
+						"type": "number",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"min": 1776,
+						"max": "",
+						"placeholder": "",
+						"step": "",
+						"prepend": "",
+						"append": "",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "dateOfBirth",
+						"graphql_non_null": 0
+					},
+					{
+						"key": "field_65a05bda200cf",
+						"label": "Year of Death",
+						"name": "year_of_death",
+						"aria-label": "",
+						"type": "number",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"min": 1776,
+						"max": "",
+						"placeholder": "",
+						"step": "",
+						"prepend": "",
+						"append": "",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "dateOfDeath",
+						"graphql_non_null": 0
+					}
+				]
+			},
+			{
+				"key": "field_65a062ee4fe42",
+				"label": "Service Information",
+				"name": "service_information",
+				"aria-label": "",
+				"type": "group",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "block",
+				"sub_fields": [
+					{
+						"key": "field_65a1491098911",
+						"label": "Branches of Service",
+						"name": "military_branch",
+						"aria-label": "",
+						"type": "taxonomy",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"taxonomy": "military-branch",
+						"add_term": 1,
+						"save_terms": 1,
+						"load_terms": 0,
+						"return_format": "object",
+						"field_type": "checkbox",
+						"bidirectional": 0,
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "branchesOfService",
+						"multiple": 0,
+						"allow_null": 0,
+						"bidirectional_target": []
+					},
+					{
+						"key": "field_65a063614fe43",
+						"label": "Dates of Service",
+						"name": "dates_of_service",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "block",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Service Dates",
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a06447a1662",
+								"label": "Service Start",
+								"name": "service_start",
+								"aria-label": "",
+								"type": "number",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"min": 1776,
+								"max": "",
+								"placeholder": "",
+								"step": "",
+								"prepend": "",
+								"append": "",
+								"parent_repeater": "field_65a063614fe43"
+							},
+							{
+								"key": "field_65a0645ba1663",
+								"label": "Service End",
+								"name": "service_end",
+								"aria-label": "",
+								"type": "number",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"min": 1776,
+								"max": "",
+								"placeholder": "",
+								"step": "",
+								"prepend": "",
+								"append": "",
+								"parent_repeater": "field_65a063614fe43"
+							}
+						]
+					},
+					{
+						"key": "field_65a14833ded19",
+						"label": "War",
+						"name": "war",
+						"aria-label": "",
+						"type": "taxonomy",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"taxonomy": "war",
+						"add_term": 1,
+						"save_terms": 1,
+						"load_terms": 1,
+						"return_format": "object",
+						"field_type": "checkbox",
+						"bidirectional": 0,
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "war",
+						"multiple": 0,
+						"allow_null": 0,
+						"bidirectional_target": []
+					},
+					{
+						"key": "field_65a0670a2e315",
+						"label": "Decorations",
+						"name": "decorations",
+						"aria-label": "",
+						"type": "group",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "block",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "awards",
+						"graphql_non_null": 0,
+						"sub_fields": [
+							{
+								"key": "field_65a152f05565e",
+								"label": "Decorations",
+								"name": "decorations",
+								"aria-label": "",
+								"type": "taxonomy",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"taxonomy": "decoration",
+								"add_term": 0,
+								"save_terms": 1,
+								"load_terms": 1,
+								"return_format": "object",
+								"field_type": "checkbox",
+								"bidirectional": 0,
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "decorations",
+								"multiple": 0,
+								"allow_null": 0,
+								"bidirectional_target": []
+							},
+							{
+								"key": "field_65a151ca3506e",
+								"label": "Additional Decorations",
+								"name": "additional_decorations",
+								"aria-label": "",
+								"type": "repeater",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"layout": "table",
+								"pagination": 0,
+								"min": 0,
+								"max": 0,
+								"collapsed": "",
+								"button_label": "Add Decoration",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "additionalDecorations",
+								"graphql_non_null": 0,
+								"rows_per_page": 20,
+								"sub_fields": [
+									{
+										"key": "field_65a151f03506f",
+										"label": "Name",
+										"name": "name",
+										"aria-label": "",
+										"type": "text",
+										"instructions": "",
+										"required": 0,
+										"conditional_logic": 0,
+										"wrapper": {
+											"width": "",
+											"class": "",
+											"id": ""
+										},
+										"default_value": "",
+										"maxlength": "",
+										"placeholder": "",
+										"prepend": "",
+										"append": "",
+										"show_in_graphql": 1,
+										"graphql_description": "",
+										"graphql_field_name": "name",
+										"graphql_non_null": 0,
+										"parent_repeater": "field_65a151ca3506e"
+									}
+								]
+							}
+						]
+					},
+					{
+						"key": "field_65a1493bbaa41",
+						"label": "Overseas Duty",
+						"name": "overseas_duty",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "table",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Overseas Duty",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "overseasDuty",
+						"graphql_non_null": 0,
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a14948baa42",
+								"label": "Name/Location",
+								"name": "location",
+								"aria-label": "",
+								"type": "text",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"maxlength": "",
+								"placeholder": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "location",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a1493bbaa41"
+							}
+						]
+					},
+					{
+						"key": "field_65a153835565f",
+						"label": "Stateside Assignments",
+						"name": "stateside_assignments",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "table",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Assignment",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "statesideAssignments",
+						"graphql_non_null": 0,
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a1538355660",
+								"label": "Assignment",
+								"name": "assignment",
+								"aria-label": "",
+								"type": "text",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"maxlength": "",
+								"placeholder": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "assignment",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a153835565f"
+							}
+						]
+					},
+					{
+						"key": "field_65a1b10ed9054",
+						"label": "Jobs",
+						"name": "jobs",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "table",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Job",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "jobs",
+						"graphql_non_null": 0,
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a1b116d9055",
+								"label": "Job",
+								"name": "job",
+								"aria-label": "",
+								"type": "text",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"maxlength": "",
+								"placeholder": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "job",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a1b10ed9054"
+							}
+						]
+					},
+					{
+						"key": "field_65a14c18ca41a",
+						"label": "Advanced Training",
+						"name": "advanced_training",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "table",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Training",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "advancedTraining",
+						"graphql_non_null": 0,
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a14c36ca41b",
+								"label": "Advanced Training Description",
+								"name": "advanced_training_description",
+								"aria-label": "",
+								"type": "text",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"maxlength": "",
+								"placeholder": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "advancedTrainingDescription",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a14c18ca41a"
+							}
+						]
+					},
+					{
+						"key": "field_65a14c862dfb0",
+						"label": "Highest Rank Achieved",
+						"name": "highest_rank_achieved",
+						"aria-label": "",
+						"type": "checkbox",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"choices": {
+							"Colonel": "Colonel",
+							"SP4 E-4": "SP4 E-4"
+						},
+						"default_value": [],
+						"return_format": "value",
+						"allow_custom": 1,
+						"save_custom": 1,
+						"layout": "vertical",
+						"toggle": 0,
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "highestRankAcheived",
+						"graphql_non_null": 0,
+						"custom_choice_button_text": "Add new choice"
+					},
+					{
+						"key": "field_65a14e8a0f8dd",
+						"label": "Military Units",
+						"name": "military_units",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "table",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Unit",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "militaryUnits",
+						"graphql_non_null": 0,
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a14e9f0f8de",
+								"label": "Military Unit",
+								"name": "military_unit",
+								"aria-label": "",
+								"type": "text",
+								"instructions": "Division/company/regiment/unit, etc",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"maxlength": "",
+								"placeholder": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "militaryUnit",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a14e8a0f8dd"
+							}
+						]
+					},
+					{
+						"key": "field_65a15504f27d8",
+						"label": "Choctaw Veteran of the Month",
+						"name": "choctaw_veteran_of_the_month",
+						"aria-label": "",
+						"type": "repeater",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "table",
+						"pagination": 0,
+						"min": 0,
+						"max": 0,
+						"collapsed": "",
+						"button_label": "Add Date",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "choctawVeteranOfTheMonth",
+						"graphql_non_null": 0,
+						"rows_per_page": 20,
+						"sub_fields": [
+							{
+								"key": "field_65a15510f27d9",
+								"label": "Year Received",
+								"name": "year_received",
+								"aria-label": "",
+								"type": "number",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"min": 1776,
+								"max": "",
+								"placeholder": "",
+								"step": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "yearReceived",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a15504f27d8"
+							},
+							{
+								"key": "field_65a1554ef27da",
+								"label": "District",
+								"name": "district",
+								"aria-label": "",
+								"type": "number",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"min": 1,
+								"max": 12,
+								"placeholder": "",
+								"step": "",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "district",
+								"graphql_non_null": 0,
+								"parent_repeater": "field_65a15504f27d8"
+							}
+						]
+					}
+				]
+			},
+			{
+				"key": "field_65a149bd47a3b",
+				"label": "Has Additional Materials",
+				"name": "has_additional_materials",
+				"aria-label": "",
+				"type": "true_false",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"message": "Attach additional materials?",
+				"default_value": 0,
+				"ui": 0,
+				"show_in_graphql": 1,
+				"graphql_description": "",
+				"graphql_field_name": "hasAdditionalMaterials",
+				"graphql_non_null": 0,
+				"ui_on_text": "",
+				"ui_off_text": ""
+			},
+			{
+				"key": "field_65a14f8c52783",
+				"label": "Additional Materials",
+				"name": "additional_materials",
+				"aria-label": "",
+				"type": "repeater",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": [
+					[
+						{
+							"field": "field_65a149bd47a3b",
+							"operator": "==",
+							"value": "1"
+						}
+					]
+				],
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "table",
+				"pagination": 0,
+				"min": 0,
+				"max": 0,
+				"collapsed": "",
+				"button_label": "Add Row",
+				"show_in_graphql": 1,
+				"graphql_description": "",
+				"graphql_field_name": "additionalMaterials",
+				"graphql_non_null": 0,
+				"rows_per_page": 20,
+				"sub_fields": [
+					{
+						"key": "field_65a14f9b52784",
+						"label": "Additional Material",
+						"name": "additional_material",
+						"aria-label": "",
+						"type": "group",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"layout": "block",
+						"show_in_graphql": 0,
+						"parent_repeater": "field_65a14f8c52783",
+						"sub_fields": [
+							{
+								"key": "field_65a15e6b4376b",
+								"label": "Description of Material",
+								"name": "description_of_material",
+								"aria-label": "",
+								"type": "text",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"maxlength": "",
+								"placeholder": "News Article, Audio Interview, Obituary...",
+								"prepend": "",
+								"append": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "descriptionOfMaterial",
+								"graphql_non_null": 0
+							},
+							{
+								"key": "field_65a14fa752785",
+								"label": "Type of Material",
+								"name": "material_type",
+								"aria-label": "",
+								"type": "select",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"choices": {
+									"link": "Link",
+									"photo-gallery": "Photo Gallery",
+									"audio": "Audio"
+								},
+								"default_value": false,
+								"return_format": "value",
+								"multiple": 0,
+								"allow_null": 0,
+								"ui": 0,
+								"show_in_graphql": 0,
+								"ajax": 0,
+								"placeholder": ""
+							},
+							{
+								"key": "field_65a14fc952786",
+								"label": "Link to Material",
+								"name": "material_link",
+								"aria-label": "",
+								"type": "url",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": 0,
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"default_value": "",
+								"placeholder": "",
+								"show_in_graphql": 0
+							}
+						]
+					}
+				]
+			}
+		],
+		"location": [
+			[
+				{
+					"param": "post_type",
+					"operator": "==",
+					"value": "veteran"
+				}
+			]
+		],
+		"menu_order": 0,
+		"position": "normal",
+		"style": "default",
+		"label_placement": "top",
+		"instruction_placement": "label",
+		"hide_on_screen": "",
+		"active": true,
+		"description": "",
+		"show_in_rest": 1,
+		"show_in_graphql": 1,
+		"graphql_field_name": "postType—Veterans",
+		"map_graphql_types_from_location_rules": 0,
+		"graphql_types": ""
+	}
+]

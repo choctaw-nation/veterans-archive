@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import BootstrapButtonGroup from '../../FormUI/BootstrapButtonGroup';
 
 export default function ServiceDates() {
 	const [ numFields, setNumFields ] = useState( 1 );
@@ -15,7 +16,7 @@ export default function ServiceDates() {
 						type="number"
 						className="form-control"
 						id={ `service-date-start-${ i }` }
-						{ ...register( 'service.serviceDate', {
+						{ ...register( `service.serviceDate.${ i }.start`, {
 							valueAsNumber: true,
 							min: 1800,
 						} ) }
@@ -25,28 +26,13 @@ export default function ServiceDates() {
 						type="number"
 						className="form-control"
 						id={ `service-date-end-${ i }` }
-						{ ...register( 'service.serviceDate', {
+						{ ...register( `service.serviceDate.${ i }.end`, {
 							valueAsNumber: true,
 							min: 1800,
 						} ) }
 						placeholder="Insert End Date"
 					/>
-					<button
-						type="button"
-						className="input-group-text text-bg-secondary d-flex align-items-center"
-						onClick={ () => setNumFields( numFields + 1 ) }
-					>
-						+
-					</button>
-					<button
-						type="button"
-						className="input-group-text text-bg-secondary d-flex align-items-center"
-						onClick={ () =>
-							setNumFields( numFields > 1 ? numFields - 1 : 1 )
-						}
-					>
-						&minus;
-					</button>
+					<BootstrapButtonGroup onClick={ setNumFields } />
 				</div>
 			) ) }
 		</>

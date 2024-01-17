@@ -1,4 +1,12 @@
 <?php
+/**
+ * Veteran Rest API Route Handler
+ *
+ * @package ChoctawNation
+ */
+
+use ChoctawNation\Veteran_Factory;
+
 add_action(
 	'rest_api_init',
 	function () {
@@ -7,29 +15,41 @@ add_action(
 			'/veterans',
 			array(
 				'methods'  => array( WP_REST_Server::READABLE, WP_REST_Server::CREATABLE ),
-				'callback' => 'create_veteran',
+				'callback' => 'cno_create_veteran',
 			)
 		);
 	}
 );
 
-function create_veteran( WP_REST_Request $request ) {
+/**
+ * Callback function for the veteran rest api route
+ *
+ * @param WP_REST_Request $request The request object
+ */
+function cno_create_veteran( WP_REST_Request $request ) {
 	// Get the request parameters
 	$params = $request->get_params();
 
 	// Create a new veteran post type
-	$veteran_id = wp_insert_post(
-		array(
-			'post_title' => $params['title'],
-			'post_type'  => 'veteran',
-		)
-	);
+	$veteran_id = cno_create_the_veteran_post( $params );
 
 	if ( $veteran_id ) {
 		// Return the newly created veteran post ID
 		return array( 'veteran_id' => $veteran_id );
 	} else {
 		// Return an error message if the veteran post creation fails
-		return new WP_Error( 'create_veteran_failed', 'Failed to create veteran post', array( 'status' => 500 ) );
+		return new WP_Error( 500, 'Failed to create veteran post', array( 'data' => $params ) );
 	}
+}
+
+
+/**
+ * Create a new veteran post type
+ *
+ * @param array $params The request parameters
+ */
+function cno_create_the_veteran_post( $params ): int {
+	$veteran    = new Veteran_Factory( $params );
+	$veteran_id = $veteran->id;
+	return $veteran_id;
 }

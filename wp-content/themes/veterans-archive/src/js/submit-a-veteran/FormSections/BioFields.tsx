@@ -71,6 +71,7 @@ export default function BioFields() {
 						args={ {
 							registerField: 'bio.gender',
 							required: true,
+							type: 'radio',
 						} }
 					/>
 					{ errors?.bio?.gender && (
@@ -85,6 +86,7 @@ export default function BioFields() {
 						args={ {
 							registerField: 'bio.nameSuffix',
 							custom: true,
+							type: 'radio',
 							clearable: true,
 						} }
 						fields={ [

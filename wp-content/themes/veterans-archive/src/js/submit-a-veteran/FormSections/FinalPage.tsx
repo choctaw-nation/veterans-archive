@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import ErrorMessage from '../FormUI/ErrorMessage';
-import Repeater from '../FormUI/Repeater';
 import AdditionalLinks from './AdditionalLinks';
 export default function FinalPage() {
 	const {
 		register,
 		formState: { errors },
 	} = useFormContext();
-	useEffect( () => {
-		console.log( errors );
-	} );
+
 	return (
 		<div>
-			<h2>Consent & Additional Material</h2>
+			<h2>Additional Material</h2>
 			<div className="additional-material">
+				<AdditionalLinks />
+				<p className="fw-semibold mt-3">Additional Media Material</p>
 				<div className="form-check">
 					<label
 						htmlFor="media-material"
@@ -31,9 +30,9 @@ export default function FinalPage() {
 						{ ...register( 'additionalMaterial.mediaMaterial' ) }
 					/>
 				</div>
-				<AdditionalLinks />
 			</div>
 			<div className="consent my-5">
+				<h2>Consent</h2>
 				<p>
 					By filling out this form, you understand and agree to this
 					data being publicly available. Filling out this form is not

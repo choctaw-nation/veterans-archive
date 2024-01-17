@@ -28,6 +28,7 @@ export default function BootstrapRadioCheckbox( {
 	const [ otherIsSelected, setOtherIsSelected ] = useState( false );
 	const { register, watch, resetField } = useFormContext();
 
+	// If required is a string, use that as the error message. Otherwise, use the default message.
 	const required = args.required
 		? `${
 				'string' === typeof args.required
@@ -37,25 +38,31 @@ export default function BootstrapRadioCheckbox( {
 		: false;
 
 	const watchedValue = watch( args.registerField );
+	const isChecked = watchedValue?.other?.checked;
+
 	useEffect( () => {
 		if ( 'Other' === watchedValue ) {
 			setOtherIsSelected( true );
 		} else if (
 			watchedValue &&
 			'string' !== typeof watchedValue &&
-			watchedValue.some( ( val ) => val === 'Other' )
+			'other' in watchedValue
 		) {
-			setOtherIsSelected( true );
+			setOtherIsSelected( isChecked );
 		} else {
 			setOtherIsSelected( false );
 		}
-	}, [ watchedValue ] );
+	}, [ watchedValue, isChecked ] );
 
 	return (
 		<div className="form-check">
 			<div className="row align-items-center flex-shrink-1">
 				<span className="d-block fw-semibold">{ label }:</span>
 				{ fields.map( ( field, i ) => {
+					const registrationField =
+						'radio' === args.type
+							? args.registerField
+							: `${ args.registerField }.${ i }`;
 					return (
 						<div
 							className="d-flex align-content-center column-gap-1"
@@ -64,7 +71,7 @@ export default function BootstrapRadioCheckbox( {
 							<input
 								className="form-check-input"
 								type={ args.type || 'radio' }
-								{ ...register( args.registerField, {
+								{ ...register( registrationField, {
 									required,
 								} ) }
 								value={ field.value }
@@ -84,9 +91,16 @@ export default function BootstrapRadioCheckbox( {
 							<input
 								className="form-check-input"
 								type={ args.type || 'radio' }
-								{ ...register( args.registerField, {
-									required,
-								} ) }
+								{ ...register(
+									`${
+										'radio' === args.type
+											? args.registerField
+											: `${ args.registerField }.other.checked`
+									}`,
+									{
+										required,
+									}
+								) }
 								value="Other"
 							/>{ ' ' }
 							<span className="d-block">Other</span>
@@ -95,14 +109,18 @@ export default function BootstrapRadioCheckbox( {
 							<input
 								type="text"
 								{ ...register(
-									`${ args.registerField }Other`
+									`${
+										'radio' === args.type
+											? args.registerField
+											: `${ args.registerField }.other.value`
+									}`
 								) }
 								placeholder="Please specify"
 							/>
 						) }
 					</>
 				) }
-				{ args.clearable && watch( args.registerField ) && (
+				{ args.clearable && watchedValue && (
 					<div className="d-flex align-content-center column-gap-1">
 						<button
 							className="btn btn-outline-secondary"

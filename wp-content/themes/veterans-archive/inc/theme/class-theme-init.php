@@ -25,6 +25,7 @@ class Theme_Init {
 		$base_path = get_template_directory() . '/inc';
 		require_once $base_path . '/theme/theme-functions.php';
 		require_once $base_path . '/veteran-submission/rest-route.php';
+		require_once $base_path . '/veteran-submission/class-veteran-factory.php';
 
 		$acf_classes = array(
 			'generator',

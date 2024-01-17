@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import BootstrapButtonGroup from './BootstrapButtonGroup';
 
 function makePlural( word: string ): string {
 	if ( word.endsWith( 'y' ) ) {
@@ -33,30 +34,15 @@ export default function Repeater( {
 		<>
 			<span className="d-block fw-semibold">{ makePlural( label ) }</span>
 			{ [ ...Array( numFields ) ].map( ( _, i ) => (
-				<div key={ i } className="d-flex">
+				<div key={ i } className="d-flex mb-3">
 					<input
 						type={ type }
 						className="form-control"
 						id={ `${ id }-${ i }` }
-						{ ...register( registration ) }
+						{ ...register( `${ registration }.${ i }` ) }
 						placeholder={ `Insert ${ label }` }
 					/>
-					<button
-						type="button"
-						className="input-group-text text-bg-secondary d-flex align-items-center"
-						onClick={ () => setNumFields( numFields + 1 ) }
-					>
-						+
-					</button>
-					<button
-						type="button"
-						className="input-group-text text-bg-secondary d-flex align-items-center"
-						onClick={ () =>
-							setNumFields( numFields > 1 ? numFields - 1 : 1 )
-						}
-					>
-						&minus;
-					</button>
+					<BootstrapButtonGroup onClick={ setNumFields } />
 				</div>
 			) ) }
 		</>
