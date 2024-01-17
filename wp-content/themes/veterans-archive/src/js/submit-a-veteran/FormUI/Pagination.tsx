@@ -11,6 +11,7 @@ const Pagination: React.FC< PaginationProps > = ( {
 	setCurrentPage,
 } ) => {
 	const { trigger } = useFormContext();
+
 	return (
 		<div className="d-flex justify-content-between mt-5">
 			<button
@@ -25,14 +26,21 @@ const Pagination: React.FC< PaginationProps > = ( {
 			</button>
 			<span className="d-block">Page { currentPage } of 3</span>
 			<button
+				disabled={ 3 === currentPage }
 				className="btn btn-primary"
 				type="button"
 				onClick={ () => {
-					trigger().then(
-						( fieldsAreValidated ) =>
-							fieldsAreValidated &&
-							setCurrentPage( ( pageIndex ) => pageIndex + 1 )
-					);
+					trigger().then( ( fieldsAreValidated ) => {
+						if ( fieldsAreValidated ) {
+							setCurrentPage( ( pageIndex ) => pageIndex + 1 );
+						} else {
+							document
+								.querySelectorAll( '.invalid-feedback' )
+								.forEach( ( el ) => {
+									el.style.display = 'block';
+								} );
+						}
+					} );
 				} }
 			>
 				Next

@@ -37,6 +37,7 @@ export default function BootstrapInput( {
 				type={ type }
 				className="form-control"
 				id={ id }
+				required={ required }
 				{ ...register( registration, args ) }
 			/>
 		</>

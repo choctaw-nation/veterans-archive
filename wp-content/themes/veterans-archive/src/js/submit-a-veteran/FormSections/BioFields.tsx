@@ -29,6 +29,7 @@ const fields = {
 		{ id: 'dateOfDeath', label: 'Year of Death', type: 'number' },
 	],
 };
+
 export default function BioFields() {
 	const { watch, formState } = useFormContext();
 	const { errors } = formState;

@@ -29,7 +29,8 @@ export default function Form( { children }: { children: any } ) {
 
 	return (
 		<form
-			className="border rounded-5 border-3 bg-white p-3 shadow"
+			className="border rounded-5 border-3 bg-white p-3 shadow needs-validation"
+			noValidate
 			onSubmit={ handleSubmit( onSubmit, onError ) }
 		>
 			{ children }

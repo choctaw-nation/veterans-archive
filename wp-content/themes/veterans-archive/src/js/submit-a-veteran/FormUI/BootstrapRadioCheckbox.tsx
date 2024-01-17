@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 export type RadioButtonField = {
@@ -11,6 +11,7 @@ export type Args = {
 	registerField: string;
 	required?: string | boolean;
 	custom?: true;
+	multipleCustomValues?: true;
 	clearable?: true;
 	type?: 'radio' | 'checkbox';
 };
@@ -24,7 +25,9 @@ export default function BootstrapRadioCheckbox( {
 	label: string;
 	fields: Array< RadioButtonField >;
 } ) {
+	const [ otherIsSelected, setOtherIsSelected ] = useState( false );
 	const { register, watch, resetField } = useFormContext();
+
 	const required = args.required
 		? `${
 				'string' === typeof args.required
@@ -32,6 +35,22 @@ export default function BootstrapRadioCheckbox( {
 					: 'This field is required'
 		  }`
 		: false;
+
+	const watchedValue = watch( args.registerField );
+	useEffect( () => {
+		if ( 'Other' === watchedValue ) {
+			setOtherIsSelected( true );
+		} else if (
+			watchedValue &&
+			'string' !== typeof watchedValue &&
+			watchedValue.some( ( val ) => val === 'Other' )
+		) {
+			setOtherIsSelected( true );
+		} else {
+			setOtherIsSelected( false );
+		}
+	}, [ watchedValue ] );
+
 	return (
 		<div className="form-check">
 			<div className="row align-items-center flex-shrink-1">
@@ -72,7 +91,7 @@ export default function BootstrapRadioCheckbox( {
 							/>{ ' ' }
 							<span className="d-block">Other</span>
 						</div>
-						{ watch( args.registerField ) === 'Other' && (
+						{ otherIsSelected && (
 							<input
 								type="text"
 								{ ...register(
