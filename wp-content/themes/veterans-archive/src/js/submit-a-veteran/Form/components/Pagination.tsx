@@ -12,6 +12,20 @@ const Pagination: React.FC< PaginationProps > = ( {
 } ) => {
 	const { trigger } = useFormContext();
 
+	async function handleClick() {
+		const fieldsAreValidated = await trigger();
+		if ( fieldsAreValidated ) {
+			setCurrentPage( ( pageIndex ) => pageIndex + 1 );
+		} else {
+			const feedbackBoxes = document.querySelectorAll(
+				'.invalid-feedback'
+			) as NodeListOf< HTMLDivElement >;
+			feedbackBoxes.forEach( ( el ) => {
+				el.style.display = 'block';
+			} );
+		}
+	}
+
 	return (
 		<div className="d-flex justify-content-between mt-5">
 			<button
@@ -29,21 +43,7 @@ const Pagination: React.FC< PaginationProps > = ( {
 				<button
 					className="btn btn-primary"
 					type="button"
-					onClick={ () => {
-						trigger().then( ( fieldsAreValidated ) => {
-							if ( fieldsAreValidated ) {
-								setCurrentPage(
-									( pageIndex ) => pageIndex + 1
-								);
-							} else {
-								document
-									.querySelectorAll( '.invalid-feedback' )
-									.forEach( ( el ) => {
-										el.style.display = 'block';
-									} );
-							}
-						} );
-					} }
+					onClick={ handleClick }
 				>
 					Next
 				</button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import BootstrapRadioCheckbox from '../../FormUI/BootstrapRadioCheckbox';
+import BootstrapRadioCheckbox from '../../ui/BootstrapRadioCheckbox';
 export default function Wars() {
 	return (
 		<BootstrapRadioCheckbox

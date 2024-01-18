@@ -55,19 +55,16 @@ export default function BootstrapRadioCheckbox( {
 	}, [ watchedValue, isChecked ] );
 
 	return (
-		<div className="form-check">
-			<div className="row align-items-center flex-shrink-1">
-				<span className="d-block fw-semibold">{ label }:</span>
+		<div className="row">
+			<div className="col">
+				<span className="d-block fw-semibold fs-5">{ label }:</span>
 				{ fields.map( ( field, i ) => {
 					const registrationField =
 						'radio' === args.type
 							? args.registerField
 							: `${ args.registerField }.${ i }`;
 					return (
-						<div
-							className="d-flex align-content-center column-gap-1"
-							key={ i }
-						>
+						<div className="form-check" key={ i }>
 							<input
 								className="form-check-input"
 								type={ args.type || 'radio' }
@@ -78,7 +75,7 @@ export default function BootstrapRadioCheckbox( {
 							/>{ ' ' }
 							<label
 								htmlFor={ args.registerField }
-								className="form-check-label d-block"
+								className="form-check-label"
 							>
 								{ field.label }
 							</label>
@@ -87,7 +84,7 @@ export default function BootstrapRadioCheckbox( {
 				} ) }
 				{ args.custom && (
 					<>
-						<div className="d-flex align-content-center column-gap-1">
+						<div className="form-check d-flex">
 							<input
 								className="form-check-input"
 								type={ args.type || 'radio' }
@@ -103,25 +100,28 @@ export default function BootstrapRadioCheckbox( {
 								) }
 								value="Other"
 							/>{ ' ' }
-							<span className="d-block">Other</span>
+							<label className="form-check-label ms-2">
+								Other
+							</label>
+							{ otherIsSelected && (
+								<input
+									type="text"
+									className="form-control ms-2"
+									{ ...register(
+										`${
+											'radio' === args.type
+												? args.registerField
+												: `${ args.registerField }.other.value`
+										}`
+									) }
+									placeholder="Please specify"
+								/>
+							) }
 						</div>
-						{ otherIsSelected && (
-							<input
-								type="text"
-								{ ...register(
-									`${
-										'radio' === args.type
-											? args.registerField
-											: `${ args.registerField }.other.value`
-									}`
-								) }
-								placeholder="Please specify"
-							/>
-						) }
 					</>
 				) }
 				{ args.clearable && watchedValue && (
-					<div className="d-flex align-content-center column-gap-1">
+					<div className="mt-3 d-flex align-content-center column-gap-1">
 						<button
 							className="btn btn-outline-secondary"
 							onClick={ () => resetField( args.registerField ) }

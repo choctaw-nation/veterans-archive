@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import BootstrapButtonGroup from '../../FormUI/BootstrapButtonGroup';
+import BootstrapButtonGroup from '../../ui/BootstrapButtonGroup';
 
 export default function ServiceDates() {
 	const [ numFields, setNumFields ] = useState( 1 );
@@ -11,7 +11,7 @@ export default function ServiceDates() {
 				Dates of Service
 			</label>
 			{ [ ...Array( numFields ) ].map( ( _, i ) => (
-				<div key={ i } className="input-group">
+				<div key={ i } className="input-group mb-3">
 					<input
 						type="number"
 						className="form-control"

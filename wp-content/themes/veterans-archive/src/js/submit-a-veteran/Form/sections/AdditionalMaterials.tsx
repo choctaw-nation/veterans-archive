@@ -1,12 +1,25 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import ErrorMessage from '../FormUI/ErrorMessage';
-import AdditionalLinks from './AdditionalLinks';
-export default function FinalPage() {
+
+import ErrorMessage from '../components/ErrorMessage';
+import AdditionalLinks from '../components/AdditionalMaterials/AdditionalLinks';
+import ContactInfo from '../components/AdditionalMaterials/ContactInfo';
+
+export default function AdditionalMaterials() {
 	const {
 		register,
+		getValues,
 		formState: { errors },
 	} = useFormContext();
+
+	const veteran = {
+		firstName: getValues( 'bio.firstName' ),
+		lastName: getValues( 'bio.lastName' ),
+		pronouns:
+			'male' === getValues( 'bio.gender' )
+				? [ 'he', 'him', 'his' ]
+				: [ 'she', 'her', 'her' ],
+	};
 
 	return (
 		<div>
@@ -17,7 +30,7 @@ export default function FinalPage() {
 				<div className="form-check">
 					<label
 						htmlFor="media-material"
-						className="form-check-label"
+						className="form-check-label fs-5"
 					>
 						Check this box if you would like to submit additional
 						media materials to the archive (e.g. photos, audio,
@@ -34,11 +47,9 @@ export default function FinalPage() {
 			<div className="consent my-5">
 				<h2>Consent</h2>
 				<p>
-					By filling out this form, you understand and agree to this
-					data being publicly available. Filling out this form is not
-					a guarantee that the veteran will be added to the archive,
-					and we reserve the right to remove any submissions at any
-					time.
+					{ `By filling out this form, you understand and acknowledge that this
+					data will be publicly available. You also acknowledge and affirm that you have the right to submit information about ${ veteran.firstName } ${ veteran.lastName } on ${ veteran.pronouns[ 2 ] } behalf. Filling out this form is not a guarantee that ${ veteran.pronouns[ 0 ] } will be added to the archive, and we reserve the right to remove any submissions at any
+					time.` }
 				</p>
 				<div className="form-check">
 					<input
@@ -52,7 +63,7 @@ export default function FinalPage() {
 					/>
 					<label
 						htmlFor="consentCheckbox"
-						className="form-check-label"
+						className="form-check-label fs-5"
 					>
 						I understand and agree
 					</label>
@@ -62,6 +73,7 @@ export default function FinalPage() {
 						</ErrorMessage>
 					) }
 				</div>
+				<ContactInfo />
 			</div>
 		</div>
 	);

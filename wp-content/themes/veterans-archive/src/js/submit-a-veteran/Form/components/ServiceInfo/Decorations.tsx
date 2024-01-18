@@ -1,11 +1,11 @@
 import React from 'react';
-import BootstrapRadioCheckbox from '../../FormUI/BootstrapRadioCheckbox';
-import Repeater from '../../FormUI/Repeater';
+import BootstrapRadioCheckbox from '../../ui/BootstrapRadioCheckbox';
+import Repeater from '../Repeater';
 
 export default function Decorations() {
 	return (
 		<>
-			<div className="col">
+			<div className="col-auto flex-shrink-1">
 				<BootstrapRadioCheckbox
 					args={ {
 						registerField: 'service.majorDecorations',
@@ -39,7 +39,7 @@ export default function Decorations() {
 					label="Major Decorations"
 				/>
 			</div>
-			<div className="col d-flex flex-column">
+			<div className="col-auto d-flex flex-column flex-grow-1">
 				<Repeater
 					label="Additional Decoration"
 					id="decorations"

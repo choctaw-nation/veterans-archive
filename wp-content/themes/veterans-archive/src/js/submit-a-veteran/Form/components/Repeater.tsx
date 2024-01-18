@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import BootstrapButtonGroup from './BootstrapButtonGroup';
+import BootstrapButtonGroup from '../ui/BootstrapButtonGroup';
 
 function makePlural( word: string ): string {
 	if ( word.endsWith( 'y' ) ) {
@@ -23,6 +23,7 @@ export default function Repeater( {
 	type = 'text',
 }: {
 	label: string;
+
 	id: string;
 	registration: string;
 	type?: 'text' | 'url';
