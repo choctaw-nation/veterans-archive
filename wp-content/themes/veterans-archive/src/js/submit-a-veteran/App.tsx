@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { FormProvider, set, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import apiFetch from '@wordpress/api-fetch';
 
 import BioFields from './FormSections/BioFields';
@@ -22,7 +22,7 @@ function onError( errors ) {
 function App() {
 	const [ currentPage, setCurrentPage ] = useState( 3 );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const methods = useForm( { defaultValues: defaultFormData } );
+	const methods = useForm();
 
 	function onSubmit( formData ) {
 		setIsLoading( true );

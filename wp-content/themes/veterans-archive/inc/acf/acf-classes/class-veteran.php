@@ -107,7 +107,23 @@ class Veteran extends Veteran_Setter {
 	 * Get the Veteran's home town(s)
 	 */
 	public function get_the_hometown(): string {
-		return $this->home;
+		if ( ! $this->home_areas ) {
+			return null;
+		} else {
+			$home = array();
+			foreach ( $this->home_areas as $home_area ) {
+				$location = array();
+				if ( $home_area->city ) {
+					$location[] = $home_area->city;
+				}
+				if ( $home_area->county ) {
+					$location[] = $home_area->county;
+				}
+				$location[] = $home_area->state;
+				$home[]     = join( ', ', $location );
+			}
+			return implode( '; ', $home );
+		}
 	}
 
 	/**

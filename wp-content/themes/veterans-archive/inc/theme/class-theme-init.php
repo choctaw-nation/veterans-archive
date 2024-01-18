@@ -49,6 +49,7 @@ class Theme_Init {
 			'decorations',
 			'additional-material',
 			'choctaw-veteran-of-the-month',
+			'home-area',
 		);
 		foreach ( $veteran_data_types as $veteran_data_type ) {
 			require_once $base_path . '/acf/acf-classes/veteran-data-types/class-' . $veteran_data_type . '.php';

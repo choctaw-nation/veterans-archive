@@ -11,6 +11,7 @@ use ChoctawNation\ACF\Veteran_Data_Types\Additional_Material;
 use ChoctawNation\ACF\Veteran_Data_Types\Choctaw_Veteran_Of_The_Month;
 use ChoctawNation\ACF\Veteran_Data_Types\Dates_Of_Service;
 use ChoctawNation\ACF\Veteran_Data_Types\Decorations;
+use ChoctawNation\ACF\Veteran_Data_Types\Home_Area;
 
 /**
  * Creates WP-like API to generate markup
@@ -52,11 +53,11 @@ abstract class Veteran_Data {
 	public ?string $suffix;
 
 	/**
-	 * Home Town(s)
+	 * Home Areas
 	 *
-	 * @var ?string $home
+	 * @var Home_Area[] $home_areas
 	 */
-	public ?string $home;
+	public ?array $home_areas;
 
 	/**
 	 * Date of Birth

@@ -11,7 +11,7 @@ namespace ChoctawNation;
 /**
  * Veteran Factory
  */
-class Veteran_Factory {
+class Veteran_Factory extends Veteran_Data {
 	/**
 	 * The veteran post ID
 	 *
@@ -21,12 +21,20 @@ class Veteran_Factory {
 
 
 	public function __construct( array $params ) {
-		$this->params = $params;
-		$id           = $this->create_veteran();
-		$this->id     = $id;
+		$this->init_props( $params );
+		$id       = $this->create_veteran();
+		$this->id = $id;
 		if ( $this->id ) {
 			$this->set_acf_fields();
 		}
+	}
+
+	/**
+	 * Secures the data (sanitize and esc) and initialize the class properties
+	 *
+	 * @param array $params the $_POST data
+	 */
+	private function init_props( array $params ) {
 	}
 
 	/**

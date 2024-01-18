@@ -14,6 +14,7 @@ use ChoctawNation\ACF\Veteran_Data_Types\Additional_Material;
 use ChoctawNation\ACF\Veteran_Data_Types\Choctaw_Veteran_Of_The_Month;
 use ChoctawNation\ACF\Veteran_Data_Types\Dates_Of_Service;
 use ChoctawNation\ACF\Veteran_Data_Types\Decorations;
+use ChoctawNation\ACF\Veteran_Data_Types\Home_Area;
 
 /**
  * Creates WP-like API to generate markup
@@ -51,9 +52,15 @@ class Veteran_Setter extends Veteran_Data {
 		$this->suffix      = esc_textarea( $acf['name_suffix'] );
 		$this->middle_name = esc_textarea( $acf['middle_name'] );
 		$this->nickname    = esc_textarea( $acf['nickname'] );
-		$this->home        = esc_textarea( $acf['home'] );
-		$this->birth       = $acf['year_of_birth'] ?: null;
-		$this->death       = $acf['year_of_death'] ?: null;
+		if ( is_array( $acf['home_areas'] ) && ! empty( $acf['home_areas'] ) ) {
+			foreach ( $acf['home_areas'] as $home_area ) {
+				$this->home_areas[] = new Home_Area( $home_area );
+			}
+		} else {
+			$this->home_areas = null;
+		}
+		$this->birth = $acf['year_of_birth'] ?: null;
+		$this->death = $acf['year_of_death'] ?: null;
 	}
 
 	// phpcs:ignore
