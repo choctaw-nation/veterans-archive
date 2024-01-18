@@ -34,8 +34,9 @@ function cno_create_veteran( WP_REST_Request $request ) {
 	$veteran_id = cno_create_the_veteran_post( $params );
 
 	if ( $veteran_id ) {
+		$return_value = json_encode( array( 'veteran_id' => $veteran_id ) );
 		// Return the newly created veteran post ID
-		return array( 'veteran_id' => $veteran_id );
+		return $return_value;
 	} else {
 		// Return an error message if the veteran post creation fails
 		return new WP_Error( 500, 'Failed to create veteran post', array( 'data' => $params ) );

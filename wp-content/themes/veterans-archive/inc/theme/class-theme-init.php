@@ -25,35 +25,7 @@ class Theme_Init {
 		$base_path = get_template_directory() . '/inc';
 		require_once $base_path . '/theme/theme-functions.php';
 
-		$veteran_classes = array(
-			'class-veteran-data',
-			'class-veteran-factory',
-			'rest-route',
-		);
-		foreach ( $veteran_classes as $veteran_class ) {
-			require_once $base_path . '/veteran/' . $veteran_class . '.php';
-		}
-
-		$acf_classes = array(
-			'generator',
-			'image',
-			'veteran-setter',
-			'veteran',
-		);
-		foreach ( $acf_classes as $acf_class ) {
-			require_once $base_path . '/acf/acf-classes/class-' . $acf_class . '.php';
-		}
-
-		$veteran_data_types = array(
-			'dates-of-service',
-			'decorations',
-			'additional-material',
-			'choctaw-veteran-of-the-month',
-			'home-area',
-		);
-		foreach ( $veteran_data_types as $veteran_data_type ) {
-			require_once $base_path . '/acf/acf-classes/veteran-data-types/class-' . $veteran_data_type . '.php';
-		}
+		$this->load_veteran_files( $base_path );
 
 		$asset_loaders = array( 'enum-enqueue-type', 'class-asset-loader' );
 		foreach ( $asset_loaders as $asset_loader ) {
@@ -67,6 +39,47 @@ class Theme_Init {
 
 		require_once $base_path . '/theme/class-allow-svg.php';
 		$svg = new Allow_SVG();
+	}
+
+	/** Load the Veteran files in the correct order
+	 *
+	 * @param string $base_path the base path to the inc folder
+	 */
+	private function load_veteran_files( string $base_path ) {
+		// Load the Abstract Class first
+		require_once $base_path . '/veteran/class-veteran-data.php';
+
+		// Load the Helper Classes
+		$veteran_data_types = array(
+			'dates-of-service',
+			'decorations',
+			'additional-material',
+			'choctaw-veteran-of-the-month',
+			'home-area',
+		);
+		foreach ( $veteran_data_types as $veteran_data_type ) {
+			require_once $base_path . '/acf/acf-classes/veteran-data-types/class-' . $veteran_data_type . '.php';
+		}
+
+		// Load the ACF Classes
+		$acf_classes = array(
+			'generator',
+			'image',
+			'veteran-setter',
+			'veteran',
+		);
+		foreach ( $acf_classes as $acf_class ) {
+			require_once $base_path . '/acf/acf-classes/class-' . $acf_class . '.php';
+		}
+
+		// Finally, load the Veteran Data Classes (for REST)
+		$veteran_classes = array(
+			'class-veteran-factory',
+			'rest-route',
+		);
+		foreach ( $veteran_classes as $veteran_class ) {
+			require_once $base_path . '/veteran/' . $veteran_class . '.php';
+		}
 	}
 
 	/** Remove comments, pings and trackbacks support from posts types. */

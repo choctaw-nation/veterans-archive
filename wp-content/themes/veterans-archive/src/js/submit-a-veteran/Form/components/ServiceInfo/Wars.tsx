@@ -4,17 +4,17 @@ export default function Wars() {
 	return (
 		<BootstrapRadioCheckbox
 			args={ {
-				registerField: 'service.war',
+				registerField: 'service_information.war',
 				type: 'checkbox',
 				custom: true,
 			} }
 			fields={ [
-				{ label: 'WWII', value: 'WWII' },
+				{ label: 'Afghanistan', value: 'Afghanistan' },
+				{ label: 'Desert Storm', value: 'Desert Storm' },
+				{ label: 'Iraq', value: 'Iraq' },
 				{ label: 'Korea', value: 'Korea' },
 				{ label: 'Vietnam', value: 'Vietnam' },
-				{ label: 'Desert Storm', value: 'Desert Storm' },
-				{ label: 'Afghanistan', value: 'Afghanistan' },
-				{ label: 'Iraq', value: 'Iraq' },
+				{ label: 'WWII', value: 'WWII' },
 			] }
 			label="War"
 		/>

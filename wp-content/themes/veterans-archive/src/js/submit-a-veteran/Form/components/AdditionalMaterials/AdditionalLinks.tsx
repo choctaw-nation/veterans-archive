@@ -14,14 +14,18 @@ export default function AdditionalLinks() {
 						type="text"
 						className="form-control"
 						id={ `link-${ i }-name` }
-						{ ...register( `additionalMaterials.${ i }.linkName` ) }
+						{ ...register(
+							`additional_materials.${ i }.description_of_material`
+						) }
 						placeholder={ `Insert link name` }
 					/>
 					<input
 						type="url"
 						className="form-control"
 						id={ `link-${ i }-url` }
-						{ ...register( `additionalMaterials.${ i }.link` ) }
+						{ ...register(
+							`additional_materials.${ i }.material_link`
+						) }
 						placeholder={ `Insert url` }
 					/>
 					<BootstrapButtonGroup onClick={ setNumFields } />

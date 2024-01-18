@@ -23,7 +23,7 @@ function onError( errors ) {
 	// console.log( errors );
 }
 function App() {
-	const [ currentPage, setCurrentPage ] = useState( 1 );
+	const [ currentPage, setCurrentPage ] = useState( 3 );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const methods = useForm( { defaultValues: defaultFormData } );
 
@@ -40,19 +40,15 @@ function App() {
 			} );
 			console.log( response );
 		}
-		console.log( formData );
-		setIsLoading( false );
-		setCurrentPage( 4 );
-
-		// setTimeout( () => {
-		// 	try {
-		// 		submitData();
-		// 	} catch ( err ) {
-		// 		console.error( err );
-		// 	} finally {
-		// 		setIsLoading( false );
-		// 	}
-		// }, 2000 );
+		setTimeout( () => {
+			try {
+				submitData();
+			} catch ( err ) {
+				console.error( err );
+			} finally {
+				setIsLoading( false );
+			}
+		}, 2000 );
 	}
 
 	if ( isLoading ) {

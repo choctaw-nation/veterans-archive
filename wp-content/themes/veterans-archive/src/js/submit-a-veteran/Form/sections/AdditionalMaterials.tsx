@@ -13,8 +13,8 @@ export default function AdditionalMaterials() {
 	} = useFormContext();
 
 	const veteran = {
-		firstName: getValues( 'bio.firstName' ),
-		lastName: getValues( 'bio.lastName' ),
+		firstName: getValues( 'bio.first_name' ),
+		lastName: getValues( 'bio.last_name' ),
 		pronouns:
 			'male' === getValues( 'bio.gender' )
 				? [ 'he', 'him', 'his' ]
@@ -40,7 +40,7 @@ export default function AdditionalMaterials() {
 						type="checkbox"
 						className="form-check-input"
 						id="media-material"
-						{ ...register( 'additionalMaterial.mediaMaterial' ) }
+						{ ...register( 'additional_materials.media_material' ) }
 					/>
 				</div>
 			</div>
