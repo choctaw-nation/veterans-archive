@@ -23,7 +23,7 @@ function onError( errors ) {
 	// console.log( errors );
 }
 function App() {
-	const [ currentPage, setCurrentPage ] = useState( 3 );
+	const [ currentPage, setCurrentPage ] = useState( 1 );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const methods = useForm( { defaultValues: defaultFormData } );
 
