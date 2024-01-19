@@ -76,6 +76,7 @@ class Theme_Init {
 		$veteran_classes = array(
 			'class-veteran-factory',
 			'rest-route',
+			'class-acf-setter',
 		);
 		foreach ( $veteran_classes as $veteran_class ) {
 			require_once $base_path . '/veteran/' . $veteran_class . '.php';

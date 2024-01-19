@@ -106,7 +106,7 @@ class Veteran extends Veteran_Setter {
 	/**
 	 * Get the Veteran's home town(s)
 	 */
-	public function get_the_hometown(): string {
+	public function get_the_hometown(): ?string {
 		if ( ! $this->home_areas ) {
 			return null;
 		} else {

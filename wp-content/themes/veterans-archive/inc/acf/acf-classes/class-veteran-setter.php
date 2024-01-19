@@ -49,7 +49,8 @@ class Veteran_Setter extends Veteran_Data {
 	protected function set_the_bio( array $acf ) {
 		$this->gender      = $acf['gender'];
 		$this->maiden_name = ( 'Female' === $this->gender ) ? esc_textarea( $acf['maiden_name'] ) : null;
-		$this->suffix      = esc_textarea( $acf['name_suffix'] );
+		$this->set_the_name_suffix( $acf );
+
 		$this->middle_name = esc_textarea( $acf['middle_name'] );
 		$this->nickname    = esc_textarea( $acf['nickname'] );
 		if ( is_array( $acf['home_areas'] ) && ! empty( $acf['home_areas'] ) ) {
@@ -61,6 +62,16 @@ class Veteran_Setter extends Veteran_Data {
 		}
 		$this->birth = $acf['year_of_birth'] ?: null;
 		$this->death = $acf['year_of_death'] ?: null;
+	}
+
+	private function set_the_name_suffix( array $acf ) {
+		if ( ! empty( $acf['name_suffix'] ) && empty( $acf['name_suffixOther'] ) ) {
+			$this->suffix = esc_textarea( $acf['name_suffix'] );
+		} elseif ( ! empty( $acf['name_suffixOther'] ) ) {
+			$this->suffix = esc_textarea( $acf['name_suffixOther'] );
+		} else {
+			$this->suffix = null;
+		}
 	}
 
 	// phpcs:ignore

@@ -819,7 +819,7 @@
 						"label": "Highest Rank Achieved",
 						"name": "highest_rank_achieved",
 						"aria-label": "",
-						"type": "checkbox",
+						"type": "text",
 						"instructions": "",
 						"required": 0,
 						"conditional_logic": 0,
@@ -828,21 +828,15 @@
 							"class": "",
 							"id": ""
 						},
-						"choices": {
-							"Colonel": "Colonel",
-							"SP4 E-4": "SP4 E-4"
-						},
-						"default_value": [],
-						"return_format": "value",
-						"allow_custom": 1,
-						"save_custom": 1,
-						"layout": "vertical",
-						"toggle": 0,
+						"default_value": "",
+						"maxlength": "",
+						"placeholder": "",
+						"prepend": "",
+						"append": "",
 						"show_in_graphql": 1,
 						"graphql_description": "",
-						"graphql_field_name": "highestRankAcheived",
-						"graphql_non_null": 0,
-						"custom_choice_button_text": "Add new choice"
+						"graphql_field_name": "highestRankAchieved",
+						"graphql_non_null": 0
 					},
 					{
 						"key": "field_65a14e8a0f8dd",

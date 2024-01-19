@@ -38,23 +38,14 @@ function cno_create_veteran( WP_REST_Request $request ) {
 	// Create a new veteran post type
 	$veteran = new Veteran_Factory( $params );
 
-	if ( $veteran->id ) {
+	if ( ! is_wp_error( $veteran->id ) ) {
 		$data = array(
 			'status'  => 'ok',
 			'message' => 'Veteran post created successfully',
 			'data'    => $veteran,
 		);
 		return new WP_REST_Response( $data, 200, array( 'Content-Type' => 'application/json' ) );
-
 	} else {
-		// Return an error message if the veteran post creation fails
-		return new WP_Error(
-			'create_veteran_post',
-			'Failed to create veteran post',
-			array(
-				'data' => $params,
-				'code' => 500,
-			)
-		);
+		return $veteran->id;
 	}
 }

@@ -20,10 +20,10 @@ createRoot( root ).render(
 );
 
 function App() {
-	const [ currentPage, setCurrentPage ] = useState( 1 );
+	const [ currentPage, setCurrentPage ] = useState( 3 );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ formResponse, setFormResponse ] = useState( null );
-	const methods = useForm();
+	const methods = useForm( { defaultValues: defaultFormData } );
 
 	async function onSubmit( formData ) {
 		setIsLoading( true );
@@ -40,6 +40,7 @@ function App() {
 		}
 		try {
 			const response = await submitData();
+			console.log( response );
 			setFormResponse( response.data );
 			setCurrentPage( 4 );
 		} catch ( err ) {

@@ -20,7 +20,7 @@ class Veteran_Factory extends Veteran_Setter {
 	/**
 	 * The veteran post ID
 	 *
-	 * @var int
+	 * @var int|\WP_Error $id
 	 */
 	public $id;
 
@@ -31,20 +31,57 @@ class Veteran_Factory extends Veteran_Setter {
 	 */
 	public bool $consent_given;
 
+	/**
+	 * The veteran's first name
+	 *
+	 * @var string $first_name
+	 */
 	public string $first_name;
+
+	/**
+	 * The veteran's last name
+	 *
+	 * @var string $last_name
+	 */
 	public string $last_name;
 
+	/**
+	 * If the submitter wants to add additional media material
+	 *
+	 * @var string $bio
+	 */
 	public bool $has_media_material;
+
+	/**
+	 * Submitter's name
+	 *
+	 * @var string $user_name
+	 */
 	public string $user_name;
+
+	/**
+	 * Submitter's email
+	 *
+	 * @var string $user_email
+	 */
 	public string $user_email;
 
+	// phpcs:ignore
 	public function __construct( array $params ) {
 		$this->init_props( $params );
-		// $id       = $this->create_veteran();
-		$id       = 0;
-		$this->id = $id;
-		if ( $this->id ) {
-			$this->set_acf_fields();
+		$id = $this->create_veteran();
+		if ( is_wp_error( $id ) ) {
+			$this->id = $id;
+			return;
+		}
+		if ( $id ) {
+			$acf_setter = new ACF_Setter( $id );
+			$acf_setter->set_the_fields( $this );
+			if ( $acf_setter->has_errors() ) {
+				$this->id = $acf_setter->get_errors();
+				return;
+			}
+			$this->id = $id;
 		}
 	}
 
@@ -168,21 +205,16 @@ class Veteran_Factory extends Veteran_Setter {
 	}
 
 	/**
-	 * Create a new veteran post type
+	 * Create a new veteran post type. Returns the post ID on success or a WP_Error object on failure
 	 */
-	private function create_veteran() {
+	private function create_veteran(): int|\WP_Error {
 		$post_title = "{$this->first_name} {$this->last_name}";
 		return wp_insert_post(
 			array(
 				'post_title' => $post_title,
 				'post_type'  => 'veteran',
-			)
+			),
+			true
 		);
-	}
-
-	/**
-	 * Set the ACF fields for the veteran post type
-	 */
-	private function set_acf_fields() {
 	}
 }
