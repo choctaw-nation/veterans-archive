@@ -46,7 +46,7 @@ class Veteran_Setter extends Veteran_Data {
 	}
 
 	// phpcs:ignore
-	private function set_the_bio( array $acf ) {
+	protected function set_the_bio( array $acf ) {
 		$this->gender      = $acf['gender'];
 		$this->maiden_name = ( 'Female' === $this->gender ) ? esc_textarea( $acf['maiden_name'] ) : null;
 		$this->suffix      = esc_textarea( $acf['name_suffix'] );
@@ -64,13 +64,11 @@ class Veteran_Setter extends Veteran_Data {
 	}
 
 	// phpcs:ignore
-	private function set_the_service_information(array $acf) {
+	protected function set_the_service_information(array $acf) {
 		$this->branches_of_service = $acf['military_branch'] ?: null;
 
 		if ( $acf['dates_of_service'] ) {
-			foreach ( $acf['dates_of_service'] as $date_of_service ) {
-				$this->dates_of_service[] = new Dates_Of_Service( $date_of_service );
-			}
+			$this->set_the_dates_of_service( $acf['dates_of_service'] );
 		} else {
 			$this->dates_of_service = null;
 		}
@@ -91,7 +89,7 @@ class Veteran_Setter extends Veteran_Data {
 		$this->jobs = $acf['jobs'] ? $this->flatten_acf_repeater( $acf['jobs'], 'job' ) : null;
 
 		$this->advanced_training     = $acf['advanced_training'] ? $this->flatten_acf_repeater( $acf['advanced_training'], 'advanced_training_description' ) : null;
-		$this->highest_achieved_rank = $acf['highest_rank_achieved'] ? $acf['highest_rank_achieved'][0] : null;
+		$this->highest_achieved_rank = $acf['highest_rank_achieved'] ? esc_textarea( $acf['highest_rank_achieved'] ) : null;
 
 		$this->military_units = $acf['military_units'] ? $this->flatten_acf_repeater( $acf['military_units'], 'military_unit' ) : null;
 
@@ -102,6 +100,12 @@ class Veteran_Setter extends Veteran_Data {
 			}
 		} else {
 			$this->choctaw_veteran_of_the_month = null;
+		}
+	}
+
+	protected function set_the_dates_of_service( array $acf ) {
+		foreach ( $acf as $date_of_service ) {
+			$this->dates_of_service[] = new Dates_Of_Service( $date_of_service );
 		}
 	}
 
@@ -120,7 +124,7 @@ class Veteran_Setter extends Veteran_Data {
 	}
 
 	// phpcs:ignore
-	private function set_the_additional_materials(array $acf) {
+	protected function set_the_additional_materials(array $acf) {
 		foreach ( $acf as  $additional_materials ) {
 			$this->additional_materials[] = new Additional_Material( $additional_materials['additional_material'] );
 		}

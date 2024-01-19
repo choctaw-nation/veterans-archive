@@ -6,22 +6,23 @@ import Decorations from '../components/ServiceInfo/Decorations';
 import Wars from '../components/ServiceInfo/Wars';
 import ServiceDates from '../components/ServiceInfo/ServiceDates';
 import BootstrapRadioCheckbox from '../ui/BootstrapRadioCheckbox';
+import ChoctawVeteranOfTheMonth from '../components/ServiceInfo/ChoctawVeteran';
 
 const serviceBranches = [
 	{ label: 'Air Force', value: 'Air Force' },
 	{ label: 'Army', value: 'Army' },
-	{ label: 'Army Reserves', value: 'Army Reserves' },
+	{ label: 'Army Air Corps', value: 'Army Air Corps' },
 	{
 		label: 'Army National Guard',
 		value: 'Army National Guard',
 	},
-	{ label: 'Army Air Corps', value: 'Army Air Corps' },
+	{ label: 'Army Reserves', value: 'Army Reserves' },
 	{ label: 'Coast Guard', value: 'Coast Guard' },
-	{ label: 'Marines', value: 'Marines' },
+	{ label: 'Marines', value: 'Marine Corps' },
 	{ label: 'National Guard', value: 'National Guard' },
 	{ label: 'Navy', value: 'Navy' },
-	{ label: 'Seabees', value: 'Seabees' },
 	{ label: 'Navy Reserves', value: 'Navy Reserves' },
+	{ label: 'Seabees', value: 'Seabees' },
 	{
 		label: "Women's Army Corps",
 		value: "Women's Army Corps",
@@ -30,7 +31,7 @@ const serviceBranches = [
 
 export default function ServiceInfo() {
 	const { getValues } = useFormContext();
-	const name = getValues( 'bio.firstName' );
+	const name = getValues( 'bio.first_name' );
 	return (
 		<div className="service-info">
 			<h2>Service Info for { name }</h2>
@@ -39,7 +40,8 @@ export default function ServiceInfo() {
 					<BootstrapRadioCheckbox
 						args={ {
 							custom: true,
-							registerField: 'service.branchOfService',
+							registerField:
+								'service_information.military_branch',
 							type: 'checkbox',
 						} }
 						label="Branch of Service"
@@ -51,12 +53,15 @@ export default function ServiceInfo() {
 				</div>
 				<Decorations />
 				<div className="row g-2 my-3">
-					<div className="col d-flex flex-wrap flex-column">
+					<div className="col-12 my-3">
 						<BootstrapInput
 							id="highestAchievedRank"
 							label="Highest Achieved Rank"
-							registration="service.highestAchievedRank"
+							registration="service_information.highest_rank_achieved"
 						/>
+					</div>
+					<div className="col-12">
+						<ChoctawVeteranOfTheMonth />
 					</div>
 				</div>
 				<div className="row row-cols-auto row-cols-sm-2 g-3 my-3">
@@ -67,35 +72,35 @@ export default function ServiceInfo() {
 						<Repeater
 							label="Overseas Duty"
 							id="overseas-duty"
-							registration="service.overseasDuty"
+							registration="service_information.overseas_duty"
 						/>
 					</div>
 					<div className="col">
 						<Repeater
 							label="Stateside Assignment"
 							id="stateside-assignment"
-							registration="service.statesideAssignment"
+							registration="service_information.stateside_assignments"
 						/>
 					</div>
 					<div className="col">
 						<Repeater
 							label="Job"
 							id="job"
-							registration="service.job"
+							registration="service_information.jobs"
 						/>
 					</div>
 					<div className="col">
 						<Repeater
 							label="Advanced Training"
 							id="advanced-training"
-							registration="service.advancedTraining"
+							registration="service_information.advanced_training"
 						/>
 					</div>
 					<div className="col">
 						<Repeater
 							label="Military Unit"
 							id="military-unit"
-							registration="service.militaryUnit"
+							registration="service_information.military_units"
 						/>
 					</div>
 				</div>

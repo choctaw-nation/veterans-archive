@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
+import ErrorMessage from '../components/ErrorMessage';
+
 /**
  * Bootstrap Input. Defaults to "Text" type.
  *
@@ -22,25 +24,44 @@ export default function BootstrapInput( {
 		registrationArgs?: RegisterOptions;
 	};
 } ) {
-	const { register } = useFormContext();
+	const [ errorMessage, setErrorMessage ] = useState( null );
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext();
 
 	const { type = 'text', required, registrationArgs } = args;
 	const requiredText =
 		required && 'boolean' === typeof required
 			? 'This field is required'
 			: false;
+
+	useEffect( () => {
+		const errorKeys = registration.split( '.' );
+		if ( Object.keys( errors ).length !== 0 ) {
+			if ( Array.isArray( errorKeys ) && errorKeys.length === 2 ) {
+				setErrorMessage(
+					errors[ errorKeys[ 0 ] ][ errorKeys[ 1 ] ]?.message
+				);
+			}
+		}
+	}, [ errors, registration ] );
+
 	return (
-		<input
-			type={ type }
-			className="form-control"
-			id={ id }
-			required={ required }
-			placeholder={ label }
-			aria-label={ label }
-			{ ...register( registration, {
-				required: requiredText,
-				...registrationArgs,
-			} ) }
-		/>
+		<>
+			<input
+				type={ type }
+				className="form-control"
+				id={ id }
+				required={ required }
+				placeholder={ label }
+				aria-label={ label }
+				{ ...register( registration, {
+					required: requiredText,
+					...registrationArgs,
+				} ) }
+			/>
+			{ errorMessage && <ErrorMessage>{ errorMessage }</ErrorMessage> }
+		</>
 	);
 }

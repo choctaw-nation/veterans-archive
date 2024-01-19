@@ -67,7 +67,6 @@ export default function StateSelect( { registration } ) {
 			args={ {
 				ariaLabel: 'Select a state',
 				registration,
-				defaultValue: 'Oklahoma',
 			} }
 		/>
 	);

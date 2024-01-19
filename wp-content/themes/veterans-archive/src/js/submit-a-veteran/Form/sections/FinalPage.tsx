@@ -1,18 +1,20 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
-export default function FinalPage() {
-	const { getValues } = useFormContext();
-	const userName = getValues( 'contactInfo.name' );
-	const userEmail = getValues( 'contactInfo.email' );
+
+export default function FinalPage( { data } ) {
+	if ( ! data ) {
+		return;
+	}
+	const { user_name, user_email, first_name, last_name } = data;
 	return (
 		<>
 			<div className="row">
 				<div className="col">
 					<h2>Yakoke!</h2>
 					<p>
-						Yakoke for your submission, { userName }. We will review
-						your submission and contact you at { userEmail } if we
-						have any questions.
+						Yakoke for submitting{ ' ' }
+						{ `${ first_name } ${ last_name }` } to our database{ ' ' }
+						{ user_name }! We will review your submission and
+						contact you at { user_email } if we have any questions.
 					</p>
 				</div>
 			</div>

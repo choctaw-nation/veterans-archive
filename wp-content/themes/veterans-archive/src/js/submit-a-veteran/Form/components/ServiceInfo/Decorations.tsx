@@ -8,15 +8,12 @@ export default function Decorations() {
 			<div className="col-auto flex-shrink-1">
 				<BootstrapRadioCheckbox
 					args={ {
-						registerField: 'service.majorDecorations',
+						registerField:
+							'service_information.decorations.decorations',
 						type: 'checkbox',
 					} }
 					fields={ [
 						{ label: 'Bronze Star', value: 'Bronze Star' },
-						{
-							label: 'Medal of Honor',
-							value: 'Medal of Honor',
-						},
 						{
 							label: 'Distinguished Flying Cross',
 							value: 'Distinguished Flying Cross',
@@ -33,6 +30,10 @@ export default function Decorations() {
 							label: 'Legion of Merit',
 							value: 'Legion of Merit',
 						},
+						{
+							label: 'Medal of Honor',
+							value: 'Medal of Honor',
+						},
 						{ label: 'Purple Heart', value: 'Purple Heart' },
 						{ label: 'Silver Star', value: 'Silver Star' },
 					] }
@@ -43,7 +44,7 @@ export default function Decorations() {
 				<Repeater
 					label="Additional Decoration"
 					id="decorations"
-					registration="service.additionalDecorations"
+					registration="service_information.decorations.additional_decorations"
 				/>
 			</div>
 		</>

@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 
 export default function NameSuffix() {
 	const { register, watch, resetField } = useFormContext();
-	const watchedValue = watch( 'bio.nameSuffix' );
+	const watchedValue = watch( 'bio.name_suffix' );
 	const isChecked = 'other' === watchedValue;
 
 	return (
@@ -18,7 +18,7 @@ export default function NameSuffix() {
 						className="form-check-input"
 						id="nameSuffix1"
 						value="Jr."
-						{ ...register( 'bio.nameSuffix' ) }
+						{ ...register( 'bio.name_suffix' ) }
 					/>
 					<label htmlFor="nameSuffix1" className="form-check-label">
 						Jr.
@@ -30,7 +30,7 @@ export default function NameSuffix() {
 						className="form-check-input"
 						id="nameSuffix2"
 						value="Sr."
-						{ ...register( 'bio.nameSuffix' ) }
+						{ ...register( 'bio.name_suffix' ) }
 					/>
 					<label htmlFor="nameSuffix2" className="form-check-label">
 						Sr.
@@ -42,7 +42,7 @@ export default function NameSuffix() {
 						className="form-check-input"
 						id="nameSuffixOther"
 						value="other"
-						{ ...register( 'bio.nameSuffix' ) }
+						{ ...register( 'bio.name_suffix' ) }
 					/>
 					<label
 						htmlFor="nameSuffixOther"
@@ -57,7 +57,7 @@ export default function NameSuffix() {
 							className="form-control ms-2"
 							placeholder="Add Name Suffix"
 							aria-label="Add Name Suffix"
-							{ ...register( 'bio.nameSuffixOther' ) }
+							{ ...register( 'bio.name_suffixOther' ) }
 						/>
 					) }
 				</div>
@@ -67,7 +67,7 @@ export default function NameSuffix() {
 						className="mt-3 btn btn-secondary"
 						onClick={ ( ev ) => {
 							ev.preventDefault();
-							resetField( 'bio.nameSuffix', {
+							resetField( 'bio.name_suffix', {
 								defaultValue: undefined,
 							} );
 						} }

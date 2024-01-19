@@ -25,17 +25,17 @@ export default function HomeAreas() {
 							className="form-control"
 							id="city"
 							placeholder="City"
-							{ ...register( `bio.homeArea.${ i }.city` ) }
+							{ ...register( `bio.home_areas.${ i }.city` ) }
 						/>
 						<input
 							type="text"
 							className="form-control"
 							id="county"
 							placeholder="County"
-							{ ...register( `bio.homeArea.${ i }.county` ) }
+							{ ...register( `bio.home_areas.${ i }.county` ) }
 						/>
 						<StateSelect
-							registration={ `bio.homeArea.${ i }.state` }
+							registration={ `bio.home_areas.${ i }.state` }
 						/>
 						<BootstrapButtonGroup onClick={ setNumFields } />
 					</div>

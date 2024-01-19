@@ -3,27 +3,26 @@ import { useFormContext } from 'react-hook-form';
 
 import BootstrapInput from '../ui/BootstrapInput';
 import BootstrapSelect from '../ui/BootstrapSelect';
-import Repeater from '../components/Repeater';
 import NameSuffix from '../components/Bio/NameSuffix';
 import ErrorMessage from '../components/ErrorMessage';
 import HomeAreas from '../components/Bio/HomeAreas';
 
 const dateFields = [
-	{ id: 'dateOfBirth', label: 'Year of Birth', type: 'number' },
-	{ id: 'dateOfDeath', label: 'Year of Death', type: 'number' },
+	{ id: 'year_of_birth', label: 'Year of Birth', type: 'number' },
+	{ id: 'year_of_death', label: 'Year of Death', type: 'number' },
 ];
 const nameFields = [
 	{
-		id: 'firstName',
+		id: 'first_name',
 		label: 'First Name',
 		required: true,
 	},
 	{
-		id: 'middleName',
+		id: 'middle_name',
 		label: 'Middle Name or Initial',
 	},
 	{
-		id: 'lastName',
+		id: 'last_name',
 		label: 'Last Name',
 		required: true,
 	},
@@ -50,11 +49,11 @@ export default function BioFields() {
 							},
 							{
 								label: 'Male',
-								value: 'male',
+								value: 'Male',
 							},
 							{
 								label: 'Female',
-								value: 'female',
+								value: 'Female',
 							},
 						] }
 					/>
@@ -93,7 +92,7 @@ export default function BioFields() {
 						<BootstrapInput
 							id="maidenName"
 							label="Maiden Name"
-							registration="bio.maidenName"
+							registration="bio.maiden_name"
 						/>
 					</div>
 				) }
