@@ -15,7 +15,7 @@ export default function AdditionalLinks() {
 						className="form-control"
 						id={ `link-${ i }-name` }
 						{ ...register(
-							`additional_materials.${ i }.description_of_material`
+							`additional_materials.links.${ i }.description_of_material`
 						) }
 						placeholder={ `Insert link name` }
 					/>
@@ -24,9 +24,16 @@ export default function AdditionalLinks() {
 						className="form-control"
 						id={ `link-${ i }-url` }
 						{ ...register(
-							`additional_materials.${ i }.material_link`
+							`additional_materials.links.${ i }.material_link`
 						) }
 						placeholder={ `Insert url` }
+					/>
+					<input
+						type="hidden"
+						{ ...register(
+							`additional_materials.links.${ i }.material_type`,
+							{ value: 'link' }
+						) }
 					/>
 					<BootstrapButtonGroup onClick={ setNumFields } />
 				</div>

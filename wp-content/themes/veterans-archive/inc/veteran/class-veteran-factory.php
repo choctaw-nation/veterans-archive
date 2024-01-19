@@ -29,18 +29,19 @@ class Veteran_Factory extends Veteran_Setter {
 	 *
 	 * @var bool $consent_given
 	 */
-	private bool $consent_given;
+	public bool $consent_given;
 
-	private string $first_name;
-	private string $last_name;
+	public string $first_name;
+	public string $last_name;
 
-	private string $user_name;
-	private string $user_email;
+	public bool $has_media_material;
+	public string $user_name;
+	public string $user_email;
 
 	public function __construct( array $params ) {
 		$this->init_props( $params );
 		// $id       = $this->create_veteran();
-		$id       = 1;
+		$id       = 0;
 		$this->id = $id;
 		if ( $this->id ) {
 			$this->set_acf_fields();
@@ -57,7 +58,7 @@ class Veteran_Factory extends Veteran_Setter {
 		$this->last_name  = esc_textarea( $params['bio']['last_name'] );
 		$this->set_the_bio( $params['bio'] );
 		$this->set_the_service_information( $params['service_information'] );
-		$this->handle_the_additional_materials( $params['additionalMaterial'], $params['additionalMaterials'] );
+		$this->handle_the_additional_materials( $params['additional_materials'] );
 		$this->set_contact_info( $params['contactInfo'] );
 		$this->consent_given = $params['consentCheckbox'];
 	}
@@ -143,17 +144,26 @@ class Veteran_Factory extends Veteran_Setter {
 		return $escaped;
 	}
 
-
-	private function handle_the_additional_materials( array $material, array $materials ) {
-		$this->has_media_material = $material['mediaMaterial'];
-		foreach ( $materials as $link ) {
+	/**
+	 * Sets the additional materials and inits the $has_media_material property
+	 *
+	 * @param array $materials the $_POST data
+	 */
+	private function handle_the_additional_materials( array $materials ) {
+		$this->has_media_material = $materials['media_material'];
+		foreach ( $materials['links'] as $link ) {
 			$this->additional_materials[] = new Additional_Material( $link );
 
 		}
 	}
 
+	/**
+	 * Sets the contact info
+	 *
+	 * @param array $acf the $_POST data
+	 */
 	private function set_contact_info( array $acf ) {
-		$this->user_name  = esc_textarea( $acf['userName'] );
+		$this->user_name  = esc_textarea( $acf['name'] );
 		$this->user_email = sanitize_email( $acf['email'] );
 	}
 

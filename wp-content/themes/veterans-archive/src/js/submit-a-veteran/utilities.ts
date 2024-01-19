@@ -1,26 +1,63 @@
-type formData = {
-	bio: {
-		birthDate?: number;
-		deathDate?: number;
-		firstName: string;
-		lastName: string;
-		middleName?: string;
-		nickname?: string;
-		gender: 'male' | 'female';
-		maidenName?: string;
-		nameSuffix?: 'Jr.' | 'Sr.' | 'Other';
-		nameSuffixOther?: string;
-	};
-};
+import { WP_Term } from 'wp-types';
 
-export function prepareFormData( formData: formData ): {} {
-	const data = {
-		title: `${ formData.bio.firstName } ${ formData.bio.lastName }`,
-		acf: {
-			bio: {},
-		},
+export interface veteranRestResponseSuccess {
+	status: 200;
+	message: string;
+	data: {
+		gender: 'male' | 'female';
+		first_name: string;
+		middle_name?: string;
+		last_name: string;
+		name_suffix?: 'Jr.' | 'Sr.' | string;
+		name_suffixOther: string;
+		home_areas?: Array< {
+			city?: string;
+			county?: string;
+			state: string;
+		} >;
+		nickname?: string;
+		year_of_birth?: number;
+		year_of_death?: string;
+		branches_of_service?: WP_Term[];
+		highest_rank_achieved?: string;
+		choctaw_veteran_of_the_month?: Array< {
+			year_received: number;
+			district: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+		} >;
+		overseas_duty?: string[];
+		stateside_assignments?: string[];
+		jobs?: string[];
+		advanced_training?: string[];
+		military_units?: string[];
+		war: WP_Term[];
+		decorations: {
+			decorations: WP_Term[];
+			additional_decorations: string[];
+		};
+		dates_of_service: Array< {
+			service_start?: number;
+			service_end?: number;
+		} >;
+
+		additional_materials: {
+			links: Array< {
+				description_of_material: string;
+				material_link: string;
+				material_type: 'link';
+			} >;
+		};
+		has_media_material?: true;
+		consentCheckbox: true;
+		user_name: string;
+		user_email: string;
 	};
-	return data;
+}
+
+export interface veteranRestResponseError {
+	code: 'create_veteran_post';
+	status: 500;
+	message: 'Failed to create veteran post';
+	data: { code: 500; data: any };
 }
 
 export const defaultFormData = {
@@ -114,10 +151,18 @@ export const defaultFormData = {
 	},
 
 	additional_materials: {
-		'0': {
-			description_of_material: 'Obituary',
-			material_link: 'https://google.com',
-		},
+		links: [
+			{
+				description_of_material: 'Obituary',
+				material_link: 'https://google.com',
+				material_type: 'link',
+			},
+			{
+				description_of_material: 'Interview',
+				material_link: 'https://google.com',
+				material_type: 'link',
+			},
+		],
 		media_material: true,
 	},
 	consentCheckbox: true,
