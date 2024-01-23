@@ -25,6 +25,14 @@ class Theme_Init {
 		$base_path = get_template_directory() . '/inc';
 		require_once $base_path . '/theme/theme-functions.php';
 
+		$components = array(
+			'buttons',
+			'divider',
+		);
+		foreach ( $components as $component ) {
+			require_once $base_path . '/theme/components/class-' . $component . '.php';
+		}
+
 		$this->load_veteran_files( $base_path );
 
 		$asset_loaders = array( 'enum-enqueue-type', 'class-asset-loader' );

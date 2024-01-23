@@ -6,10 +6,12 @@
  */
 
 use ChoctawNation\ACF\Image;
+use ChoctawNation\Components\Divider;
 
-$acf      = $args['acf'];
-$reversed = $args['reversed'] ?? false;
-$image    = new Image( $acf['image'], 'front-page-thumb' );
+$divider = new Divider();
+$acf        = $args['acf'];
+$reversed   = $args['reversed'] ?? false;
+$image      = new Image( $acf['image'], 'front-page-thumb' );
 
 ?>
 <div class="row row-cols-1 row-cols-lg-2 <?php echo ( $reversed ? ' flex-row-reverse' : '' ); ?>">
@@ -29,7 +31,7 @@ $image    = new Image( $acf['image'], 'front-page-thumb' );
 		</h2>
 		<?php
 		$direction = $reversed ? 'start' : 'end';
-		cno_divider( $direction );
+		$divider->the_divider( $direction );
 		echo acf_esc_html( $acf['subheadline'] );
 		?>
 		<?php if ( $acf['link'] ) : ?>

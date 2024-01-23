@@ -16,9 +16,7 @@
 /**
 * Typography
 */
-$font-family-sans-serif: "gill-sans-nova", "Helvetica Neue", "Noto Sans",
-	"Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-	"Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: v.$font-body;
 $font-family-monospace:
 	Monaspace Neon,
 	"Courier New",
@@ -39,12 +37,27 @@ $headings-color: v.$color-blue;
 $dropdown-font-size: 2.16rem;
 
 // DISPLAY FONTS
-$display-font-family: pill-gothic-300mg, sans-serif;
+$display-font-family: v.$font-headings;
 $display-font-weight: 800;
 
 // ================================================
 
+/**
+* Buttons
+*/
 $btn-transition: all v.$transition--standard;
+$btn-border-width: 5px;
+
+$btn-font-family: v.$font-headings;
+$btn-font-weight: 800;
+
+$btn-border-radius: 0;
+$btn-border-radius-sm: 0;
+$btn-border-radius-lg: 0;
+
+$btn-padding-x-sm: 1rem;
+$btn-padding-x: 2rem;
+$btn-padding-x-lg: 4rem;
 
 // ================================================
 
@@ -67,15 +80,6 @@ $navbar-light-icon-color: v.$color-blue;
 $navbar-light-toggler-border-color: v.$color-blue;
 $navbar-light-brand-color: v.$color-blue;
 $navbar-light-brand-hover-color: v.$color-blue--light;
-
-// ================================================
-
-/**
-* Offcanvas
-*/
-
-// $offcanvas-bg-color: $primary;
-// $offcanvas-color: white;
 
 // ================================================
 

@@ -8,9 +8,10 @@
  */
 
 use ChoctawNation\ACF\Image;
+use ChoctawNation\Components\Divider;
 
+$divider = new Divider();
 get_header();
-
 get_template_part( 'template-parts/section', 'hero' );
 ?>
 
@@ -20,7 +21,13 @@ get_template_part( 'template-parts/section', 'hero' );
 	</div>
 </section>
 <section class="container my-5 py-5">
-	<?php get_template_part( 'template-parts/content', 'two-col', array( 'acf' => get_field( 'section_1' ) ) ); ?>
+	<?php
+	get_template_part(
+		'template-parts/content',
+		'two-col',
+		array( 'acf' => get_field( 'section_1' ) )
+	);
+	?>
 </section>
 <section class="bg-light-green my-5 py-5">
 	<?php
@@ -39,20 +46,16 @@ get_template_part( 'template-parts/section', 'hero' );
 						<?php $image->the_image( 'object-fit-cover' ); ?>
 					</div>
 					<div class="card-body">
-						<?php cno_divider( 'end', 'primary' ); ?>
+						<?php $divider->the_divider( 'end', 'primary' ); ?>
 						<h3 class='text-dark-blue text-uppercase fs-4'>
 							<?php echo esc_textarea( $cta['title'] ); ?>
 						</h3>
 					</div>
 				</a>
 			</div>
-
 			<?php endwhile; ?>
-
 		</div>
-
 	</div>
-
 </section>
 <?php
 $additional_sections = get_field( 'two_col_media_content' );
@@ -63,7 +66,7 @@ foreach ( $additional_sections as $index => $section ) {
 		'two-col',
 		array(
 			'acf'      => $section,
-			'reversed' => (0 === $index % 2),
+			'reversed' => ( 0 === $index % 2 ),
 		)
 	);
 	echo '</section>';

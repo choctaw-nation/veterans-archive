@@ -3,8 +3,10 @@ $transition--standard: 0.3s ease;
 /* ////////////
 // TYPOGRAPHY
 ///////////// */
-$font-headings: pill-gothic-sans, sans-serif;
-$font-body: gill-sans-nova, sans-serif;
+$font-headings: pill-gothic-300mg, sans-serif;
+$font-body: "gill-sans-nova", "Helvetica Neue", "Noto Sans", "Liberation Sans",
+	Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+	"Noto Color Emoji";
 $font-serif: adobe-garamond-pro, serif;
 
 /* //////////
