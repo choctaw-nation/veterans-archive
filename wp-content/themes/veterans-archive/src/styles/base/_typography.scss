@@ -1,4 +1,5 @@
 @use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
 p,
 li {
 	@include m.media-breakpoint-up(sm) {

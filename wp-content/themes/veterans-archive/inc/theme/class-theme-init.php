@@ -130,7 +130,7 @@ class Theme_Init {
 	public function enqueue_cno_scripts() {
 		wp_enqueue_style(
 			'typekit',
-			'https://use.typekit.net/jky5sek.css',
+			'https://use.typekit.net/dul4cti.css',
 			array(),
 			null // phpcs:ignore
 		);
@@ -231,6 +231,7 @@ class Theme_Init {
 		add_theme_support( 'title-tag' );
 		add_image_size( 'front-page-thumb', 1280, 720 );
 		add_image_size( 'hero', 3840, 2160 );
+		add_image_size( 'square-lg', 1000, 1000 );
 
 		register_nav_menus(
 			array(
@@ -253,7 +254,7 @@ class Theme_Init {
 	 * @param string $post_type the post type to remove supports from.
 	 */
 	private function disable_post_type_support( string $post_type ) {
-		$supports = array( 'comments', 'trackbacks', 'revisions', 'author' );
+		$supports = array( 'editor', 'comments', 'trackbacks', 'revisions', 'author' );
 		foreach ( $supports as $support ) {
 			if ( post_type_supports( $post_type, $support ) ) {
 				remove_post_type_support( $post_type, $support );

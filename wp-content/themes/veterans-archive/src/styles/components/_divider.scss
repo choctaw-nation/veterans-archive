@@ -1,0 +1,35 @@
+/**
+ * Divider
+ * Two dots and a Line divider
+ */
+
+.divider {
+	--cno-divider-gap: 1.6rem;
+	--cno-divider-size: 0.8rem;
+	display: flex;
+	max-width: 60%;
+	margin: 0 0 1rem;
+	column-gap: var(--cno-divider-gap);
+
+	&__line {
+		flex: 1 0 90%;
+		height: var(--cno-divider-size);
+		background-color: var(--cno-color);
+	}
+
+	&__dots-container {
+		--cno-divider-dot-size: calc(var(--cno-divider-size) * 1.25);
+		flex: 0 0 20%;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		column-gap: var(--cno-divider-gap);
+	}
+
+	&__dot {
+		width: var(--cno-divider-dot-size);
+		height: var(--cno-divider-dot-size);
+		border-radius: 50%;
+		background-color: var(--cno-color);
+	}
+}

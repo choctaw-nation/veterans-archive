@@ -39,12 +39,13 @@ class Image {
 	/**
 	 * Constructor
 	 *
-	 * @param array $image the acf image array
+	 * @param array  $image the acf image array
+	 * @param string $size the size of the image to get
 	 */
-	public function __construct( array $image ) {
+	public function __construct( array $image, string $size = 'full' ) {
 		$this->src    = esc_url( $image['url'] );
 		$this->alt    = $this->generate_alt( $image );
-		$this->srcset = wp_get_attachment_image_srcset( $image['ID'] );
+		$this->srcset = wp_get_attachment_image_srcset( $image['ID'], $size );
 		$this->id     = $image['ID'];
 	}
 
@@ -67,7 +68,7 @@ class Image {
 	 * @return string the HTML
 	 */
 	public function get_the_image( string $img_class = '' ): string {
-		$markup = "<img class='{$img_class}' src='{$this->src}' srcset='{$this->srcset}' alt='{$this->alt}'/>";
+		$markup = "<img class='{$img_class}' src='{$this->src}' srcset='{$this->srcset}' alt='{$this->alt}' loading='lazy' />";
 		return $markup;
 	}
 

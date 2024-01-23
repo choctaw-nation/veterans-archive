@@ -11,7 +11,7 @@
 	<form class="row" action="/">
 		<div class="col-12">
 			<label for="s" class="form-label">
-				<h1 class="text-white fw-light">Find a veteran</h1>
+				<h1 class="fw-light display-1 text-uppercase text-light-green">Find a veteran</h1>
 			</label>
 		</div>
 		<div class="col d-flex">
