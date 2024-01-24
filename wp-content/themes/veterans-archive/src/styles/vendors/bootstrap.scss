@@ -3,22 +3,12 @@
 // Required
 @import "bootstrap/scss/functions";
 
-/**
-* Colors
-*/
-$primary: v.$color-blue;
-// $secondary: v.$color-blue--light;
-// $light: #f8f4fb;
-// $dark: #08040b;
-
 // ================================================
 
 /**
 * Typography
 */
-$font-family-sans-serif: "gill-sans-nova", "Helvetica Neue", "Noto Sans",
-	"Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-	"Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: v.$font-body;
 $font-family-monospace:
 	Monaspace Neon,
 	"Courier New",
@@ -30,24 +20,49 @@ $font-size-base: 1.6rem; // Sets the base font size to 16px
 // LINKS
 $link-decoration: none;
 $link-color: v.$color-blue;
-$link-hover-color: rgba(v.$color-blue, 0.8);
+$link-hover-color: v.$color-blue--light;
 
 // HEADINGS
-// $headings-font-family: v.$font-headings;
 $headings-font-weight: 600;
 $headings-color: v.$color-blue;
 
 $dropdown-font-size: 2.16rem;
 
+// DISPLAY FONTS
+$display-font-family: v.$font-headings;
+$display-font-weight: 800;
+
 // ================================================
 
+/**
+* Buttons
+*/
+
 $btn-transition: all v.$transition--standard;
+$btn-border-width: 5px;
+
+$btn-font-family: v.$font-headings;
+$btn-font-weight: 800;
+
+$btn-border-radius: 0;
+$btn-border-radius-sm: 0;
+$btn-border-radius-lg: 0;
+
+$btn-padding-x: 2rem;
+$btn-padding-y: 1rem;
+
+$btn-padding-x-sm: 1rem;
+$btn-padding-y-sm: 0.8rem;
+
+$btn-padding-x-lg: 4rem;
+$btn-padding-y-lg: 1rem;
 
 // ================================================
 
 /**
 * Spacing
 */
+
 $grid-gutter-width: 2.4rem; // 24px
 $spacer: 1.6rem; // 16px
 
@@ -57,31 +72,40 @@ $spacer: 1.6rem; // 16px
 * Navbar
 */
 
-$navbar-light-color: v.$color-blue;
-$navbar-light-active-color: v.$color-blue--light;
-$navbar-light-hover-color: v.$color-blue--light;
+$navbar-light-color: v.$color-blue--dark;
+$navbar-light-active-color: v.$color-blue;
+$navbar-light-hover-color: v.$color-blue;
 $navbar-light-icon-color: v.$color-blue;
-$navbar-light-toggler-border-color: v.$color-blue;
-$navbar-light-brand-color: v.$color-blue;
-$navbar-light-brand-hover-color: v.$color-blue--light;
+
+$navbar-light-brand-color: v.$color-blue--dark;
+$navbar-light-brand-hover-color: v.$color-blue;
 
 // ================================================
 
 /**
-* Offcanvas
+* Navs & Tabs
 */
 
-// $offcanvas-bg-color: $primary;
-// $offcanvas-color: white;
+$nav-link-color: v.$color-blue--dark;
+$nav-link-hover-color: v.$color-blue--dark;
+
+$nav-tabs-link-border-color: v.$color-blue;
+$nav-tabs-border-width: 5px;
+
+$nav-tabs-link-active-color: white;
+$nav-tabs-link-active-bg: v.$color-green;
+$nav-tabs-link-hover-border-color: v.$color-blue;
+$nav-tabs-link-active-border-color: v.$color-blue--dark;
 
 // ================================================
 
 /**
-* Options
+* Options & Misc.
 * @see https://getbootstrap.com/docs/5.3/customize/options/
 */
 $enable-shadows: true;
 $enable-dark-mode: false;
+$border-radius: 0;
 
 // ================================================
 
@@ -89,6 +113,22 @@ $enable-dark-mode: false;
 // @import "bootstrap/scss/variables-dark";
 
 // Map Overrides Here (Optional)
+$theme-colors: map-merge(
+	$theme-colors,
+	(
+		"primary": v.$color-blue,
+		"dark-blue": v.$color-blue--dark,
+		"green": v.$color-green,
+		"light-green": v.$color-green--light,
+	)
+);
+
+// Generate Modifier Classes for Custom Divider Component
+@each $color, $value in $theme-colors {
+	.divider-#{$color} {
+		--cno-color: #{$value};
+	}
+}
 
 // Required Bootstrap Modules
 @import "bootstrap/scss/maps";

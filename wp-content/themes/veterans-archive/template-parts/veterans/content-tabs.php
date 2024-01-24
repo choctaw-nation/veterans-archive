@@ -6,6 +6,8 @@
  * @package ChoctawNation
  */
 
+use ChoctawNation\Components\Buttons;
+
 wp_enqueue_script( 'bsTab' );
 $veteran           = $args[0];
 $awards            = $veteran->get_the_decorations();
@@ -40,7 +42,7 @@ $nav_items         = array(
 );
 
 ?>
-<ul class="nav nav-tabs flex-nowrap overflow-x-scroll overflow-y-hidden align-items-center text-center" id="myTab" role="tablist">
+<ul class="nav nav-tabs flex-nowrap overflow-x-scroll overflow-y-hidden justify-content-evenly align-items-stretch text-center border-0" id="myTab" role="tablist">
 	<?php $is_first = true; ?>
 	<?php foreach ( $nav_items as $nav_item ) : ?>
 		<?php
@@ -48,16 +50,34 @@ $nav_items         = array(
 			continue;
 		}
 		?>
-	<li class="nav-item" role="presentation">
-		<button class="nav-link <?php echo $is_first ? 'active' : ''; ?>" id="<?php echo "{$nav_item['id']}-tab"; ?>" data-bs-toggle="tab"
-				data-bs-target="<?php echo "#{$nav_item['id']}-tab-pane"; ?>" type="button" role="tab" aria-controls="<?php echo "{$nav_item['id']}-tab-pane"; ?>" aria-selected="false">
-			<?php echo $nav_item['label']; ?>
-		</button>
+	<li class="nav-item h-100 mb-0" role="presentation">
+		<?php
+		$buttons = new Buttons();
+		$buttons->the_button(
+			array(
+				'element'    => 'button',
+				'text'       => $nav_item['label'],
+				'class'      => 'nav-link' . ( $is_first ? ' active' : '' ),
+				'attributes' => array(
+					'id'             => "{$nav_item['id']}-tab",
+					'data-bs-toggle' => 'tab',
+					'data-bs-target' => "#{$nav_item['id']}-tab-pane",
+					'type'           => 'button',
+					'role'           => 'tab',
+					'aria-controls'  => "{$nav_item['id']}-tab-pane",
+					'aria-selected'  => $is_first ? 'true' : 'false',
+					'aria-current'   => $is_first ? 'true' : 'false',
+				),
+			),
+			'white',
+			'h-auto'
+		);
+		?>
 	</li>
 		<?php $is_first = false; ?>
 	<?php endforeach; ?>
 </ul>
-<div class="tab-content" id="myTabContent">
+<div class="tab-content mt-3" id="myTabContent">
 	<?php $is_first = true; ?>
 	<?php foreach ( $nav_items as $tab_content ) : ?>
 		<?php

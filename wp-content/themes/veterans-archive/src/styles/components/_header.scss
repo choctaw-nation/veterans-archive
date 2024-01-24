@@ -1,6 +1,4 @@
-@use "../abstracts/functions" as fn;
 @use "../abstracts/variables" as v;
-@use "../abstracts/mixins" as m;
 
 .logo-image {
 	margin: 0;
@@ -13,53 +11,18 @@
 
 .navbar {
 	a {
-		transition: fn.transition(color);
+		font-size: 2.5rem;
+		text-transform: uppercase;
 
-		&:not(:has(h1)) {
-			text-transform: uppercase;
+		&:not(.navbar-brand) {
+			font-family: v.$font-headings;
+			font-weight: 800;
 		}
 	}
 }
 
-%dropdown-menu-visible {
-	position: absolute;
-	top: 8.5rem;
-	display: block;
-}
-.header-nav {
-	.menu-item {
-		--height-y: 4.8rem;
-		padding-bottom: var(--height-y);
-		margin: var(--height-y) 1rem 0;
-	}
-
-	.dropdown:hover {
-		.btn-group > a {
-			color: var(--bs-secondary);
-		}
-
-		.dropdown-toggle {
-			color: var(--bs-secondary);
-		}
-
-		.dropdown-menu {
-			@extend %dropdown-menu-visible;
-		}
-	}
-
-	.dropdown-toggle {
-		--bs-btn-box-shadow: none;
-		--bs-btn-color: white;
-		--bs-btn-hover-color: var(--bs-secondary);
-		padding: 0;
-
-		&:hover {
-			box-shadow: none;
-			transform: none;
-		}
-	}
-
-	.dropdown-menu.show {
-		@extend %dropdown-menu-visible;
-	}
+.navbar-toggler-icon {
+	--size: 4rem;
+	width: var(--size);
+	height: var(--size);
 }
