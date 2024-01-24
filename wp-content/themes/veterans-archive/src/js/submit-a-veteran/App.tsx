@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { FormProvider, useForm } from 'react-hook-form';
 import apiFetch from '@wordpress/api-fetch';
 
-import { defaultFormData, veteranRestResponseSuccess } from './utilities';
+import { veteranRestResponseSuccess } from './utilities';
 import AppContainer from './AppContainer';
 import BootstrapSpinner from './Form/ui/BootstrapSpinner';
 import BioFields from './Form/sections/BioFields';
@@ -20,10 +20,10 @@ createRoot( root ).render(
 );
 
 function App() {
-	const [ currentPage, setCurrentPage ] = useState( 3 );
+	const [ currentPage, setCurrentPage ] = useState( 1 );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ formResponse, setFormResponse ] = useState( null );
-	const methods = useForm( { defaultValues: defaultFormData } );
+	const methods = useForm();
 
 	async function onSubmit( formData ) {
 		setIsLoading( true );

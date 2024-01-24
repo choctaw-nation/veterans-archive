@@ -105,10 +105,6 @@ export const defaultFormData = {
 				year_received: 2012,
 				district: 1,
 			},
-			{
-				year_received: null,
-				district: null,
-			},
 		],
 		overseas_duty: [ 'Japan', 'Korea', 'Italy' ],
 		stateside_assignments: [ 'Texas', 'Rhode Island' ],

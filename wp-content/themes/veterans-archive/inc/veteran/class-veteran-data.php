@@ -83,7 +83,7 @@ abstract class Veteran_Data {
 	/**
 	 * Dates of Service
 	 *
-	 * @var ChoctawNation\ACF\Veteran_Data_Types\Dates_Of_Service[] $dates_of_service
+	 * @var Dates_Of_Service[] $dates_of_service
 	 */
 	public ?array $dates_of_service;
 
