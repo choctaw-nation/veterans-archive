@@ -83,6 +83,23 @@ $navbar-light-brand-hover-color: v.$color-blue;
 // ================================================
 
 /**
+* Navs & Tabs
+*/
+
+$nav-link-color: v.$color-blue--dark;
+$nav-link-hover-color: v.$color-blue--dark;
+
+$nav-tabs-link-border-color: v.$color-blue;
+$nav-tabs-border-width: 5px;
+
+$nav-tabs-link-active-color: white;
+$nav-tabs-link-active-bg: v.$color-green;
+$nav-tabs-link-hover-border-color: v.$color-blue;
+$nav-tabs-link-active-border-color: v.$color-blue--dark;
+
+// ================================================
+
+/**
 * Options & Misc.
 * @see https://getbootstrap.com/docs/5.3/customize/options/
 */

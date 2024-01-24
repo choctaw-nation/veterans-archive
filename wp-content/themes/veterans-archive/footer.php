@@ -36,7 +36,7 @@
 				?>
 				<?php foreach ( $socials as $social ) : ?>
 				<a href="<?php echo $social['href']; ?>" class="social" target="_blank" rel="noopener noreferrer" aria-label="<?php echo $social['aria-label']; ?>">
-					<i class="<?php echo "text-white fa-3x {$social['icon_class']}"; ?>"></i>
+					<i class="<?php echo "text-white fa-2xl {$social['icon_class']}"; ?>"></i>
 				</a>
 				<?php endforeach; ?>
 			</div>

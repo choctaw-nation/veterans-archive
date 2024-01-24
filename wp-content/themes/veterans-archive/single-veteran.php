@@ -6,15 +6,18 @@
  */
 
 use ChoctawNation\ACF\Veteran;
+use ChoctawNation\Components\Divider;
 
 get_header( 'search' );
-$acf_fields = array(
+$acf_fields    = array(
 	'bio'                      => get_field( 'bio' ),
 	'service_information'      => get_field( 'service_information' ),
 	'has_additional_materials' => get_field( 'has_additional_materials' ),
 	'additional_materials'     => get_field( 'additional_materials' ),
 );
-$veteran    = new Veteran( get_the_ID(), $acf_fields );
+$veteran       = new Veteran( get_the_ID(), $acf_fields );
+$divider       = new Divider();
+$label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 ?>
 <div class="container">
 	<div class="row py-5">
@@ -24,71 +27,100 @@ $veteran    = new Veteran( get_the_ID(), $acf_fields );
 	</div>
 	<article>
 		<section class="biography p-2 my-2">
-			<div class="row">
-				<div class="col-4 col-md-6">
-					<div class="ratio ratio-1x1">
-						<?php
-						$image_args           = array(
-							'class'   => 'w-auto h-auto object-fit-cover img-thumbnail',
-							'loading' => 'lazy',
-						);
-						$placeholder_image_id = 60;
-						if ( has_post_thumbnail() ) {
-							the_post_thumbnail( 'veteran-single', $image_args );
-						} else {
-							echo wp_get_attachment_image( $placeholder_image_id, 'veteran-single', $image_args );
-						}
-						?>
-					</div>
+			<div class="row mb-4">
+				<div class="col">
+					<h1 class="display-1 text-dark-blue text-uppercase"><?php $veteran->the_full_name( true, true, true ); ?></h1>
+					<?php $divider->the_divider(); ?>
 				</div>
-				<div class="col-8 col-md-6">
-					<?php the_title( '<h1>', '</h1>' ); ?>
-					<div class="bio">
-						<p class="bio__fullname">
-							<b>Full Name:</b> <?php $veteran->the_full_name( true, true, true ); ?>
-						</p>
-						<p class="bio__gender">
-							<b>Gender:</b> <?php $veteran->the_gender(); ?>
-						</p>
-						<?php
-						echo $veteran->get_the_maiden_name() ?
-						"<p class='bio__maiden-name'><b>Maiden Name:</b> {$veteran->get_the_maiden_name()}</p>"
-						: '';
-						echo $veteran->get_the_hometown() ?
-						"<p class='bio__home'><b>Home:</b> {$veteran->get_the_hometown()}</p>"
-						: '';
-						echo $veteran->get_the_birth_date() ?
-						"<p class='bio__birth'><b>Birth Year:</b> {$veteran->get_the_birth_date()}</p>"
-						: '';
-						echo $veteran->get_the_death_date() ?
-						"<p class='bio__death'><b>Death Year:</b> {$veteran->get_the_death_date()}</p>"
-						: '';
-						?>
-					</div>
-					<div class="service-info my-4">
-						<h2 class="h3">Service Information</h2>
-						<ul class="service-info-list list-unstyled">
+			</div>
+			<div class="row row-cols-1 row-cols-lg-2 row-gap-3">
+				<div class="col">
+					<div class="row">
+						<div class="col-6">
+							<div class="ratio ratio-1x1">
+								<?php
+								$image_args           = array(
+									'class'   => 'w-auto h-auto object-fit-cover img-thumbnail',
+									'loading' => 'lazy',
+								);
+								$placeholder_image_id = 60;
+								if ( has_post_thumbnail() ) {
+									the_post_thumbnail( 'veteran-single', $image_args );
+								} else {
+									echo wp_get_attachment_image( $placeholder_image_id, 'veteran-single', $image_args );
+								}
+								?>
+							</div>
+						</div>
+						<div class="col-6 bio">
+							<div class="mb-4">
+								<span class="<?php echo $label_classes; ?>">
+									Gender:
+								</span>
+								<p><?php $veteran->the_gender(); ?></p>
+							</div>
 							<?php
-							if ( $veteran->get_the_service_dates() ) {
-								echo "<li class='service-info-list__item'><b>Dates of Service:</b> {$veteran->get_the_service_dates()}</li>";
-							}
-							if ( $veteran->get_the_wars() ) {
-								echo "<li class='service-info-list__item'><b>" . ( 1 < count( $veteran->wars ) ? 'Wars' : 'War' ) . ":</b> {$veteran->get_the_wars()}</li>";
-							}
-							if ( $veteran->get_the_service_branches() ) {
-								echo "<li class='service-info-list__item'><b>" . ( 1 < count( $veteran->branches_of_service ) ? 'Branches of Service' : 'Branch of Service' ) . ":</b> {$veteran->get_the_service_branches()}</li>";
-							}
-							if ( $veteran->get_the_highest_achieved_rank() ) {
-								echo "<li class='service-info-list__item'><b>Highest Achieved Rank:</b> {$veteran->get_the_highest_achieved_rank()}</li>";
+							$fields = array(
+								array(
+									'label' => 'Maiden Name',
+									'fn'    => 'maiden_name',
+								),
+								array(
+									'label' => 'Home',
+									'fn'    => 'hometown',
+								),
+								array(
+									'label' => 'Birth Year',
+									'fn'    => 'birth_date',
+								),
+								array(
+									'label' => 'Death Year',
+									'fn'    => 'death_date',
+								),
+							);
+							foreach ( $fields as $field ) {
+								$function = "get_the_{$field['fn']}";
+
+								if ( $veteran->$function() ) {
+									echo "<div class='mb-4'>
+									<span class='{$label_classes}'>{$field['label']}:</span>
+									<p>{$veteran->$function()}</p>
+									</div>";
+								}
 							}
 							?>
-						</ul>
+						</div>
 					</div>
+				</div>
+				<div class="col service-info">
+					<ul class="service-info-list list-unstyled">
+						<?php
+						$li_classes = 'service-info-list__item mb-4';
+						if ( $veteran->get_the_service_dates() ) {
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>Dates of Service:</span><p>{$veteran->get_the_service_dates()}</p></li>";
+						}
+						if ( $veteran->get_the_wars() ) {
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>" . ( 1 < count( $veteran->wars ) ? 'Wars' : 'War' ) . ":</span><p>{$veteran->get_the_wars()}</p></li>";
+						}
+						if ( $veteran->get_the_service_branches() ) {
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>" . ( 1 < count( $veteran->branches_of_service ) ? 'Branches of Service' : 'Branch of Service' ) . ":</span><p>{$veteran->get_the_service_branches()}</p></li>";
+						}
+						if ( $veteran->get_the_highest_achieved_rank() ) {
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>Highest Achieved Rank:</span><p>{$veteran->get_the_highest_achieved_rank()}</p></li>";
+						}
+						?>
+					</ul>
 				</div>
 			</div>
 		</section>
 		<?php if ( $veteran->has_tabbed_content() ) : ?>
-		<section class="service bg-secondary-subtle mb-5 pb-2 overflow-x-scroll border border-1 border-black rounded rounded-3">
+		<section class="service mt-5 py-2">
+			<div class="row my-3">
+				<div class="col-auto">
+					<?php $divider->the_divider( 'end', 'primary' ); ?>
+					<h2 class="text-uppercase text-dark-blue">Service Details</h2>
+				</div>
+			</div>
 			<?php get_template_part( 'template-parts/veterans/content', 'tabs', array( $veteran ) ); ?>
 		</section>
 		<?php endif; ?>

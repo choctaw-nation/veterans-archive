@@ -17,7 +17,7 @@ get_header( 'search' );
 </div>
 <?php else : ?>
 <div class="container my-5 py-5">
-	<div class="row row-cols-auto row-cols-lg-4 row-gap-4">
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4">
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>
 		<div class="col">

@@ -6,14 +6,22 @@
  * @package ChoctawNation
  */
 
+use ChoctawNation\Components\Divider;
+
 /**
  * The Veteran class
  *
  * @var \ChoctawNation\ACF\Veteran Veteran $veteran */
 $veteran = $args[0];
+$divider = new Divider();
 ?>
 <section class="additional-material my-5">
-	<h2>Additional Material</h2>
+	<div class="row my-3">
+		<div class="col-auto">
+			<?php $divider->the_divider( 'end', 'primary' ); ?>
+			<h2 class="text-uppercase text-dark-blue">Additional Materials</h2>
+		</div>
+	</div>
 	<div class="row row-cols-lg-3 justify-content-between gap-5">
 		<?php
 		foreach ( $veteran->additional_materials as $additional_material ) :

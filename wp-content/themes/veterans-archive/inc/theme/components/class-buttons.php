@@ -89,7 +89,7 @@ class Buttons {
 			case 'a':
 				return $this->get_the_anchor( $classes );
 			default:
-				return "<{$this->args['element']} class='{$classes}'>{$this->args['text']}</{$this->args['element']}>";
+				return $this->get_the_element( $classes );
 		}
 	}
 
@@ -99,6 +99,18 @@ class Buttons {
 	private function get_the_clip_path(): string {
 		$clip = '<div class="btn-lower position-absolute top-0 w-100 h-100 z-1"></div>';
 		return $clip;
+	}
+
+	/**
+	 * Generates the attribute for the element
+	 *
+	 * @param string $attr The attribute to generate
+	 */
+	private function get_the_attribute( string $attr ): ?string {
+		if ( isset( $this->args[ $attr ] ) ) {
+			return "{$attr}='{$this->args[$attr]}'";
+		}
+		return null;
 	}
 
 	/**
@@ -142,14 +154,18 @@ class Buttons {
 	}
 
 	/**
-	 * Generates the attribute for the element
+	 * Generates the element
 	 *
-	 * @param string $attr The attribute to generate
+	 * @param string $classes The classes for the element
 	 */
-	private function get_the_attribute( string $attr ): ?string {
-		if ( isset( $this->args[ $attr ] ) ) {
-			return "{$attr}='{$this->args[$attr]}'";
+	private function get_the_element( $classes ): string {
+		$element = "<{$this->args['element']} class='{$classes}'";
+		if ( isset( $this->args['attributes'] ) ) {
+			foreach ( $this->args['attributes'] as $attr => $value ) {
+				$element .= " {$attr}='{$value}'";
+			}
 		}
-		return null;
+		$element .= ">{$this->args['text']}</{$this->args['element']}>";
+		return $element;
 	}
 }
