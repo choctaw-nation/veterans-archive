@@ -1,35 +1,31 @@
+$linear-gradient: linear-gradient(to right, currentColor 50%, transparent 50%);
+
 /**
  * Buttons
  * Used to create the Air Force style buttons
  */
 
 .btn-container {
-	--top-alignment: 15%;
-	--bottom-alignment: 95%;
+	--cno-btn-top-alignment: 15%;
+	--cno-btn-bottom-alignment: 90%;
+	--cno-btn-gap-width: 4rem;
+	--cno-btn-gap-height: 5px;
 
 	&:hover {
-		--top-alignment: 95%;
-		--bottom-alignment: 15%;
+		--cno-btn-top-alignment: 90%;
+		--cno-btn-bottom-alignment: 15%;
 	}
 }
 
-$gap-width: 4rem;
-$gap-height: 5px;
-
-$linear-gradient: linear-gradient(to right, currentColor 50%, transparent 50%);
 .btn-lower {
-	background:
-		$linear-gradient var(--top-alignment) 0,
-		$linear-gradient var(--bottom-alignment) 100%;
-	background-repeat: no-repeat;
-	background-size:
-		$gap-width $gap-height,
-		$gap-width $gap-height;
 	pointer-events: none;
 	transition: background var(--transition-standard);
-	color: var(--bs-dark-blue);
-}
-
-.btn {
-	// border: none;
+	background:
+		$linear-gradient var(--cno-btn-top-alignment) 0,
+		$linear-gradient var(--cno-btn-bottom-alignment) 100%;
+	background-repeat: no-repeat;
+	background-size:
+		var(--cno-btn-gap-width) var(--cno-btn-gap-height),
+		var(--cno-btn-gap-width) var(--cno-btn-gap-height);
+	color: inherit;
 }
