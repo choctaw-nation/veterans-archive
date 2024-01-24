@@ -17,7 +17,17 @@ get_template_part( 'template-parts/section', 'hero' );
 
 <section class="bg-dark-blue container rounded-5 px-5 position-relative" id='search-bar'>
 	<div class="row">
-		<?php get_template_part( 'template-parts/search', 'search-bar' ); ?>
+		<?php
+		get_template_part(
+			'template-parts/search',
+			'search-bar',
+			array(
+				'bg_color'     => 'dark-blue',
+				'with_browse'  => true,
+				'with_filters' => false,
+			)
+		);
+		?>
 	</div>
 </section>
 <section class="container my-5 py-5">
@@ -35,17 +45,17 @@ get_template_part( 'template-parts/section', 'hero' );
 	$cols      = count( $section_2 );
 	?>
 	<div class="container">
-		<div class="<?php echo "row row-cols-1 row-cols-md-auto row-cols-lg-{$cols}"; ?>">
+		<div class="<?php echo "row row-cols-1 row-cols-md-2 row-cols-lg-{$cols} align-items-stretch row-gap-4"; ?>">
 			<?php while ( have_rows( 'section_2' ) ) : ?>
-			<?php the_row(); ?>
-			<?php $image = new Image( get_sub_field( 'cover_image' ), 'square-lg' ); ?>
-			<div class="col">
+				<?php the_row(); ?>
+				<?php $image = new Image( get_sub_field( 'cover_image' ), 'square-lg' ); ?>
+			<div class="col d-flex flex-column">
 				<?php $cta = get_sub_field( 'link' ); ?>
-				<a href="<?php echo esc_url( $cta['url'] ); ?>" class='card' target="<?php echo esc_attr( $cta['target'] ); ?>">
-					<div class='card-img-top ratio ratio-1x1 mb-3'>
+				<a href="<?php echo esc_url( $cta['url'] ); ?>" class='bg-white h-100' target="<?php echo esc_attr( $cta['target'] ); ?>">
+					<div class='ratio ratio-1x1 mb-3 '>
 						<?php $image->the_image( 'object-fit-cover' ); ?>
 					</div>
-					<div class="card-body">
+					<div class="mt-auto p-3">
 						<?php $divider->the_divider( 'end', 'primary' ); ?>
 						<h3 class='text-dark-blue text-uppercase fs-4'>
 							<?php echo esc_textarea( $cta['title'] ); ?>
