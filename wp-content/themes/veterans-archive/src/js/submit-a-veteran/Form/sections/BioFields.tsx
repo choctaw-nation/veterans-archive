@@ -6,9 +6,14 @@ import BootstrapSelect from '../ui/BootstrapSelect';
 import NameSuffix from '../components/Bio/NameSuffix';
 import ErrorMessage from '../components/ErrorMessage';
 import HomeAreas from '../components/Bio/HomeAreas';
+import Heading from '../ui/Heading';
 
 const dateFields = [
-	{ id: 'year_of_birth', label: 'Year of Birth', type: 'number' },
+	{
+		id: 'year_of_birth',
+		label: 'Year of Birth',
+		type: 'number',
+	},
 	{ id: 'year_of_death', label: 'Year of Death', type: 'number' },
 ];
 const nameFields = [
@@ -16,14 +21,17 @@ const nameFields = [
 		id: 'first_name',
 		label: 'First Name',
 		required: true,
+		autoComplete: 'given-name',
 	},
 	{
 		id: 'middle_name',
+		autoComplete: 'additional-name',
 		label: 'Middle Name or Initial',
 	},
 	{
 		id: 'last_name',
 		label: 'Last Name',
+		autoComplete: 'family-name',
 		required: true,
 	},
 ];
@@ -34,13 +42,14 @@ export default function BioFields() {
 	const gender = watch( 'bio.gender' );
 	return (
 		<div className="bio">
-			<h2>Bio</h2>
+			<Heading text="Bio" />
 			<div className="row g-2 my-3">
 				<div className="col-auto flex-grow-1">
 					<BootstrapSelect
 						args={ {
 							ariaLabel: 'Gender',
 							registration: 'bio.gender',
+							autoComplete: 'sex',
 						} }
 						fields={ [
 							{
@@ -70,6 +79,7 @@ export default function BioFields() {
 							label={ field.label }
 							args={ {
 								required: field.required || false,
+								autoComplete: field.autoComplete,
 							} }
 							registration={ `bio.${ field.id }` }
 						/>
@@ -100,6 +110,7 @@ export default function BioFields() {
 					<BootstrapInput
 						id="nickname"
 						label="Nickname"
+						args={ { autoComplete: 'nickname' } }
 						registration="bio.nickname"
 					/>
 				</div>
@@ -108,12 +119,10 @@ export default function BioFields() {
 				{ dateFields.map( ( field ) => (
 					<div key={ field.id } className="col-auto flex-grow-1">
 						<BootstrapInput
+							args={ { type: field.type } }
 							id={ field.id }
 							label={ field.label }
 							registration={ `bio.${ field.id }` }
-							args={ {
-								type: 'number',
-							} }
 						/>
 					</div>
 				) ) }

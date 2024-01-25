@@ -7,6 +7,7 @@ import Wars from '../components/ServiceInfo/Wars';
 import ServiceDates from '../components/ServiceInfo/ServiceDates';
 import BootstrapRadioCheckbox from '../ui/BootstrapRadioCheckbox';
 import ChoctawVeteranOfTheMonth from '../components/ServiceInfo/ChoctawVeteran';
+import Heading from '../ui/Heading';
 
 const serviceBranches = [
 	{ label: 'Air Force', value: 'Air Force' },
@@ -34,7 +35,7 @@ export default function ServiceInfo() {
 	const name = getValues( 'bio.first_name' );
 	return (
 		<div className="service-info">
-			<h2>Service Info for { name }</h2>
+			<Heading text={ `Service Info for ${ name }` } />
 			<div className="row g-2 my-3">
 				<div className="col col-md-6">
 					<BootstrapRadioCheckbox
@@ -60,15 +61,12 @@ export default function ServiceInfo() {
 							registration="service_information.highest_rank_achieved"
 						/>
 					</div>
-					<div className="col-12">
-						<ChoctawVeteranOfTheMonth />
-					</div>
 				</div>
 				<div className="row row-cols-auto row-cols-sm-2 g-3 my-3">
 					<div className="col">
 						<ServiceDates />
 					</div>
-					<div className="col">
+					<div className="col d-flex flex-column">
 						<Repeater
 							label="Overseas Duty"
 							id="overseas-duty"
@@ -102,6 +100,11 @@ export default function ServiceInfo() {
 							id="military-unit"
 							registration="service_information.military_units"
 						/>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col">
+						<ChoctawVeteranOfTheMonth />
 					</div>
 				</div>
 			</div>

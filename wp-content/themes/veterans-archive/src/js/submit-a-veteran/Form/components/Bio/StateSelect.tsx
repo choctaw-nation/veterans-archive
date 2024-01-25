@@ -2,6 +2,7 @@ import React from 'react';
 import BootstrapSelect from '../../ui/BootstrapSelect';
 
 const states = [
+	'Select a state',
 	'Oklahoma',
 	'Alabama',
 	'Alaska',
@@ -55,15 +56,13 @@ const states = [
 	'Wyoming',
 ];
 
-const stateFields = states.map( ( state ) => ( {
-	value: state,
-	label: state,
-} ) );
-
 export default function StateSelect( { registration } ) {
 	return (
 		<BootstrapSelect
-			fields={ stateFields }
+			fields={ states.map( ( state ) => ( {
+				value: 'Select a state' === state ? '' : state,
+				label: state,
+			} ) ) }
 			args={ {
 				ariaLabel: 'Select a state',
 				registration,

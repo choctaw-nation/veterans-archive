@@ -13,6 +13,7 @@ export default function BootstrapInput( {
 	args = {
 		type: 'text',
 		required: false,
+		autoComplete: 'off',
 	},
 }: {
 	id: string;
@@ -22,6 +23,7 @@ export default function BootstrapInput( {
 		type?: string;
 		required?: boolean | string;
 		registrationArgs?: RegisterOptions;
+		autoComplete?: string;
 	};
 } ) {
 	const [ errorMessage, setErrorMessage ] = useState( null );
@@ -55,6 +57,7 @@ export default function BootstrapInput( {
 				id={ id }
 				required={ required }
 				placeholder={ label }
+				autoComplete={ args.autoComplete || 'off' }
 				aria-label={ label }
 				{ ...register( registration, {
 					required: requiredText,

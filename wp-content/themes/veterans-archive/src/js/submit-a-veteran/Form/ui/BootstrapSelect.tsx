@@ -12,6 +12,7 @@ export type BootstrapSelectProps = {
 		ariaLabel: string;
 		additionalClasses?: string;
 		registrationArgs?: RegisterOptions;
+		autoComplete?: string;
 	};
 };
 export default function BootstrapSelect( {
@@ -25,6 +26,7 @@ export default function BootstrapSelect( {
 		registration,
 		registrationArgs,
 		defaultValue,
+		autoComplete,
 	} = args;
 	useEffect( () => {
 		if ( defaultValue ) {
@@ -35,6 +37,7 @@ export default function BootstrapSelect( {
 		<select
 			className={ `form-select ${ additionalClasses }` }
 			aria-label={ ariaLabel }
+			autoComplete={ autoComplete || 'off' }
 			{ ...register( registration, registrationArgs ) }
 		>
 			{ fields.map( ( { value, label }, i ) => (

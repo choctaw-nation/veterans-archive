@@ -6,6 +6,7 @@ export default function ContactInfo() {
 		register,
 		formState: { errors },
 	} = useFormContext();
+	console.log( errors );
 	return (
 		<div className="input-group my-2">
 			<input

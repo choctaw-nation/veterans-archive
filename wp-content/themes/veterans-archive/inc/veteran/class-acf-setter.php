@@ -95,7 +95,7 @@ class ACF_Setter {
 			'field_65a151793506d' => $this->handle_acf_choices( 'field_65a151793506d', $data->suffix ),
 			'field_65a05fbdc7129' => $data->nickname,
 			'field_65a05b60200cc' => $data->maiden_name,
-			'field_65a05b8c200cd' => array_map(
+			'field_65a05b8c200cd' => $data->home_areas ? array_map(
 				function ( Home_Area $data ) {
 					return array(
 						'field_65a93a3541b0d' => $data->city,
@@ -105,7 +105,7 @@ class ACF_Setter {
 					);
 				},
 				$data->home_areas
-			),
+			) : null,
 			'field_65a05bb0200ce' => $data->birth,
 			'field_65a05bda200cf' => $data->death,
 		);
@@ -128,7 +128,7 @@ class ACF_Setter {
 		$this->handle_taxonomy_terms( $data->decorations->decorations );
 
 		$sub_fields = array(
-			'field_65a063614fe43' => array_map(
+			'field_65a063614fe43' => $data->dates_of_service ? array_map(
 				function ( Dates_Of_Service $dates ) {
 					return array(
 						'field_65a06447a1662' => $dates->service_start,
@@ -136,8 +136,8 @@ class ACF_Setter {
 					);
 				},
 				$data->dates_of_service
-			),
-			'field_65a0670a2e315' => array(
+			) : null,
+			'field_65a0670a2e315' => $data->decorations->additional_decorations ? array(
 				'field_65a151ca3506e' => array_map(
 					function ( $data ) {
 						return array(
@@ -146,39 +146,39 @@ class ACF_Setter {
 					},
 					$data->decorations->additional_decorations
 				),
-			),
-			'field_65a1493bbaa41' => array_map(
+			) : null,
+			'field_65a1493bbaa41' => $data->overseas_duty ? array_map(
 				function ( string $assignment ) {
 					return array( 'field_65a14948baa42' => $assignment );
 				},
 				$data->overseas_duty
-			),
-			'field_65a153835565f' => array_map(
+			) : null,
+			'field_65a153835565f' => $data->stateside_assignments ? array_map(
 				function ( string $assignment ) {
 					return array( 'field_65a1538355660' => $assignment );
 				},
 				$data->stateside_assignments
-			),
-			'field_65a1b10ed9054' => array_map(
+			) : null,
+			'field_65a1b10ed9054' => $data->jobs ? array_map(
 				function ( string $job ) {
 					return array( 'field_65a1b116d9055' => $job );
 				},
 				$data->jobs
-			),
-			'field_65a14c18ca41a' => array_map(
+			) : null,
+			'field_65a14c18ca41a' => $data->advanced_training ? array_map(
 				function ( string $training ) {
 					return array( 'field_65a14c36ca41b' => $training );
 				},
 				$data->advanced_training
-			),
+			) : null,
 			'field_65a14c862dfb0' => $data->highest_achieved_rank,
-			'field_65a14e8a0f8dd' => array_map(
+			'field_65a14e8a0f8dd' => $data->military_units ? array_map(
 				function ( string $units ) {
 					return array( 'field_65a14e9f0f8de' => $units );
 				},
 				$data->military_units
-			),
-			'field_65a15504f27d8' => array_map(
+			) : null,
+			'field_65a15504f27d8' => $data->choctaw_veteran_of_the_month ? array_map(
 				function ( Choctaw_Veteran_Of_The_Month $data ) {
 					return array(
 						'field_65a15510f27d9' => $data->year,
@@ -186,7 +186,7 @@ class ACF_Setter {
 					);
 				},
 				$data->choctaw_veteran_of_the_month
-			),
+			) : null,
 		);
 
 		$status = update_field( $group_key, $sub_fields, $this->id );
@@ -230,7 +230,10 @@ class ACF_Setter {
 	 *
 	 * @param array $terms the terms to set
 	 */
-	private function handle_taxonomy_terms( array $terms ) {
+	private function handle_taxonomy_terms( ?array $terms ) {
+		if ( empty( $terms ) ) {
+			return;
+		}
 		$ids    = array_map(
 			function ( $term ) {
 				return $term->term_id;
@@ -251,6 +254,9 @@ class ACF_Setter {
 	 * @return string
 	 */
 	private function handle_acf_choices( string $key, $value ) {
+		if ( empty( $value ) ) {
+			return;
+		}
 		$acf_field = get_field_object( $key, false, false );
 		if ( $acf_field ) {
 			$choices = $acf_field['choices'];

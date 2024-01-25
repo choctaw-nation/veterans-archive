@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import ButtonWrapper from './ButtonWrapper';
 
 export type RadioButtonField = {
 	label: string;
@@ -122,12 +123,16 @@ export default function BootstrapRadioCheckbox( {
 				) }
 				{ args.clearable && watchedValue && (
 					<div className="mt-3 d-flex align-content-center column-gap-1">
-						<button
-							className="btn btn-outline-secondary"
-							onClick={ () => resetField( args.registerField ) }
-						>
-							Clear Selection
-						</button>
+						<ButtonWrapper>
+							<button
+								className="btn btn-outline-secondary"
+								onClick={ () =>
+									resetField( args.registerField )
+								}
+							>
+								Clear Selection
+							</button>
+						</ButtonWrapper>
 					</div>
 				) }
 			</div>

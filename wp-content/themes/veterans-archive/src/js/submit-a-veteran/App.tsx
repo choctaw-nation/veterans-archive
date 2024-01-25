@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { FormProvider, useForm } from 'react-hook-form';
 import apiFetch from '@wordpress/api-fetch';
 
-import { veteranRestResponseSuccess } from './utilities';
+import { defaultFormData, veteranRestResponseSuccess } from './utilities';
 import AppContainer from './AppContainer';
 import BootstrapSpinner from './Form/ui/BootstrapSpinner';
 import BioFields from './Form/sections/BioFields';
@@ -23,9 +23,11 @@ function App() {
 	const [ currentPage, setCurrentPage ] = useState( 1 );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ formResponse, setFormResponse ] = useState( null );
-	const methods = useForm();
+	const [ formValues, setFormValues ] = useState();
+	const methods = useForm( { defaultValues: formValues } );
 
 	async function onSubmit( formData ) {
+		setFormValues( formData );
 		setIsLoading( true );
 		async function submitData() {
 			const response: veteranRestResponseSuccess = await apiFetch( {
@@ -40,20 +42,28 @@ function App() {
 		}
 		try {
 			const response = await submitData();
-			console.log( response );
 			setFormResponse( response.data );
 			setCurrentPage( 4 );
+			setFormValues( null );
 		} catch ( err ) {
 			console.error( err );
 		} finally {
 			setIsLoading( false );
 		}
 	}
+	function onError( errors ) {
+		const formValues = methods.getValues();
+		setFormValues( formValues );
+	}
+
+	const baseStyles = `border-3 bg-white p-3 shadow`;
 
 	if ( isLoading ) {
 		return (
 			<AppContainer>
-				<div className="border-3 bg-white p-3 d-flex flex-column justify-content-center align-items-center shadow">
+				<div
+					className={ `${ baseStyles } d-flex flex-column justify-content-center align-items-center` }
+				>
 					<BootstrapSpinner />
 				</div>
 			</AppContainer>
@@ -63,9 +73,9 @@ function App() {
 			<AppContainer>
 				<FormProvider { ...methods }>
 					<form
-						className="border rounded-5 border-3 bg-white p-3 shadow needs-validation"
+						className={ `${ baseStyles } border border-dark-blue needs-validation` }
 						noValidate
-						onSubmit={ methods.handleSubmit( onSubmit ) }
+						onSubmit={ methods.handleSubmit( onSubmit, onError ) }
 					>
 						{ 1 === currentPage && <BioFields /> }
 						{ 2 === currentPage && <ServiceInfo /> }
