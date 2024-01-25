@@ -22,3 +22,14 @@
 
 <body <?php body_class( 'w-100 overflow-x-hidden' ); ?>>
 	<?php wp_body_open(); ?>
+	<header class="d-flex sticky-top bg-white" id="site-header">
+		<div class="container">
+			<nav class="navbar py-0">
+				<a class="navbar-brand my-3 d-flex align-items-center column-gap-3 flex-grow-0 w-50" href="<?php echo esc_url( site_url() ); ?>" aria-label="to Home Page">
+					<img src="<?php echo get_template_directory_uri() . '/img/the-great-seal-min.svg'; ?>" alt="The Great Seal of the Choctaw Nation" class='d-inline-block logo' />
+					<span class="d-inline-block fs-4">Choctaw Nation <br /> Veterans Archive</span>
+				</a>
+				<?php get_template_part( 'template-parts/header/nav', 'offcanvas' ); ?>
+			</nav>
+		</div>
+	</header>

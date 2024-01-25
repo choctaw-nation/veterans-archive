@@ -1,12 +1,9 @@
 @use "../abstracts/variables" as v;
 
-.logo-image {
-	margin: 0;
-
-	svg {
-		aspect-ratio: 1;
-		height: 15rem;
-	}
+.logo {
+	--size: 12rem;
+	max-width: var(--size);
+	max-height: var(--size);
 }
 
 .navbar {

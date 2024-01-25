@@ -47,17 +47,17 @@ get_template_part( 'template-parts/section', 'hero' );
 	<div class="container">
 		<div class="<?php echo "row row-cols-1 row-cols-md-2 row-cols-lg-{$cols} align-items-stretch row-gap-4"; ?>">
 			<?php while ( have_rows( 'section_2' ) ) : ?>
-				<?php the_row(); ?>
-				<?php $image = new Image( get_sub_field( 'cover_image' ), 'square-lg' ); ?>
+			<?php the_row(); ?>
+			<?php $image = new Image( get_sub_field( 'cover_image' ), 'square-lg' ); ?>
 			<div class="col d-flex flex-column">
 				<?php $cta = get_sub_field( 'link' ); ?>
-				<a href="<?php echo esc_url( $cta['url'] ); ?>" class='bg-white h-100' target="<?php echo esc_attr( $cta['target'] ); ?>">
-					<div class='ratio ratio-1x1 mb-3 '>
+				<a href="<?php echo esc_url( $cta['url'] ); ?>" class='bg-white h-100' target="<?php echo esc_attr( $cta['target'] ); ?>" title='<?php echo $cta['title']; ?>'>
+					<div class=' ratio ratio-1x1 mb-3 '>
 						<?php $image->the_image( 'object-fit-cover' ); ?>
 					</div>
 					<div class="mt-auto p-3">
 						<?php $divider->the_divider( 'end', 'primary' ); ?>
-						<h3 class='text-dark-blue text-uppercase fs-4'>
+						<h3 class=' text-dark-blue text-uppercase fs-4'>
 							<?php echo esc_textarea( $cta['title'] ); ?>
 						</h3>
 					</div>

@@ -82,7 +82,7 @@ class Buttons {
 	 * Generates the button element
 	 */
 	private function get_button() {
-		$classes = 'btn btn-lg text-uppercase display-6 fs-5' . ( isset( $this->args['class'] ) ? ' ' . $this->args['class'] : '' );
+		$classes = 'btn text-uppercase display-6 fs-5' . ( isset( $this->args['class'] ) ? ' ' . $this->args['class'] : '' );
 		switch ( $this->args['element'] ) {
 			case 'input':
 				return $this->get_the_input( $classes );
