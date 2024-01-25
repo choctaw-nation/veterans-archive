@@ -1,9 +1,14 @@
 @use "../abstracts/bs_breakpoints" as m;
 
+$top-left: 12%;
+$top-right: 26%;
+$bottom-left: 73%;
+$bottom-right: 88%;
+
 .footer {
 	--bs-link-color-rgb: 255, 255, 255;
 
-	.logo {
+	a.text-uppercase:hover {
 		color: white;
 	}
 
@@ -11,32 +16,30 @@
 		@include m.media-breakpoint-up(lg) {
 			max-width: 379px;
 			margin: 0 -1px;
-			--cno-bg-angle: 73deg;
-			--cno-top-left: 12%;
-			--cno-top-right: 26%;
-			--cno-bottom-left: 73%;
-			--cno-bottom-right: 88%;
+			--cno-bg-angle: 60deg;
+
 			background: linear-gradient(
 				var(--cno-bg-angle),
 				var(--bs-green) 50%,
 				var(--bs-primary) 50%
 			);
+
 			clip-path: polygon(
 				0% 0%,
 				0% 100%,
-				var(--cno-bottom-left) 100%,
-				var(--cno-top-left) 0,
-				var(--cno-top-right) 0,
-				var(--cno-bottom-right) 100%,
+				$bottom-left 100%,
+				$top-left 0,
+				$top-right 0,
+				$bottom-right 100%,
 				100% 100%,
 				100% 0%
 			);
 		}
 		@include m.media-breakpoint-up(xl) {
-			--cno-bg-angle: 64deg;
+			--cno-bg-angle: 55deg;
 		}
 		@include m.media-breakpoint-up(xxl) {
-			--cno-bg-angle: 50deg;
+			--cno-bg-angle: 48deg;
 		}
 		@media only screen and (min-width: 2261px) {
 			--cno-bg-angle: 45deg;

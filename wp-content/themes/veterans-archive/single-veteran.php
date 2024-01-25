@@ -29,12 +29,14 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 		<section class="biography p-2 my-2">
 			<div class="row mb-4">
 				<div class="col">
-					<h1 class="display-1 text-dark-blue text-uppercase"><?php $veteran->the_full_name( true, true, true ); ?></h1>
+					<h1 class="display-1 text-dark-blue text-uppercase">
+						<?php $veteran->the_full_name( true, true, true ); ?>
+					</h1>
 					<?php $divider->the_divider(); ?>
 				</div>
 			</div>
-			<div class="row row-cols-1 row-cols-lg-2 row-gap-3">
-				<div class="col">
+			<div class="row row-gap-3 align-items-md-center align-items-lg-start">
+				<div class="col-8 col-lg-4" id='bio'>
 					<div class="row">
 						<div class="col-6">
 							<div class="ratio ratio-1x1">
@@ -92,7 +94,7 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 						</div>
 					</div>
 				</div>
-				<div class="col service-info">
+				<div class="col-12 col-md-8 col-lg-4 order-3 order-md-2" id='service-info'>
 					<ul class="service-info-list list-unstyled">
 						<?php
 						$li_classes = 'service-info-list__item mb-4';
@@ -110,6 +112,25 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 						}
 						?>
 					</ul>
+				</div>
+				<div class="col-4 order-2 order-md-last" id="branch">
+					<figure class="ratio ratio-1x1">
+						<?php
+						if ( $veteran->branches_of_service ) {
+							$image = get_field( 'branch_icon', "military-branch_{$veteran->branches_of_service[0]->term_id}" );
+							echo wp_get_attachment_image(
+								$image['id'],
+								'medium',
+								false,
+								array(
+									'class'   => 'object-fit-contain',
+									'loading' => 'lazy',
+								)
+							);
+						}
+						?>
+					</figure>
+
 				</div>
 			</div>
 		</section>
