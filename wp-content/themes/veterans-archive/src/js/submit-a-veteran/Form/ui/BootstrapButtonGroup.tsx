@@ -13,17 +13,17 @@ export default function BootstrapButtonGroup( {
 		<div className="btn-group" role="group" aria-label={ label }>
 			<button
 				type="button"
-				className="btn btn-secondary"
+				className="btn btn-secondary btn-sm"
 				onClick={ () => onClick( ( numFields ) => numFields + 1 ) }
 			>
 				+
 			</button>
 			<button
 				type="button"
-				className="btn btn-secondary"
+				className="btn btn-secondary btn-sm"
 				onClick={ () =>
 					onClick( ( numFields ) =>
-						numFields > 1 ? numFields - 1 : 1
+						numFields > 0 ? numFields - 1 : 0
 					)
 				}
 			>

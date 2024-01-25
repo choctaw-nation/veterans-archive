@@ -117,9 +117,7 @@ class Veteran_Factory extends Veteran_Setter {
 		$this->highest_achieved_rank = $params['highest_rank_achieved'] ? esc_textarea( $params['highest_rank_achieved'] ) : null;
 		$this->military_units        = $this->handle_arrays( $params['military_units'] );
 		if ( ! empty( $params['choctaw_veteran_of_the_month'] ) ) {
-			foreach ( $params['choctaw_veteran_of_the_month'] as $nomination ) {
-				$this->choctaw_veteran_of_the_month[] = new Choctaw_Veteran_Of_The_Month( $nomination );
-			}
+			$this->set_the_choctaw_veteran_of_the_month( $params['choctaw_veteran_of_the_month'] );
 		}
 	}
 
@@ -161,11 +159,24 @@ class Veteran_Factory extends Veteran_Setter {
 		);
 		$decorations['decorations'] = $this->get_the_wp_terms( $params['decorations'], 'decoration' );
 
-		if ( empty( $decorations['decorations'] ) && empty( $decorations['additional_decorations'] ) ) {
+		if ( empty( $decorations['decorations'] ) && $this->is_empty_array( $decorations['additional_decorations'] ) ) {
 			$this->decorations = null;
 		} else {
 			$this->decorations = new Decorations( $decorations );
 		}
+	}
+
+	/**
+	 * Checks if an array's values are empty
+	 *
+	 * @param array $arr the array to check
+	 */
+	private function is_empty_array( array $arr ) {
+		$is_empty = array();
+		foreach ( $arr as $item ) {
+			$is_empty[] = empty( $item ) ? 1 : 0;
+		}
+		return array_unique( $is_empty ) === array( 1 );
 	}
 
 	/**
@@ -174,11 +185,24 @@ class Veteran_Factory extends Veteran_Setter {
 	 * @param array $user_input the array to escape
 	 */
 	private function handle_arrays( array $user_input ): ?array {
+		if ( $this->is_empty_array( $user_input ) ) {
+			return null;
+		}
 		$escaped = array();
 		foreach ( $user_input as $value ) {
 			$escaped[] = esc_textarea( $value );
 		}
 		return $escaped;
+	}
+
+	private function set_the_choctaw_veteran_of_the_month( array $nominations ) {
+		foreach ( $nominations as $nomination ) {
+			if ( $this->is_empty_array( $nomination ) ) {
+				$this->choctaw_veteran_of_the_month = null;
+			} else {
+				$this->choctaw_veteran_of_the_month[] = new Choctaw_Veteran_Of_The_Month( $nomination );
+			}
+		}
 	}
 
 	/**

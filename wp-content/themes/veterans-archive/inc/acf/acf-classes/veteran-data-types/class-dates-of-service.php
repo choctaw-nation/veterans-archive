@@ -19,14 +19,14 @@ class Dates_Of_Service {
 	 *
 	 * @var int $service_start
 	 */
-	public int $service_start;
+	public ?int $service_start;
 
 	/**
 	 * End of service
 	 *
 	 * @var int $service_end
 	 */
-	public int $service_end;
+	public ?int $service_end;
 
 	/**
 	 * Constructor

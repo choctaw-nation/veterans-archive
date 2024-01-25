@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import ErrorMessage from '../components/ErrorMessage';
 import AdditionalLinks from '../components/AdditionalMaterials/AdditionalLinks';
 import ContactInfo from '../components/AdditionalMaterials/ContactInfo';
+import Heading from '../ui/Heading';
 
 export default function AdditionalMaterials() {
 	const {
@@ -16,14 +17,14 @@ export default function AdditionalMaterials() {
 		firstName: getValues( 'bio.first_name' ),
 		lastName: getValues( 'bio.last_name' ),
 		pronouns:
-			'male' === getValues( 'bio.gender' )
+			'Male' === getValues( 'bio.gender' )
 				? [ 'he', 'him', 'his' ]
 				: [ 'she', 'her', 'her' ],
 	};
 
 	return (
 		<div>
-			<h2>Additional Material</h2>
+			<Heading text="Additional Material" />
 			<div className="additional-material">
 				<AdditionalLinks />
 				<p className="fw-semibold mt-3">Additional Media Material</p>
@@ -45,7 +46,7 @@ export default function AdditionalMaterials() {
 				</div>
 			</div>
 			<div className="consent my-5">
-				<h2>Consent</h2>
+				<Heading text="Consent" />
 				<p>
 					{ `By filling out this form, you understand and acknowledge that this
 					data will be publicly available. You also acknowledge and affirm that you have the right to submit information about ${ veteran.firstName } ${ veteran.lastName } on ${ veteran.pronouns[ 2 ] } behalf. Filling out this form is not a guarantee that ${ veteran.pronouns[ 0 ] } will be added to the archive, and we reserve the right to remove any submissions at any

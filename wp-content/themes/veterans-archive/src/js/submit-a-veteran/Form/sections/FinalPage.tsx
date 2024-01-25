@@ -1,15 +1,19 @@
 import React from 'react';
+import ButtonWrapper from '../ui/ButtonWrapper';
 
 export default function FinalPage( { data } ) {
 	if ( ! data ) {
 		return;
 	}
 	const { user_name, user_email, first_name, last_name } = data;
+
 	return (
 		<>
 			<div className="row">
 				<div className="col">
-					<h2>Yakoke!</h2>
+					<h2 className="display-4 text-uppercase text-dark-blue">
+						Yakoke!
+					</h2>
 					<p>
 						Yakoke for submitting{ ' ' }
 						{ `${ first_name } ${ last_name }` } to our database{ ' ' }
@@ -19,21 +23,25 @@ export default function FinalPage( { data } ) {
 				</div>
 			</div>
 			<div className="row row-cols-2 my-3">
-				<div className="col">
-					<a
-						className="btn btn-primary btn-lg"
-						href="/submit-a-veteran"
-					>
-						Submit Another Veteran
-					</a>
+				<div className="col d-flex">
+					<ButtonWrapper>
+						<a
+							className="btn btn-outline-dark-blue text-uppercase"
+							href="/submit-a-veteran"
+						>
+							Submit Another Veteran
+						</a>
+					</ButtonWrapper>
 				</div>
-				<div className="col">
-					<a
-						className="btn btn-outline-primary btn-lg"
-						href="/veterans"
-					>
-						Browse the Archive
-					</a>
+				<div className="col d-flex">
+					<ButtonWrapper>
+						<a
+							className="btn btn-green text-uppercase"
+							href="/veterans"
+						>
+							Browse the Archive
+						</a>
+					</ButtonWrapper>
 				</div>
 			</div>
 		</>

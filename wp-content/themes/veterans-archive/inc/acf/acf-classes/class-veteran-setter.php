@@ -51,15 +51,9 @@ class Veteran_Setter extends Veteran_Data {
 		$this->maiden_name = ( 'Female' === $this->gender ) ? esc_textarea( $acf['maiden_name'] ) : null;
 		$this->set_the_name_suffix( $acf );
 
-		$this->middle_name = esc_textarea( $acf['middle_name'] );
-		$this->nickname    = esc_textarea( $acf['nickname'] );
-		if ( is_array( $acf['home_areas'] ) && ! empty( $acf['home_areas'] ) ) {
-			foreach ( $acf['home_areas'] as $home_area ) {
-				$this->home_areas[] = new Home_Area( $home_area );
-			}
-		} else {
-			$this->home_areas = null;
-		}
+		$this->middle_name = empty( $acf['middle_name'] ) ? null : esc_textarea( $acf['middle_name'] );
+		$this->nickname    = empty( $acf['nickname'] ) ? null : esc_textarea( $acf['nickname'] );
+		$this->set_the_home_areas( $acf['home_areas'] );
 		$this->birth = $acf['year_of_birth'] ?: null;
 		$this->death = $acf['year_of_death'] ?: null;
 	}
@@ -71,6 +65,26 @@ class Veteran_Setter extends Veteran_Data {
 			$this->suffix = esc_textarea( $acf['name_suffixOther'] );
 		} else {
 			$this->suffix = null;
+		}
+	}
+
+	private function set_the_home_areas( array $acf ) {
+		$is_empty = count(
+			array_filter(
+				$acf,
+				function ( $areas ) {
+					foreach ( $areas as $area ) {
+						return empty( $area );
+					}
+				}
+			)
+		);
+		if ( $is_empty ) {
+			$this->home_areas = null;
+		} else {
+			foreach ( $acf as $home_area ) {
+				$this->home_areas[] = new Home_Area( $home_area );
+			}
 		}
 	}
 

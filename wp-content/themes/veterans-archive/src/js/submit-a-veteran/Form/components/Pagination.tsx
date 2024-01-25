@@ -1,61 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import ButtonWrapper from '../ui/ButtonWrapper';
 
 interface PaginationProps {
 	currentPage: number;
 	setCurrentPage: ( currentPage: number ) => void;
 }
 
-const Pagination: React.FC< PaginationProps > = ( {
+export default function Pagination( {
 	currentPage,
 	setCurrentPage,
-} ) => {
+} ): React.FC< PaginationProps > {
 	const { trigger } = useFormContext();
-
 	async function handleClick() {
 		const fieldsAreValidated = await trigger();
 		if ( fieldsAreValidated ) {
 			setCurrentPage( ( pageIndex ) => pageIndex + 1 );
-		} else {
-			const feedbackBoxes = document.querySelectorAll(
-				'.invalid-feedback'
-			) as NodeListOf< HTMLDivElement >;
-			feedbackBoxes.forEach( ( el ) => {
-				el.style.display = 'block';
-			} );
 		}
 	}
 
 	return (
 		<div className="d-flex justify-content-between mt-5">
-			<button
-				className="btn btn-outline-primary"
-				type="button"
-				onClick={ () => {
-					setCurrentPage( ( pageIndex ) => pageIndex - 1 );
-				} }
-				disabled={ 1 === currentPage }
-			>
-				Previous
-			</button>
+			{ 1 !== currentPage && (
+				<ButtonWrapper>
+					<button
+						className="btn btn-outline-primary text-uppercase"
+						type="button"
+						onClick={ () => {
+							setCurrentPage( ( pageIndex ) => pageIndex - 1 );
+						} }
+					>
+						Previous
+					</button>
+				</ButtonWrapper>
+			) }
+
 			<span className="d-block">Page { currentPage } of 3</span>
 			{ 3 !== currentPage && (
-				<button
-					className="btn btn-primary"
-					type="button"
-					onClick={ handleClick }
-				>
-					Next
-				</button>
+				<ButtonWrapper>
+					<button
+						className="btn btn-outline-dark-blue text-uppercase"
+						type="button"
+						onClick={ handleClick }
+					>
+						Next
+					</button>
+				</ButtonWrapper>
 			) }
 
 			{ 3 === currentPage && (
-				<button type="submit" className="btn btn-primary">
-					Submit
-				</button>
+				<ButtonWrapper>
+					<button
+						type="submit"
+						className="btn btn-dark-blue text-uppercase"
+					>
+						Submit
+					</button>
+				</ButtonWrapper>
 			) }
 		</div>
 	);
-};
-
-export default Pagination;
+}
