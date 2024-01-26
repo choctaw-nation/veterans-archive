@@ -50,6 +50,9 @@ export default function BioFields() {
 							ariaLabel: 'Gender',
 							registration: 'bio.gender',
 							autoComplete: 'sex',
+							registrationArgs: {
+								required: 'This field is required',
+							},
 						} }
 						fields={ [
 							{

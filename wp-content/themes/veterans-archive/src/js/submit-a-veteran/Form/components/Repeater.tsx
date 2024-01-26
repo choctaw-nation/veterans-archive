@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import BootstrapButtonGroup from '../ui/BootstrapButtonGroup';
+import React from 'react';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import ButtonWrapper from '../ui/ButtonWrapper';
 
 function makePlural( word: string ): string {
@@ -24,20 +23,25 @@ export default function Repeater( {
 	type = 'text',
 }: {
 	label: string;
-
 	id: string;
 	registration: string;
 	type?: 'text' | 'url';
 } ) {
-	const [ numFields, setNumFields ] = useState( 0 );
+	const { fields, append, remove } = useFieldArray( {
+		name: registration,
+	} );
 	const { register } = useFormContext();
 
-	if ( numFields === 0 ) {
+	if ( fields.length === 0 ) {
 		return (
 			<ButtonWrapper classes="my-2">
 				<button
 					type="button"
-					onClick={ () => setNumFields( 1 ) }
+					onClick={ () =>
+						append( {
+							[ label ]: '',
+						} )
+					}
 					className="btn btn-outline-green text-dark-blue text-uppercase w-100"
 				>
 					Add { label }
@@ -50,16 +54,41 @@ export default function Repeater( {
 				<span className="d-block fw-semibold">
 					{ makePlural( label ) }
 				</span>
-				{ [ ...Array( numFields ) ].map( ( _, i ) => (
-					<div key={ i } className="d-flex mb-3">
+				{ fields.map( ( field, index ) => (
+					<div key={ field.id } className="d-flex mb-3">
 						<input
 							type={ type }
 							className="form-control"
-							id={ `${ id }-${ i }` }
-							{ ...register( `${ registration }.${ i }` ) }
+							id={ `${ id }-${ index }` }
+							{ ...register(
+								`${ registration }.${ index }.${ label }`
+							) }
 							placeholder={ `Insert ${ label }` }
 						/>
-						<BootstrapButtonGroup onClick={ setNumFields } />
+						<div
+							className="btn-group"
+							role="group"
+							aria-label="A pair of buttons that adds or removes a set of input fields"
+						>
+							<button
+								type="button"
+								className="btn btn-secondary btn-sm"
+								onClick={ () =>
+									append( {
+										[ label ]: '',
+									} )
+								}
+							>
+								+
+							</button>
+							<button
+								type="button"
+								className="btn btn-secondary btn-sm"
+								onClick={ () => remove( index ) }
+							>
+								&minus;
+							</button>
+						</div>
 					</div>
 				) ) }
 			</>

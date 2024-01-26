@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import BootstrapButtonGroup from '../../ui/BootstrapButtonGroup';
+import React from 'react';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import ButtonWrapper from '../../ui/ButtonWrapper';
 
+const FIELD_NAME = 'additional_materials.links';
 export default function AdditionalLinks() {
-	const [ numFields, setNumFields ] = useState( 0 );
 	const { register } = useFormContext();
-	if ( 0 === numFields ) {
+	const { fields, append, remove } = useFieldArray( {
+		name: FIELD_NAME,
+	} );
+	if ( 0 === fields.length ) {
 		return (
 			<ButtonWrapper classes="my-2">
 				<button
 					type="button"
-					onClick={ () => setNumFields( 1 ) }
+					onClick={ () =>
+						append( {
+							material_type: 'link',
+							description_of_material: '',
+							material_link: '',
+						} )
+					}
 					className="btn btn-outline-green text-dark-blue text-uppercase w-100"
 				>
 					Add Additional Links
@@ -24,14 +32,17 @@ export default function AdditionalLinks() {
 				<span className="d-block fw-semibold fs-5">
 					Additional Links
 				</span>
-				{ [ ...Array( numFields ) ].map( ( _, i ) => (
-					<div key={ i } className="input-group mb-3">
+				<p className="mb-3 fs-6 fst-italic">
+					All links must start with <code>https://</code>
+				</p>
+				{ fields.map( ( field, i ) => (
+					<div key={ field.id } className="input-group mb-3">
 						<input
 							type="text"
 							className="form-control"
 							id={ `link-${ i }-name` }
 							{ ...register(
-								`additional_materials.links.${ i }.description_of_material`
+								`${ FIELD_NAME }.${ i }.description_of_material`
 							) }
 							placeholder={ `Insert link name` }
 						/>
@@ -40,18 +51,45 @@ export default function AdditionalLinks() {
 							className="form-control"
 							id={ `link-${ i }-url` }
 							{ ...register(
-								`additional_materials.links.${ i }.material_link`
+								`${ FIELD_NAME }.${ i }.material_link`
 							) }
 							placeholder={ `Insert url` }
 						/>
 						<input
 							type="hidden"
 							{ ...register(
-								`additional_materials.links.${ i }.material_type`,
-								{ value: 'link' }
+								`${ FIELD_NAME }.${ i }.material_type`,
+								{
+									value: 'link',
+								}
 							) }
 						/>
-						<BootstrapButtonGroup onClick={ setNumFields } />
+						<div
+							className="btn-group"
+							role="group"
+							aria-label="A pair of buttons that adds or removes a set of input fields"
+						>
+							<button
+								type="button"
+								className="btn btn-secondary btn-sm"
+								onClick={ () =>
+									append( {
+										material_type: 'link',
+										description_of_material: '',
+										material_link: '',
+									} )
+								}
+							>
+								+
+							</button>
+							<button
+								type="button"
+								className="btn btn-secondary btn-sm"
+								onClick={ () => remove( i ) }
+							>
+								&minus;
+							</button>
+						</div>
 					</div>
 				) ) }
 			</div>

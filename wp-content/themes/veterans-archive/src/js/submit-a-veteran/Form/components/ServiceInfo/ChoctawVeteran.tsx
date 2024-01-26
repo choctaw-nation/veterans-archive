@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
-import BootstrapButtonGroup from '../../ui/BootstrapButtonGroup';
+import React from 'react';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import ButtonWrapper from '../../ui/ButtonWrapper';
+import ErrorMessage from '../ErrorMessage';
 
+const FIELD_NAME: string = 'service_information.choctaw_veteran_of_the_month';
 export default function ChoctawVeteranOfTheMonth() {
-	const [ numFields, setNumFields ] = useState( 0 );
-	const { register } = useFormContext();
-	if ( numFields === 0 ) {
+	const { fields, append, remove } = useFieldArray( {
+		name: FIELD_NAME,
+	} );
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext();
+
+	if ( fields.length === 0 ) {
 		return (
 			<ButtonWrapper classes="my-2">
 				<button
 					type="button"
-					onClick={ () => setNumFields( 1 ) }
+					onClick={ () =>
+						append( {
+							year_received: null,
+							district: null,
+						} )
+					}
 					className="btn btn-outline-green text-dark-blue text-uppercase w-100"
 				>
 					Add Choctaw Veteran of the Month Date Received
@@ -24,39 +36,93 @@ export default function ChoctawVeteranOfTheMonth() {
 				<label className="d-block fw-semibold form-label">
 					Choctaw Veteran of the Month
 				</label>
-				{ [ ...Array( numFields ) ].map( ( _, i ) => (
-					<div key={ i } className="input-group mb-3">
+				{ fields.map( ( field, i ) => (
+					<div key={ field.id } className="input-group mb-3">
 						<input
 							type="number"
 							className="form-control"
 							id={ `year-received-${ i }` }
 							{ ...register(
-								`service_information.choctaw_veteran_of_the_month.${ i }.year_received`,
+								`${ FIELD_NAME }.${ i }.year_received`,
 								{
 									valueAsNumber: true,
-									min: 1800,
+									min: {
+										value: 1800,
+										message:
+											'Year must be at least 4 digits',
+									},
 								}
 							) }
 							aria-label="Year Received"
 							aria-describedby="label.form-label"
 							placeholder="Year Received"
 						/>
+						{ errors?.service_information
+							?.choctaw_veteran_of_the_month[ i ]
+							.year_received && (
+							<ErrorMessage>
+								{
+									errors.service_information
+										.choctaw_veteran_of_the_month[ i ]
+										.year_received.message
+								}
+							</ErrorMessage>
+						) }
 						<input
 							type="number"
 							className="form-control"
 							id={ `district-${ i }` }
 							aria-label="District"
-							{ ...register(
-								`service_information.choctaw_veteran_of_the_month.${ i }.district`,
-								{
-									valueAsNumber: true,
-									min: 1,
-									max: 12,
-								}
-							) }
+							{ ...register( `${ FIELD_NAME }.${ i }.district`, {
+								valueAsNumber: true,
+								min: {
+									value: 1,
+									message:
+										'District must be between 1 and 12',
+								},
+								max: {
+									value: 12,
+									message:
+										'District must be between 1 and 12',
+								},
+							} ) }
 							placeholder="District"
 						/>
-						<BootstrapButtonGroup onClick={ setNumFields } />
+						{ errors?.service_information
+							?.choctaw_veteran_of_the_month[ i ].district && (
+							<ErrorMessage>
+								{
+									errors.service_information
+										.choctaw_veteran_of_the_month[ i ]
+										.district.message
+								}
+							</ErrorMessage>
+						) }
+						<div
+							className="btn-group"
+							role="group"
+							aria-label="A pair of buttons that adds or removes a set of input fields"
+						>
+							<button
+								type="button"
+								className="btn btn-secondary btn-sm"
+								onClick={ () =>
+									append( {
+										year_received: null,
+										district: null,
+									} )
+								}
+							>
+								+
+							</button>
+							<button
+								type="button"
+								className="btn btn-secondary btn-sm"
+								onClick={ () => remove( i ) }
+							>
+								&minus;
+							</button>
+						</div>
 					</div>
 				) ) }
 			</>

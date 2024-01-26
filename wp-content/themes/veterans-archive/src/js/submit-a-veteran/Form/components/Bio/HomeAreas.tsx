@@ -1,12 +1,11 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-// import BootstrapButtonGroup from '../../ui/BootstrapButtonGroup';
 import StateSelect from './StateSelect';
 import ButtonWrapper from '../../ui/ButtonWrapper';
 
 const fieldGroupName = 'bio.home_areas';
 export default function HomeAreas() {
-	const { register, control } = useFormContext();
+	const { register } = useFormContext();
 	const { fields, append, remove } = useFieldArray( {
 		name: fieldGroupName,
 	} );
@@ -28,7 +27,11 @@ export default function HomeAreas() {
 							<button
 								type="button"
 								onClick={ () =>
-									append( { city: '', state: '' } )
+									append( {
+										city: '',
+										county: '',
+										state: '',
+									} )
 								}
 								className="btn btn-outline-green text-dark-blue text-uppercase"
 							>
@@ -73,11 +76,13 @@ export default function HomeAreas() {
 							<button
 								type="button"
 								className="btn btn-secondary btn-sm"
-								onClick={ append( {
-									city: '',
-									county: '',
-									state: 'Select a state',
-								} ) }
+								onClick={ () =>
+									append( {
+										city: '',
+										county: '',
+										state: '',
+									} )
+								}
 							>
 								+
 							</button>

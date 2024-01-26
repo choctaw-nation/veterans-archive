@@ -79,7 +79,7 @@ class Veteran_Setter extends Veteran_Data {
 				}
 			)
 		);
-		if ( $is_empty ) {
+		if ( $is_empty || empty( $acf ) ) {
 			$this->home_areas = null;
 		} else {
 			foreach ( $acf as $home_area ) {
