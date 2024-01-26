@@ -1,7 +1,7 @@
 <?php
 /**
  * Class: Veteran Factory
- * Creates a Veteran Post Type sets its ACF fields accordingly
+ * Creates a Veteran Post Type prepares the data for ACF consumption.
  *
  * @package ChoctawNation
  */
@@ -155,7 +155,7 @@ class Veteran_Factory extends Veteran_Setter {
 	private function set_the_decorations( array $params ) {
 		$decorations                = array(
 			'decorations'            => array(),
-			'additional_decorations' => $params['additional_decorations'],
+			'additional_decorations' => $this->flatten_array( $params['additional_decorations'] ),
 		);
 		$decorations['decorations'] = $this->get_the_wp_terms( $params['decorations'], 'decoration' );
 
@@ -172,6 +172,9 @@ class Veteran_Factory extends Veteran_Setter {
 	 * @param array $arr the array to check
 	 */
 	private function is_empty_array( array $arr ) {
+		if ( empty( $arr ) ) {
+			return true;
+		}
 		$is_empty = array();
 		foreach ( $arr as $item ) {
 			$is_empty[] = empty( $item ) ? 1 : 0;
@@ -180,19 +183,37 @@ class Veteran_Factory extends Veteran_Setter {
 	}
 
 	/**
-	 * Escapes array values
+	 * Flattens and escapes array values
 	 *
 	 * @param array $user_input the array to escape
 	 */
 	private function handle_arrays( array $user_input ): ?array {
-		if ( $this->is_empty_array( $user_input ) ) {
+		$flat_array = $this->flatten_array( $user_input );
+		if ( $this->is_empty_array( $flat_array ) ) {
 			return null;
 		}
 		$escaped = array();
-		foreach ( $user_input as $value ) {
+		foreach ( $flat_array as $value ) {
 			$escaped[] = esc_textarea( $value );
 		}
 		return $escaped;
+	}
+
+	/**
+	 * Flattens a multidimensional array
+	 *
+	 * @param array $arr the array to flatten
+	 */
+	private function flatten_array( array $arr ): array {
+		$flat_array = array();
+		foreach ( $arr as $item ) {
+			if ( is_array( $item ) ) {
+				$flat_array = array_merge( $flat_array, $this->flatten_array( $item ) );
+			} else {
+				$flat_array[] = $item;
+			}
+		}
+		return $flat_array;
 	}
 
 	private function set_the_choctaw_veteran_of_the_month( array $nominations ) {

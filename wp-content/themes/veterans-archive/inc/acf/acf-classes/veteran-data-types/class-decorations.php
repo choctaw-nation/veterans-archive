@@ -19,7 +19,7 @@ class Decorations {
 	 *
 	 * @var \WP_Term[] $decorations
 	 */
-	public array $decorations;
+	public ?array $decorations;
 
 	/**
 	 * Additional Decorations

@@ -64,7 +64,7 @@ export interface veteranRestResponseError {
 	data: { code: 500; data: any };
 }
 
-export const defaultFormData = {
+export const emptyFormData = {
 	bio: {
 		gender: '',
 		first_name: '',
@@ -132,5 +132,106 @@ export const defaultFormData = {
 	contactInfo: {
 		name: '',
 		email: '',
+	},
+};
+
+export const minimalFormData = {
+	bio: {
+		gender: 'Male',
+		first_name: 'KJ',
+		middle_name: '',
+		last_name: 'Roelke',
+		name_suffix: null,
+		nickname: '',
+		year_of_birth: '',
+		year_of_death: '',
+		home_areas: [],
+	},
+	service_information: {
+		military_branch: [
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+		],
+		war: [ false, false, false, false, false, false ],
+		decorations: {
+			decorations: [
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+				false,
+			],
+			additional_decorations: [
+				{
+					'Additional Decoration': 'Good Job Award',
+				},
+			],
+		},
+		highest_rank_achieved: '',
+		dates_of_service: [
+			{
+				service_start: 2012,
+				service_end: 2015,
+			},
+		],
+		overseas_duty: [
+			{
+				'Overseas Duty': 'Japan',
+			},
+		],
+		stateside_assignments: [
+			{
+				'Stateside Assignment': 'Texas',
+			},
+		],
+		jobs: [
+			{
+				Job: 'Pilot',
+			},
+		],
+		advanced_training: [
+			{
+				'Advanced Training': 'Cold Survival',
+			},
+		],
+		military_units: [
+			{
+				'Military Unit': 'SEALS',
+			},
+		],
+		choctaw_veteran_of_the_month: [
+			{
+				year_received: 2022,
+				district: 4,
+			},
+		],
+	},
+	additional_materials: {
+		media_material: false,
+		links: [
+			{
+				material_type: 'link',
+				description_of_material: 'Obituary',
+				material_link: 'https://google.com',
+			},
+		],
+	},
+	consentCheckbox: true,
+	contactInfo: {
+		name: 'KJ',
+		email: 'kj@kj.co',
 	},
 };
