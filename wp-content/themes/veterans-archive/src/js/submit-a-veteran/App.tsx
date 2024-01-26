@@ -13,11 +13,7 @@ import Pagination from './Form/components/Pagination';
 import AdditionalMaterials from './Form/sections/AdditionalMaterials';
 
 const root = document.getElementById( 'root' );
-createRoot( root ).render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>
-);
+createRoot( root ).render( <App /> );
 
 function App() {
 	const [ currentPage, setCurrentPage ] = useState( 1 );
