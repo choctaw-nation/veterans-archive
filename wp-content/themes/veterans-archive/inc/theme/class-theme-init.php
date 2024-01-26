@@ -193,9 +193,9 @@ class Theme_Init {
 		$this->remove_wordpress_styles(
 			array(
 				'classic-theme-styles',
-				// 'wp-block-library',
+				'wp-block-library',
 				'dashicons',
-				// 'global-styles',
+				'global-styles',
 			)
 		);
 

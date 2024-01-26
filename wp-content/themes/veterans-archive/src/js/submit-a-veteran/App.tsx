@@ -52,7 +52,7 @@ function App() {
 		setFormValues( formValues );
 	}
 
-	const baseStyles = `border-3 bg-white p-3 shadow`;
+	const baseStyles = ``;
 
 	if ( isLoading ) {
 		return (
@@ -69,7 +69,7 @@ function App() {
 			<AppContainer>
 				<FormProvider { ...methods }>
 					<form
-						className={ `${ baseStyles } border border-dark-blue needs-validation` }
+						className={ `${ baseStyles } needs-validation` }
 						noValidate
 						onSubmit={ methods.handleSubmit( onSubmit, onError ) }
 					>

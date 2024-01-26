@@ -58,7 +58,7 @@ export default function BootstrapRadioCheckbox( {
 	return (
 		<div className="row">
 			<div className="col">
-				<span className="d-block fw-semibold fs-5">{ label }:</span>
+				<span className="d-block fw-semibold fs-4">{ label }:</span>
 				{ fields.map( ( field, i ) => {
 					const registrationField =
 						'radio' === args.type
@@ -67,7 +67,7 @@ export default function BootstrapRadioCheckbox( {
 					return (
 						<div className="form-check" key={ i }>
 							<input
-								className="form-check-input"
+								className="form-check-input fs-5"
 								type={ args.type || 'radio' }
 								{ ...register( registrationField, {
 									required,
@@ -76,7 +76,7 @@ export default function BootstrapRadioCheckbox( {
 							/>{ ' ' }
 							<label
 								htmlFor={ args.registerField }
-								className="form-check-label"
+								className="form-check-label fs-5"
 							>
 								{ field.label }
 							</label>
@@ -87,7 +87,7 @@ export default function BootstrapRadioCheckbox( {
 					<>
 						<div className="form-check d-flex">
 							<input
-								className="form-check-input"
+								className="form-check-input fs-5"
 								type={ args.type || 'radio' }
 								{ ...register(
 									`${
@@ -101,13 +101,13 @@ export default function BootstrapRadioCheckbox( {
 								) }
 								value="Other"
 							/>{ ' ' }
-							<label className="form-check-label ms-2">
+							<label className="form-check-label ms-2 fs-5">
 								Other
 							</label>
 							{ otherIsSelected && (
 								<input
 									type="text"
-									className="form-control ms-2"
+									className="form-control ms-2 fs-5"
 									{ ...register(
 										`${
 											'radio' === args.type

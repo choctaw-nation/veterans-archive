@@ -51,14 +51,14 @@ export default function Repeater( {
 	} else {
 		return (
 			<>
-				<span className="d-block fw-semibold">
+				<span className="d-block fw-semibold fs-5">
 					{ makePlural( label ) }
 				</span>
 				{ fields.map( ( field, index ) => (
 					<div key={ field.id } className="d-flex mb-3">
 						<input
 							type={ type }
-							className="form-control"
+							className="form-control fs-5"
 							id={ `${ id }-${ index }` }
 							{ ...register(
 								`${ registration }.${ index }.${ label }`

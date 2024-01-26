@@ -20,13 +20,13 @@ $divider       = new Divider();
 $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 ?>
 <div class="container">
-	<div class="row py-5">
+	<div class="row mt-5">
 		<div class="col">
 			<?php get_template_part( 'template-parts/nav', 'breadcrumbs' ); ?>
 		</div>
 	</div>
 	<article>
-		<section class="biography p-2 my-2">
+		<section class="p-2 my-2" id='biography'>
 			<div class="row mb-4">
 				<div class="col">
 					<h1 class="display-1 text-dark-blue text-uppercase">
@@ -120,7 +120,7 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 							$image = get_field( 'branch_icon', "military-branch_{$veteran->branches_of_service[0]->term_id}" );
 							echo wp_get_attachment_image(
 								$image['id'],
-								'medium',
+								'large',
 								false,
 								array(
 									'class'   => 'object-fit-contain',
@@ -135,7 +135,7 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 			</div>
 		</section>
 		<?php if ( $veteran->has_tabbed_content() ) : ?>
-		<section class="service mt-5 py-2">
+		<section class="mt-3 py-2" id='service'>
 			<div class="row my-3">
 				<div class="col-auto">
 					<?php $divider->the_divider( 'end', 'primary' ); ?>

@@ -15,20 +15,18 @@ get_header();
 get_template_part( 'template-parts/section', 'hero' );
 ?>
 
-<section class="bg-dark-blue container rounded-5 px-5 position-relative" id='search-bar'>
-	<div class="row">
-		<?php
-		get_template_part(
-			'template-parts/search',
-			'search-bar',
-			array(
-				'bg_color'     => 'dark-blue',
-				'with_browse'  => true,
-				'with_filters' => false,
-			)
-		);
-		?>
-	</div>
+<section class="bg-dark-blue container p-5 position-relative" id='search-bar'>
+	<?php
+	get_template_part(
+		'template-parts/search',
+		'search-bar',
+		array(
+			'bg_color'     => 'dark-blue',
+			'with_browse'  => true,
+			'with_filters' => false,
+		)
+	);
+	?>
 </section>
 <section class="container my-5 py-5">
 	<?php
@@ -47,8 +45,8 @@ get_template_part( 'template-parts/section', 'hero' );
 	<div class="container">
 		<div class="<?php echo "row row-cols-1 row-cols-md-2 row-cols-lg-{$cols} align-items-stretch row-gap-4"; ?>">
 			<?php while ( have_rows( 'section_2' ) ) : ?>
-			<?php the_row(); ?>
-			<?php $image = new Image( get_sub_field( 'cover_image' ), 'square-lg' ); ?>
+				<?php the_row(); ?>
+				<?php $image = new Image( get_sub_field( 'cover_image' ), 'square-lg' ); ?>
 			<div class="col d-flex flex-column">
 				<?php $cta = get_sub_field( 'link' ); ?>
 				<a href="<?php echo esc_url( $cta['url'] ); ?>" class='bg-white h-100' target="<?php echo esc_attr( $cta['target'] ); ?>" title='<?php echo $cta['title']; ?>'>

@@ -53,7 +53,7 @@ export default function BootstrapInput( {
 		<>
 			<input
 				type={ type }
-				className="form-control"
+				className="form-control fs-5"
 				id={ id }
 				required={ required }
 				placeholder={ label }

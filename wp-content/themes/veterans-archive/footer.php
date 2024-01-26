@@ -6,17 +6,18 @@
  * @package ChoctawNation
  */
 
+$footer_col_classes = 'col-auto flex-grow-1 col-sm-6 py-5 gx-5';
 ?>
 
 <footer class="footer container-fluid">
 	<div class="row">
-		<div class="col-auto flex-grow-1 col-sm-6 col-lg-4 bg-green py-5">
+		<div class="<?php echo $footer_col_classes; ?> col-lg-4 bg-green">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="fs-3 text-uppercase" aria-label="to Home Page">
 				Choctaw Nation <br /> Veterans Archive
 			</a>
 		</div>
 		<div class="col-2 footer-split d-none d-lg-block"></div>
-		<div class="col-auto flex-grow-1 col-sm-6 bg-primary py-5 text-sm-end">
+		<div class="<?php echo $footer_col_classes; ?> bg-primary text-sm-end d-flex flex-column justify-content-center align-items-sm-end">
 			<div class="social-icons">
 				<?php
 				$socials = array(
@@ -38,15 +39,13 @@
 				);
 				?>
 				<?php foreach ( $socials as $social ) : ?>
-				<a href="<?php echo $social['href']; ?>" class="social ms-2" target="_blank" rel="noopener noreferrer" aria-label="<?php echo $social['aria-label']; ?>">
+				<a href="<?php echo $social['href']; ?>" class="social mx-2" target="_blank" rel="noopener noreferrer" aria-label="<?php echo $social['aria-label']; ?>">
 					<i class="<?php echo "text-white fa-2xl {$social['icon_class']}"; ?>"></i>
 				</a>
 				<?php endforeach; ?>
 			</div>
-			<div class="row mt-3 w-75 justify-content-end ms-auto">
-				<div id="copyright" class="text-white">
-					<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . '&nbsp;Choctaw Nation of Oklahoma. All Rights Reserved.'; ?>
-				</div>
+			<div id="copyright" class="mt-3 w-75 text-white">
+				<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . '&nbsp;Choctaw Nation of Oklahoma. All Rights Reserved.'; ?>
 			</div>
 		</div>
 	</div>

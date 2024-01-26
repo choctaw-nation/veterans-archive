@@ -15,7 +15,7 @@ use ChoctawNation\Components\Divider;
 $veteran = $args[0];
 $divider = new Divider();
 ?>
-<section class="additional-material my-5">
+<section class="additional-material mt-5">
 	<div class="row my-3">
 		<div class="col-auto">
 			<?php $divider->the_divider( 'end', 'primary' ); ?>
