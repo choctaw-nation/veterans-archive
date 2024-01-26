@@ -125,7 +125,9 @@ class ACF_Setter {
 		$group_key = 'field_65a062ee4fe42';
 		$this->handle_taxonomy_terms( $data->branches_of_service );
 		$this->handle_taxonomy_terms( $data->wars );
-		$this->handle_taxonomy_terms( $data->decorations->decorations );
+		if ( $data->decorations ) {
+			$this->handle_taxonomy_terms( $data->decorations->decorations );
+		}
 
 		$sub_fields = array(
 			'field_65a063614fe43' => $data->dates_of_service ? array_map(
@@ -137,7 +139,7 @@ class ACF_Setter {
 				},
 				$data->dates_of_service
 			) : null,
-			'field_65a0670a2e315' => $data->decorations->additional_decorations ? array(
+			'field_65a0670a2e315' => ($data->decorations && $data->decorations->additional_decorations) ? array(
 				'field_65a151ca3506e' => array_map(
 					function ( $data ) {
 						return array(

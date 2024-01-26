@@ -216,6 +216,11 @@ class Veteran_Factory extends Veteran_Setter {
 		return $flat_array;
 	}
 
+	/**
+	 * Sets the Choctaw Veteran of the Month data
+	 *
+	 * @param array $nominations the $_POST data
+	 */
 	private function set_the_choctaw_veteran_of_the_month( array $nominations ) {
 		foreach ( $nominations as $nomination ) {
 			if ( $this->is_empty_array( $nomination ) ) {

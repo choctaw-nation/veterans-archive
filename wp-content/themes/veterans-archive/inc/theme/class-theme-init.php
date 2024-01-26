@@ -83,7 +83,8 @@ class Theme_Init {
 		// Finally, load the Veteran Data Classes (for REST)
 		$veteran_classes = array(
 			'class-veteran-factory',
-			'rest-route',
+			'class-email-generator',
+			'class-veteran-rest-route',
 			'class-acf-setter',
 		);
 		foreach ( $veteran_classes as $veteran_class ) {
