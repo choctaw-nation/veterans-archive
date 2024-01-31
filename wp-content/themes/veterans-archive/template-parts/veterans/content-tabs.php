@@ -42,7 +42,7 @@ $nav_items         = array(
 );
 
 ?>
-<ul class="nav nav-tabs flex-nowrap overflow-x-scroll overflow-y-hidden justify-content-evenly align-items-stretch text-center border-0" id="myTab" role="tablist">
+<ul class="nav nav-tabs flex-nowrap overflow-x-scroll overflow-y-hidden column-gap-4 align-items-stretch text-center border-0" id="myTab" role="tablist">
 	<?php $is_first = true; ?>
 	<?php foreach ( $nav_items as $nav_item ) : ?>
 		<?php

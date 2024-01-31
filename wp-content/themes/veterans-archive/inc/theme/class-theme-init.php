@@ -137,6 +137,20 @@ class Theme_Init {
 	 * Adds scripts with the appropriate dependencies
 	 */
 	public function enqueue_cno_scripts() {
+		$this->register_veteran_scripts();
+		$this->remove_wordpress_styles(
+			array(
+				'classic-theme-styles',
+				'wp-block-library',
+				'dashicons',
+				'global-styles',
+			)
+		);
+
+		if ( 'prod' === $_ENV['CNO_ENV'] ) {
+			$this->load_google_tag_manager();
+		}
+
 		wp_enqueue_style(
 			'typekit',
 			'https://use.typekit.net/dul4cti.css',
@@ -154,14 +168,6 @@ class Theme_Init {
 			)
 		);
 
-		$bs_tab = require_once get_template_directory() . '/dist/vendors/bootstrapTab.asset.php';
-		wp_register_script(
-			'bsTab',
-			get_template_directory_uri() . '/dist/vendors/bootstrapTab.js',
-			$bs_tab['dependencies'],
-			$bs_tab['version'],
-			array( 'strategy' => 'defer' )
-		);
 		$fontawesome = new Asset_Loader( 'fontawesome', Enqueue_Type::style, 'vendors' );
 
 		$global_scripts = new Asset_Loader(
@@ -189,19 +195,18 @@ class Theme_Init {
 			array( 'global' ),
 			wp_get_theme()->get( 'Version' )
 		);
+	}
 
-		$this->remove_wordpress_styles(
-			array(
-				'classic-theme-styles',
-				'wp-block-library',
-				'dashicons',
-				'global-styles',
-			)
+	/** Registers Scrips that veteran-single might need */
+	private function register_veteran_scripts() {
+		$bs_tab = require_once get_template_directory() . '/dist/vendors/bootstrapTab.asset.php';
+		wp_register_script(
+			'bsTab',
+			get_template_directory_uri() . '/dist/vendors/bootstrapTab.js',
+			array_unique( array( ...$bs_tab['dependencies'], 'bootstrap' ) ),
+			$bs_tab['version'],
+			array( 'strategy' => 'defer' )
 		);
-
-		if ( 'prod' === $_ENV['CNO_ENV'] ) {
-			$this->load_google_tag_manager();
-		}
 	}
 
 	/** Load Google Tag Manager in the Head */

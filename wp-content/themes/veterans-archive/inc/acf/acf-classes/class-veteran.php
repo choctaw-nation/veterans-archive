@@ -371,4 +371,8 @@ class Veteran extends Veteran_Setter {
 			|| ! empty( $this->overseas_duty )
 			|| ! empty( $this->jobs );
 	}
+
+	public function needs_additional_materials_modal(): bool {
+		return $this->needs_additional_materials_modal;
+	}
 }

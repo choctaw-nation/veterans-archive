@@ -1,33 +1,24 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
+import { Navigation, A11y, Thumbs } from 'swiper/modules';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
+import 'swiper/scss/a11y';
+import 'swiper/scss/thumbs';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 
 const defaultArgs = {
-	modules: [ Navigation, Pagination, A11y ],
+	modules: [ Navigation, A11y, Thumbs ],
 	direction: 'horizontal',
 	loop: false,
-
-	// If we need pagination
-	pagination: {
-		el: '.swiper-pagination',
-	},
+	grabCursor: true,
 
 	// Navigation arrows
 	navigation: {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev',
 	},
-	breakpoints: {
-		767: {
-			slidesPerView: 3,
-			slidesPerGroup: 3,
-		},
-	},
-	spaceBetween: 20,
+	spaceBetween: 10,
 } as SwiperOptions;
 
 /**

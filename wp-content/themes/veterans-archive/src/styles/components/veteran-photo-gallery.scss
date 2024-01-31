@@ -1,0 +1,15 @@
+.photo-gallery {
+	background-color: black;
+
+	.swiper-thumbs {
+		.swiper-slide {
+			transition: opacity var(--transition-standard);
+		}
+		.swiper-slide:where(:not(.swiper-slide-thumbs-active)) {
+			opacity: 0.5;
+		}
+		.swiper-slide-thumb-active {
+			opacity: 1;
+		}
+	}
+}

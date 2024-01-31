@@ -3,6 +3,8 @@
  * Class: Buttons
  * Generates Buttons
  *
+ * @see https://github.com/choctaw-nation/veterans-archive/wiki#custom-buttons
+ *
  * @package ChoctawNation
  * @subpackage Components
  */
