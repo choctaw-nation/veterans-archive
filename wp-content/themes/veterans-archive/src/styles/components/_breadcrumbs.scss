@@ -1,0 +1,16 @@
+.breadcrumb-item {
+	font-family: var(--font-display);
+	text-transform: uppercase;
+
+	a {
+		color: var(--bs-green);
+		&:hover,
+		&:focus {
+			color: var(--bs-light-green);
+		}
+	}
+
+	&.active {
+		color: var(--bs-dark-blue);
+	}
+}

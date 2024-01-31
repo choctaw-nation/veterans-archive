@@ -13,9 +13,9 @@ export default function HomeAreas() {
 		<>
 			<div className="row">
 				<div className="col">
-					<span className="fw-semibold">Home Areas</span>
+					<span className="fw-semibold fs-4">Home Areas</span>
 					<br />
-					<small className="mb-0" id="description">
+					<small className="fs-6 mb-2 d-block" id="description">
 						Current or last known location of the veteran.
 					</small>
 				</div>
@@ -45,7 +45,7 @@ export default function HomeAreas() {
 						<div className="input-group">
 							<input
 								type="text"
-								className="form-control"
+								className="form-control fs-5"
 								id="city"
 								placeholder="City"
 								{ ...register(
@@ -54,7 +54,7 @@ export default function HomeAreas() {
 							/>
 							<input
 								type="text"
-								className="form-control"
+								className="form-control fs-5"
 								id="county"
 								autoComplete="off"
 								placeholder="County"
@@ -65,34 +65,34 @@ export default function HomeAreas() {
 							<StateSelect
 								registration={ `${ fieldGroupName }.${ i }.state` }
 							/>
-						</div>
-						<div
-							className="btn-group"
-							role="group"
-							aria-label={
-								'a pair of buttons that adds or removes a set of location fields'
-							}
-						>
-							<button
-								type="button"
-								className="btn btn-secondary btn-sm"
-								onClick={ () =>
-									append( {
-										city: '',
-										county: '',
-										state: '',
-									} )
+							<div
+								className="btn-group"
+								role="group"
+								aria-label={
+									'a pair of buttons that adds or removes a set of location fields'
 								}
 							>
-								+
-							</button>
-							<button
-								type="button"
-								className="btn btn-secondary btn-sm"
-								onClick={ () => remove( i ) }
-							>
-								&minus;
-							</button>
+								<button
+									type="button"
+									className="btn btn-secondary btn-sm"
+									onClick={ () =>
+										append( {
+											city: '',
+											county: '',
+											state: '',
+										} )
+									}
+								>
+									+
+								</button>
+								<button
+									type="button"
+									className="btn btn-secondary btn-sm"
+									onClick={ () => remove( i ) }
+								>
+									&minus;
+								</button>
+							</div>
 						</div>
 					</div>
 				) ) }

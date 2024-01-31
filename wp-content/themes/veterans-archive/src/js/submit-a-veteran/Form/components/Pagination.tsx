@@ -24,7 +24,7 @@ export default function Pagination( {
 			{ 1 !== currentPage && (
 				<ButtonWrapper>
 					<button
-						className="btn btn-outline-primary text-uppercase"
+						className="btn btn-lg btn-outline-primary text-uppercase"
 						type="button"
 						onClick={ () => {
 							setCurrentPage( ( pageIndex ) => pageIndex - 1 );
@@ -39,7 +39,7 @@ export default function Pagination( {
 			{ 3 !== currentPage && (
 				<ButtonWrapper>
 					<button
-						className="btn btn-outline-dark-blue text-uppercase"
+						className="btn btn-lg btn-outline-dark-blue text-uppercase"
 						type="button"
 						onClick={ handleClick }
 					>
@@ -52,7 +52,7 @@ export default function Pagination( {
 				<ButtonWrapper>
 					<button
 						type="submit"
-						className="btn btn-dark-blue text-uppercase"
+						className="btn btn-lg btn-dark-blue text-uppercase"
 					>
 						Submit
 					</button>

@@ -2,6 +2,7 @@
 
 :root {
 	--font-body: #{v.$font-body};
+	--font-display: #{v.$font-headings};
 	--font-serif: #{v.$font-serif};
 
 	--transition-standard: #{v.$transition--standard};

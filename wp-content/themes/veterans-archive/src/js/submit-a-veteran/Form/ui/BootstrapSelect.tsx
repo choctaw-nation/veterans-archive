@@ -35,7 +35,7 @@ export default function BootstrapSelect( {
 	}, [ setValue, registration, defaultValue ] );
 	return (
 		<select
-			className={ `form-select ${ additionalClasses }` }
+			className={ `form-select fs-5 ${ additionalClasses }` }
 			aria-label={ ariaLabel }
 			autoComplete={ autoComplete || 'off' }
 			{ ...register( registration, registrationArgs ) }
