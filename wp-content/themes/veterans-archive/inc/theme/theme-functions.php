@@ -6,6 +6,49 @@
  * @package ChoctawNation
  */
 
+use ChoctawNation\ACF\Veteran_Data_Types\Additional_Material;
+
+/**
+ * Builds the Additional Materials button arguments to dynamically populate a modal's content
+ *
+ * @param Additional_Material $additional_material The Veteran's additional material data
+ */
+function cno_build_veteran_button_args( Additional_Material $additional_material ): array {
+	$material_type   = $additional_material->type['value'];
+	$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
+	$label           = $additional_material->type['label'];
+
+	$btn_args = $is_text_or_link ?
+	array(
+		'href'    => $additional_material->url,
+		'target'  => '_blank',
+		'rel'     => 'noopener noreferrer',
+		'element' => 'a',
+	) :
+	array(
+		'element'    => 'button',
+		'attributes' => array(
+			'type'           => 'button',
+			'data-bs-toggle' => 'modal',
+			'data-bs-target' => '#additional-materials-modal',
+			'data-cno-type'  => $material_type,
+			'data-cno-title' => $additional_material->description,
+		),
+	);
+
+	switch ( $material_type ) {
+		case 'audio':
+			$btn_args['attributes']['data-cno-src'] = wp_json_encode( $additional_material->url );
+			break;
+		case 'photo-gallery':
+			$btn_args['attributes']['data-cno-src'] = wp_json_encode( $additional_material->photo_gallery, );
+			break;
+	}
+	$btn_args['class'] = 'btn-outline-primary';
+	$btn_args['text']  = 'Audio' === $label ? "Listen to {$label} clip" : "View {$label}";
+	return $btn_args;
+}
+
 /**
  * Enqueues the page style.
  *

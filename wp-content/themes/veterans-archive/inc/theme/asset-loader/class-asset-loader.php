@@ -8,8 +8,6 @@
 
 namespace ChoctawNation;
 
-use function PHPSTORM_META\type;
-
 /** On Construction, enqueues the assets
  *
  * @property string       $id the file id;
@@ -51,7 +49,7 @@ class Asset_Loader {
 	 *
 	 * @var array|false $asset_file
 	 */
-	private array|false $asset_file;
+	private $asset_file;
 
 	/**
 	 * The JS Loading strategy
@@ -76,7 +74,7 @@ class Asset_Loader {
 		$this->strategy   = $strategy;
 
 		if ( null === $deps ) {
-			$deps = $type === Enqueue_Type::both ? array(
+			$deps = Enqueue_Type::both === $type ? array(
 				'scripts' => array( 'global' ),
 				'styles'  => array( 'global' ),
 			) : array( 'global' );

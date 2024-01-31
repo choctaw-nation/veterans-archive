@@ -20,6 +20,7 @@ use ChoctawNation\ACF\Veteran_Data_Types\Home_Area;
  * Creates WP-like API to generate markup
  */
 class Veteran_Setter extends Veteran_Data {
+	protected bool $needs_additional_materials_modal;
 
 	// phpcs:ignore
 	protected function init_props( array $acf ) {
@@ -153,5 +154,15 @@ class Veteran_Setter extends Veteran_Data {
 		foreach ( $acf as  $additional_materials ) {
 			$this->additional_materials[] = new Additional_Material( $additional_materials['additional_material'] );
 		}
+		$this->needs_additional_materials_modal = $this->needs_additional_materials_modal();
+	}
+
+	private function needs_additional_materials_modal(): bool {
+		foreach ( $this->additional_materials as $additional_material ) {
+			if ( 'link' !== $additional_material->type['value'] && 'text' !== $additional_material->type['value'] ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
