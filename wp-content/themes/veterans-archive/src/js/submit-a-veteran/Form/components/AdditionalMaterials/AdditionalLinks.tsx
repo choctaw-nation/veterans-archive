@@ -10,7 +10,7 @@ export default function AdditionalLinks() {
 	} );
 	if ( 0 === fields.length ) {
 		return (
-			<ButtonWrapper classes="my-2">
+			<ButtonWrapper classes="my-2" innerClass="btn-outline-green">
 				<button
 					type="button"
 					onClick={ () =>
@@ -20,7 +20,7 @@ export default function AdditionalLinks() {
 							material_link: '',
 						} )
 					}
-					className="btn btn-outline-green text-dark-blue text-uppercase w-100"
+					className="btn btn-outline-green border-0 text-dark-blue text-uppercase w-100"
 				>
 					Add Additional Links
 				</button>

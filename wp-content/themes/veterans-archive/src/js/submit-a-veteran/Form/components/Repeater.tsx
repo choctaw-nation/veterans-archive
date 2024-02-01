@@ -34,7 +34,7 @@ export default function Repeater( {
 
 	if ( fields.length === 0 ) {
 		return (
-			<ButtonWrapper classes="my-2">
+			<ButtonWrapper classes="my-2" innerClass="btn-outline-green">
 				<button
 					type="button"
 					onClick={ () =>
@@ -42,7 +42,7 @@ export default function Repeater( {
 							[ label ]: '',
 						} )
 					}
-					className="btn btn-outline-green text-dark-blue text-uppercase w-100"
+					className="btn btn-outline-green border-0 z-2 text-dark-blue text-uppercase w-100"
 				>
 					Add { label }
 				</button>
