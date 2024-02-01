@@ -82,6 +82,7 @@ class Buttons {
 			'display-6',
 			'fs-5',
 			'z-2',
+			'w-100',
 		);
 		if ( isset( $this->args['class'] ) ) {
 			$classes = array( ...$classes, $this->args['class'], 'border-0' );
