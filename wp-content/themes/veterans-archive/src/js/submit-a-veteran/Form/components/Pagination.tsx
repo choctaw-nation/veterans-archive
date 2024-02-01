@@ -22,9 +22,9 @@ export default function Pagination( {
 	return (
 		<div className="d-flex justify-content-between mt-5">
 			{ 1 !== currentPage && (
-				<ButtonWrapper>
+				<ButtonWrapper innerClass="btn-outline-primary">
 					<button
-						className="btn btn-lg btn-outline-primary text-uppercase"
+						className="btn btn-lg btn-outline-primary border-0 text-uppercase"
 						type="button"
 						onClick={ () => {
 							setCurrentPage( ( pageIndex ) => pageIndex - 1 );
@@ -37,9 +37,9 @@ export default function Pagination( {
 
 			<span className="d-block">Page { currentPage } of 3</span>
 			{ 3 !== currentPage && (
-				<ButtonWrapper>
+				<ButtonWrapper innerClass="btn-outline-dark-blue">
 					<button
-						className="btn btn-lg btn-outline-dark-blue text-uppercase"
+						className="btn btn-lg border-0 btn-outline-dark-blue text-uppercase"
 						type="button"
 						onClick={ handleClick }
 					>
@@ -49,10 +49,10 @@ export default function Pagination( {
 			) }
 
 			{ 3 === currentPage && (
-				<ButtonWrapper>
+				<ButtonWrapper innerClass="btn-outline-dark-blue">
 					<button
 						type="submit"
-						className="btn btn-lg btn-dark-blue text-uppercase"
+						className="btn btn-lg btn-outline-dark-blue text-uppercase border-0"
 					>
 						Submit
 					</button>

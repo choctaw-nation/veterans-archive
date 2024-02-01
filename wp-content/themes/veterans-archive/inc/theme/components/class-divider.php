@@ -18,7 +18,6 @@ class Divider {
 	 * @param "start"|"end" $direction [Optional] The direction of the divider.
 	 * @param string        $color [Optional] The color of the divider (maps to Bootstrap theme colors).
 	 * @param string|array  $additional_classes [Optional] Additional classes to add to the component.
-	 * @param bool          $should_echo [Optional] Whether to echo or return the component.
 	 */
 	public function get_the_divider( string $direction = 'start', string $color = 'green', string|array $additional_classes = null ): string {
 		if ( 'start' !== $direction && 'end' !== $direction ) {
@@ -49,7 +48,6 @@ class Divider {
 	 * @param "start"|"end" $direction [Optional] The direction of the divider.
 	 * @param string        $color [Optional] The color of the divider (maps to Bootstrap theme colors).
 	 * @param string|array  $additional_classes [Optional] Additional classes to add to the component.
-	 * @param bool          $should_echo [Optional] Whether to echo or return the component.
 	 */
 	public function the_divider( string $direction = 'start', string $color = 'green', string|array $additional_classes = null ): void {
 		echo $this->get_the_divider( $direction, $color, $additional_classes );
