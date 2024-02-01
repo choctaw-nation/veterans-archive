@@ -84,7 +84,9 @@
 						},
 						"choices": {
 							"Jr.": "Jr.",
-							"Sr.": "Sr."
+							"Sr.": "Sr.",
+							"3rd": "3rd",
+							"III": "III"
 						},
 						"default_value": "",
 						"return_format": "value",
@@ -1026,7 +1028,7 @@
 				"min": 0,
 				"max": 0,
 				"collapsed": "",
-				"button_label": "Add Row",
+				"button_label": "Add",
 				"show_in_graphql": 1,
 				"graphql_description": "",
 				"graphql_field_name": "additionalMaterials",
@@ -1057,8 +1059,8 @@
 								"name": "description_of_material",
 								"aria-label": "",
 								"type": "text",
-								"instructions": "",
-								"required": 0,
+								"instructions": "This controls how the link will be displayed on the veteran's page.",
+								"required": 1,
 								"conditional_logic": 0,
 								"wrapper": {
 									"width": "",
@@ -1067,7 +1069,7 @@
 								},
 								"default_value": "",
 								"maxlength": "",
-								"placeholder": "News Article, Audio Interview, Obituary...",
+								"placeholder": "",
 								"prepend": "",
 								"append": "",
 								"show_in_graphql": 1,
@@ -1092,14 +1094,18 @@
 								"choices": {
 									"link": "Link",
 									"photo-gallery": "Photo Gallery",
-									"audio": "Audio"
+									"audio": "Audio",
+									"text": "PDF"
 								},
 								"default_value": false,
-								"return_format": "value",
+								"return_format": "array",
 								"multiple": 0,
 								"allow_null": 0,
 								"ui": 0,
-								"show_in_graphql": 0,
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "materialType",
+								"graphql_non_null": 0,
 								"ajax": 0,
 								"placeholder": ""
 							},
@@ -1111,7 +1117,15 @@
 								"type": "url",
 								"instructions": "",
 								"required": 0,
-								"conditional_logic": 0,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_65a14fa752785",
+											"operator": "==",
+											"value": "link"
+										}
+									]
+								],
 								"wrapper": {
 									"width": "",
 									"class": "",
@@ -1120,6 +1134,107 @@
 								"default_value": "",
 								"placeholder": "",
 								"show_in_graphql": 0
+							},
+							{
+								"key": "field_65b807cd4eaa8",
+								"label": "Photo Gallery",
+								"name": "photo_gallery",
+								"aria-label": "",
+								"type": "gallery",
+								"instructions": "Please be sure to add \"alt\" text to the photos you upload! <a href=\"https://support.microsoft.com/en-us/office/everything-you-need-to-know-to-write-effective-alt-text-df98f884-ca3d-456c-807b-1a1fa82f5dc2\" target=\"_blank\">Read about Alt Text</a>",
+								"required": 0,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_65a14fa752785",
+											"operator": "==",
+											"value": "photo-gallery"
+										}
+									]
+								],
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"return_format": "array",
+								"library": "all",
+								"min": 1,
+								"max": "",
+								"min_width": "",
+								"min_height": "",
+								"min_size": "",
+								"max_width": "",
+								"max_height": "",
+								"max_size": "",
+								"mime_types": "jpg, jpeg, webp",
+								"insert": "append",
+								"preview_size": "medium",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "photoGallery"
+							},
+							{
+								"key": "field_65b808fb4eaa9",
+								"label": "Audio File",
+								"name": "audio_file",
+								"aria-label": "",
+								"type": "file",
+								"instructions": "Accepted file types: ogg, mp3, m4a, wav, aac. Files must be smaller than 5 MB. Contact the Marketing Web Dev team for help.",
+								"required": 0,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_65a14fa752785",
+											"operator": "==",
+											"value": "audio"
+										}
+									]
+								],
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"return_format": "array",
+								"library": "all",
+								"min_size": "",
+								"max_size": 5,
+								"mime_types": "ogg, mp3, m4a, aac",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "audioFile"
+							},
+							{
+								"key": "field_65b80b89e5137",
+								"label": "PDF",
+								"name": "pdf",
+								"aria-label": "",
+								"type": "file",
+								"instructions": "Only PDFs under 10 MB are accepted. Contact the Marketing Web Dev team for help.",
+								"required": 0,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_65a14fa752785",
+											"operator": "==",
+											"value": "text"
+										}
+									]
+								],
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"return_format": "url",
+								"library": "all",
+								"min_size": "",
+								"max_size": 10,
+								"mime_types": "pdf",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "pdf"
 							}
 						]
 					}
