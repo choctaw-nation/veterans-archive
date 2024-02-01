@@ -36,7 +36,6 @@ $with_filters = $args['with_filters'] || false;
 							'class'   => 'btn-outline-light',
 							'value'   => 'Search',
 						),
-						$bg_color,
 					);
 					if ( $with_browse ) {
 						$buttons->the_button(
@@ -46,7 +45,6 @@ $with_filters = $args['with_filters'] || false;
 								'class'   => 'btn-outline-light-green',
 								'text'    => 'Browse',
 							),
-							$bg_color,
 						);
 					}
 					?>

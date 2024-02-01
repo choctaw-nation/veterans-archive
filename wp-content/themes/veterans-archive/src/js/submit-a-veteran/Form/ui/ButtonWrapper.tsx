@@ -2,19 +2,22 @@ import React from 'react';
 
 export default function ButtonWrapper( {
 	children,
-	bgColor = 'white',
 	classes,
+	innerClass,
 }: {
 	children: any;
-	bgColor?: string;
 	classes?: string;
+	innerClass?: string;
 } ) {
-	const classList = `btn-container position-relative ${ classes }`;
-	const style = bgColor ? { color: bgColor } : {};
+	const classList = `btn-container position-relative justify-content-center align-items-center p-1 d-inline-flex ${ classes }`;
 
 	return (
-		<div className={ classList } style={ style }>
-			<div className="btn-lower position-absolute top-0 w-100 h-100 z-1" />
+		<div className={ classList }>
+			<div
+				className={ `btn btn-lower position-absolute top-0 w-100 h-100 z-1 ${
+					innerClass ? `${ innerClass }` : ''
+				}` }
+			/>
 			{ children }
 		</div>
 	);

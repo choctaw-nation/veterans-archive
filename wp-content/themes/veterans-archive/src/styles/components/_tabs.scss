@@ -1,6 +1,9 @@
 .nav-tabs {
 	.nav-link {
-		border-color: var(--bs-primary);
 		margin-bottom: 0;
+
+		&.btn-lower {
+			border-color: var(--bs-primary);
+		}
 	}
 }

@@ -67,17 +67,21 @@ $veteran = new Veteran( get_the_ID(), $acf_fields );
 	</div>
 	<div class="card-footer bg-dark-blue ">
 		<div class="row row-cols-auto justify-content-between align-items-center row-gap-3">
+			<div class="col">
+				<?php
+				$button = new Buttons();
+				$button->the_button(
+					array(
+						'element' => 'a',
+						'href'    => get_the_permalink(),
+						'class'   => 'btn-outline-primary text-white',
+						'text'    => 'Read More',
+					),
+					'dark-blue',
+				);
+				?>
+			</div>
 			<?php
-			$button = new Buttons();
-			$button->the_button(
-				array(
-					'element' => 'a',
-					'href'    => get_the_permalink(),
-					'class'   => 'btn-outline-primary text-white',
-					'text'    => 'Read More',
-				),
-				'dark-blue',
-			);
 			if ( $veteran->branches_of_service ) {
 				$image = get_field( 'branch_icon', "military-branch_{$veteran->branches_of_service[0]->term_id}" );
 				$image = wp_get_attachment_image(
@@ -90,7 +94,7 @@ $veteran = new Veteran( get_the_ID(), $acf_fields );
 						'style'   => 'filter:invert(1);width:7.5rem;height:7.5rem;',
 					)
 				);
-				echo "<figure>{$image}</figure>";
+				echo "<div class='col'><figure>{$image}</figure></div>";
 			}
 			?>
 		</div>

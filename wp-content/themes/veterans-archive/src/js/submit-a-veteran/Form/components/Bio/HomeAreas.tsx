@@ -23,7 +23,10 @@ export default function HomeAreas() {
 			<div className="row g-2">
 				{ fields.length === 0 && (
 					<div className="col d-flex">
-						<ButtonWrapper classes="my-2">
+						<ButtonWrapper
+							classes="my-2"
+							innerClass="btn-outline-green"
+						>
 							<button
 								type="button"
 								onClick={ () =>
@@ -33,7 +36,7 @@ export default function HomeAreas() {
 										state: '',
 									} )
 								}
-								className="btn btn-outline-green text-dark-blue text-uppercase"
+								className="btn btn-outline-green border-0 z-2 text-dark-blue text-uppercase"
 							>
 								Add Home Area
 							</button>

@@ -73,10 +73,13 @@ export default function NameSuffix() {
 				</div>
 				{ watchedValue && (
 					<div className="d-flex">
-						<ButtonWrapper classes="mt-3">
+						<ButtonWrapper
+							classes="mt-3"
+							innerClass="btn-outline-secondary"
+						>
 							<button
 								type="button"
-								className="btn btn-outline-secondary text-uppercase"
+								className="btn btn-outline-secondary border-0 text-uppercase"
 								onClick={ ( ev ) => {
 									ev.preventDefault();
 									resetField( 'bio.name_suffix', {
