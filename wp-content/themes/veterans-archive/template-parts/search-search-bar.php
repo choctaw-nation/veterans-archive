@@ -8,7 +8,6 @@
 
 use ChoctawNation\Components\Buttons;
 
-$bg_color     = $args['bg_color'];
 $with_browse  = $args['with_browse'] || false;
 $with_filters = $args['with_filters'] || false;
 
