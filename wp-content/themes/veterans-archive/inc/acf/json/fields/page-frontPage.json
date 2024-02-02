@@ -5,10 +5,10 @@
 		"fields": [
 			{
 				"key": "field_65a8049e60694",
-				"label": "Two Columns (Media + Content)",
-				"name": "two_col_media_content",
+				"label": "Section 1",
+				"name": "section_1",
 				"aria-label": "",
-				"type": "repeater",
+				"type": "group",
 				"instructions": "",
 				"required": 0,
 				"conditional_logic": 0,
@@ -18,16 +18,10 @@
 					"id": ""
 				},
 				"layout": "block",
-				"pagination": 0,
-				"min": 0,
-				"max": 0,
-				"collapsed": "",
-				"button_label": "Add Row",
 				"show_in_graphql": 1,
 				"graphql_description": "",
-				"graphql_field_name": "mediaContent",
+				"graphql_field_name": "twoColMediaContent",
 				"graphql_non_null": 0,
-				"rows_per_page": 20,
 				"sub_fields": [
 					{
 						"key": "field_65a804db60695",
@@ -36,7 +30,7 @@
 						"aria-label": "",
 						"type": "image",
 						"instructions": "",
-						"required": 0,
+						"required": 1,
 						"conditional_logic": 0,
 						"wrapper": {
 							"width": "",
@@ -55,33 +49,7 @@
 						"preview_size": "medium",
 						"show_in_graphql": 1,
 						"graphql_description": "",
-						"graphql_field_name": "image",
-						"parent_repeater": "field_65a8049e60694"
-					},
-					{
-						"key": "field_65a804f760696",
-						"label": "Image Caption",
-						"name": "image_caption",
-						"aria-label": "",
-						"type": "text",
-						"instructions": "",
-						"required": 0,
-						"conditional_logic": 0,
-						"wrapper": {
-							"width": "",
-							"class": "",
-							"id": ""
-						},
-						"default_value": "",
-						"maxlength": "",
-						"placeholder": "",
-						"prepend": "",
-						"append": "",
-						"show_in_graphql": 1,
-						"graphql_description": "",
-						"graphql_field_name": "imageCaption",
-						"graphql_non_null": 0,
-						"parent_repeater": "field_65a8049e60694"
+						"graphql_field_name": "image"
 					},
 					{
 						"key": "field_65a8050660697",
@@ -90,7 +58,7 @@
 						"aria-label": "",
 						"type": "text",
 						"instructions": "",
-						"required": 0,
+						"required": 1,
 						"conditional_logic": 0,
 						"wrapper": {
 							"width": "",
@@ -105,8 +73,7 @@
 						"show_in_graphql": 1,
 						"graphql_description": "",
 						"graphql_field_name": "headline",
-						"graphql_non_null": 0,
-						"parent_repeater": "field_65a8049e60694"
+						"graphql_non_null": 0
 					},
 					{
 						"key": "field_65a8050e60698",
@@ -130,8 +97,7 @@
 						"show_in_graphql": 1,
 						"graphql_description": "",
 						"graphql_field_name": "subheadline",
-						"graphql_non_null": 0,
-						"parent_repeater": "field_65a8049e60694"
+						"graphql_non_null": 0
 					},
 					{
 						"key": "field_65a8052b60699",
@@ -151,8 +117,213 @@
 						"show_in_graphql": 1,
 						"graphql_description": "",
 						"graphql_field_name": "link",
+						"graphql_non_null": 0
+					}
+				]
+			},
+			{
+				"key": "field_65b012b06a420",
+				"label": "Section 2",
+				"name": "section_2",
+				"aria-label": "",
+				"type": "repeater",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "table",
+				"pagination": 0,
+				"min": 0,
+				"max": 12,
+				"collapsed": "",
+				"button_label": "Add Column",
+				"show_in_graphql": 1,
+				"graphql_description": "",
+				"graphql_field_name": "section2",
+				"graphql_non_null": 0,
+				"rows_per_page": 20,
+				"sub_fields": [
+					{
+						"key": "field_65b012d66a422",
+						"label": "Cover Image",
+						"name": "cover_image",
+						"aria-label": "",
+						"type": "image",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"return_format": "array",
+						"library": "all",
+						"min_width": "",
+						"min_height": "",
+						"min_size": "",
+						"max_width": "",
+						"max_height": "",
+						"max_size": "",
+						"mime_types": "",
+						"preview_size": "medium",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "coverImage",
+						"parent_repeater": "field_65b012b06a420"
+					},
+					{
+						"key": "field_65b0130c6a424",
+						"label": "Link",
+						"name": "link",
+						"aria-label": "",
+						"type": "link",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"return_format": "array",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "link",
 						"graphql_non_null": 0,
-						"parent_repeater": "field_65a8049e60694"
+						"parent_repeater": "field_65b012b06a420"
+					}
+				]
+			},
+			{
+				"key": "field_65b012606a41a",
+				"label": "Additional Sections (Media + Content)",
+				"name": "two_col_media_content",
+				"aria-label": "",
+				"type": "repeater",
+				"instructions": "",
+				"required": 0,
+				"conditional_logic": 0,
+				"wrapper": {
+					"width": "",
+					"class": "",
+					"id": ""
+				},
+				"layout": "block",
+				"pagination": 0,
+				"min": 0,
+				"max": 0,
+				"collapsed": "",
+				"button_label": "Add Row",
+				"show_in_graphql": 1,
+				"graphql_description": "",
+				"graphql_field_name": "twoColMediaContent",
+				"graphql_non_null": 0,
+				"rows_per_page": 20,
+				"sub_fields": [
+					{
+						"key": "field_65b012606a41b",
+						"label": "Image",
+						"name": "image",
+						"aria-label": "",
+						"type": "image",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"return_format": "array",
+						"library": "all",
+						"min_width": "",
+						"min_height": "",
+						"min_size": "",
+						"max_width": "",
+						"max_height": "",
+						"max_size": "",
+						"mime_types": "",
+						"preview_size": "medium",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "image",
+						"parent_repeater": "field_65b012606a41a"
+					},
+					{
+						"key": "field_65b012606a41d",
+						"label": "Headline",
+						"name": "headline",
+						"aria-label": "",
+						"type": "text",
+						"instructions": "",
+						"required": 1,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"maxlength": "",
+						"placeholder": "",
+						"prepend": "",
+						"append": "",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "headline",
+						"graphql_non_null": 0,
+						"parent_repeater": "field_65b012606a41a"
+					},
+					{
+						"key": "field_65b012606a41e",
+						"label": "Subheadline",
+						"name": "subheadline",
+						"aria-label": "",
+						"type": "wysiwyg",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"default_value": "",
+						"tabs": "all",
+						"toolbar": "full",
+						"media_upload": 1,
+						"delay": 0,
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "subheadline",
+						"graphql_non_null": 0,
+						"parent_repeater": "field_65b012606a41a"
+					},
+					{
+						"key": "field_65b012606a41f",
+						"label": "Link",
+						"name": "link",
+						"aria-label": "",
+						"type": "link",
+						"instructions": "",
+						"required": 0,
+						"conditional_logic": 0,
+						"wrapper": {
+							"width": "",
+							"class": "",
+							"id": ""
+						},
+						"return_format": "array",
+						"show_in_graphql": 1,
+						"graphql_description": "",
+						"graphql_field_name": "link",
+						"graphql_non_null": 0,
+						"parent_repeater": "field_65b012606a41a"
 					}
 				]
 			}
