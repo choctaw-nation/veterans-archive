@@ -57,15 +57,18 @@ new ( class ModalHandler {
 					this.modalBody.classList.add( 'photo-gallery' );
 					innerElement = this.initGallery();
 					break;
+				case 'video':
+					innerElement = this.initVideoPlayer();
+					break;
 			}
 			if ( innerElement ) {
 				this.modalBody.insertAdjacentElement(
 					'afterbegin',
 					innerElement
 				);
-			}
-			if ( 'photo-gallery' === this.type ) {
-				this.initSwipers();
+				if ( 'photo-gallery' === this.type ) {
+					this.initSwipers();
+				}
 			}
 		} else {
 			this.modalBody.innerHTML = '';
@@ -152,6 +155,9 @@ new ( class ModalHandler {
 		return swiperEl;
 	}
 
+	/**
+	 * Initializes the Photo Gallery Swipers
+	 */
 	private initSwipers() {
 		const swiper = this.modalBody.querySelector( '.swiper' ) as
 			| HTMLElement
@@ -172,5 +178,17 @@ new ( class ModalHandler {
 				},
 			} );
 		}
+	}
+
+	/**
+	 * Initializes the video player
+	 */
+	private initVideoPlayer() {
+		const parser = new DOMParser();
+		const video = parser.parseFromString( this.src as string, 'text/html' );
+		const videoContainer = document.createElement( 'div' );
+		videoContainer.classList.add( 'ratio', 'ratio-16x9' );
+		videoContainer.appendChild( video.body.firstChild! );
+		return videoContainer;
 	}
 } )();
