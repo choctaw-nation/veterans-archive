@@ -53,21 +53,10 @@ $nav_items = array(
 	<li class="nav-item h-100 mb-0" role="presentation">
 		<?php
 		$buttons = new Buttons();
-		$buttons->the_button(
-			array(
-				'element'    => 'button',
-				'text'       => $nav_item['label'],
-				'class'      => 'nav-link' . ( $is_first ? ' active' : '' ),
-				'attributes' => array(
-					'id'             => "{$nav_item['id']}-tab",
-					'data-bs-toggle' => 'tab',
-					'data-bs-target' => "#{$nav_item['id']}-tab-pane",
-					'type'           => 'button',
-					'role'           => 'tab',
-					'aria-controls'  => "{$nav_item['id']}-tab-pane",
-					'aria-selected'  => $is_first ? 'true' : 'false',
-				),
-			),
+		$buttons->the_tab_button(
+			$nav_item['id'],
+			$nav_item['label'],
+			$is_first,
 			'h-auto'
 		);
 		?>

@@ -24,7 +24,7 @@ class Buttons {
 	 * @param array        $args contains all the args the element might have (depending on the element).
 	 * @param string|array $container_class [Optional] for positioning (e.g. `ms-2` or `my-5`)
 	 */
-	private function init_props( $args, string|array $container_class = '' ) {
+	private function init_props( array $args, string|array $container_class = '' ) {
 		$this->args            = $args;
 		$this->container_class = $container_class;
 	}
@@ -48,6 +48,42 @@ class Buttons {
 	public function get_the_button( array $args, string|array $container_class = '' ): string {
 		$this->init_props( $args, $container_class );
 		return $this->get_the_button_container( $this->get_button() );
+	}
+
+	/**
+	 * Returns the Tab Button Component
+	 *
+	 * @param string $id              The id of the tab
+	 * @param string $text            The text of the tab
+	 * @param bool   $is_active       [Optional] Whether the tab is active
+	 * @param string $container_class [Optional] for positioning (e.g. `ms-2` or `my-5`)
+	 */
+	public function get_the_tab_button( string $id, string $text, bool $is_active = false, string $container_class = '' ) {
+		$this->init_props(
+			array(
+				'class'           => '', // intentionally left empty
+				'container_class' => $container_class,
+			)
+		);
+		$classes     = array( 'nav-link' );
+		$classes[]   = $is_active ? 'active' : '';
+		$classes     = join( ' ', $classes );
+		$tab_button  = "<button role='tab' type='button' data-bs-toggle='tab' class='{$classes} aria-controls='{$id}-tab-pane'  id='{$id}-tab' data-bs-target='#{$id}-tab-pane' ";
+		$tab_button .= $is_active ? "aria-selected='true'" : "aria-selected='false'";
+		$tab_button .= ">{$text}</button>";
+		return $this->get_the_button_container( $tab_button );
+	}
+
+	/**
+	 * Echoes the Tab Button Component
+	 *
+	 * @param string $id        The id of the tab
+	 * @param string $text      The text of the tab
+	 * @param bool   $is_active [Optional] Whether the tab is active
+	 * @param string $container_class [Optional] for positioning (e.g. `ms-2` or `my-5`)
+	 */
+	public function the_tab_button( string $id, string $text, bool $is_active = false, $container_class = '' ) {
+		echo $this->get_the_tab_button( $id, $text, $is_active, $container_class );
 	}
 
 	/**
