@@ -1,17 +1,20 @@
 import Swiper from 'swiper';
-import { Navigation, A11y, Thumbs } from 'swiper/modules';
-
+import { Navigation, A11y, Thumbs, Keyboard } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
+import 'swiper/scss/keyboard';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 
 const defaultArgs = {
-	modules: [ Navigation, A11y, Thumbs ],
+	modules: [ Navigation, A11y, Thumbs, Keyboard ],
 	direction: 'horizontal',
 	loop: false,
 	grabCursor: true,
+	keyboard: {
+		enabled: true,
+	},
 
 	// Navigation arrows
 	navigation: {

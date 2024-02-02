@@ -1,9 +1,4 @@
 .nav-tabs {
-	.nav-link {
-		margin-bottom: 0;
-
-		&.btn-lower {
-			border-color: var(--bs-primary);
-		}
-	}
+	scrollbar-color: var(--bs-primary) var(--bs-dark-blue);
+	scrollbar-gutter: stable;
 }

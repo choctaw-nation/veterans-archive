@@ -1,0 +1,59 @@
+%primary {
+	border-color: var(--bs-dark-blue);
+	color: var(--bs-dark-blue);
+	background-color: var(--bs-green);
+}
+
+%light {
+	color: var(--bs-dark) !important;
+	background-color: var(--bs-light);
+}
+
+%light-green {
+	color: var(--bs-dark) !important;
+	background-color: var(--bs-light-green);
+}
+
+%dark-blue {
+	color: var(--bs-light) !important;
+	// background-color: var(--bs-dark-blue);
+}
+.btn-container {
+	&:hover,
+	&:focus-within {
+		.btn-outline-primary {
+			@extend %primary;
+
+			&:active {
+				@extend %primary;
+			}
+			&.active {
+				@extend %primary;
+			}
+		}
+
+		.btn-outline-light {
+			@extend %light;
+
+			&:active {
+				@extend %light;
+			}
+		}
+
+		.btn-outline-light-green {
+			@extend %light-green;
+
+			&:active {
+				@extend %light-green;
+			}
+		}
+
+		.btn-outline-dark-blue {
+			@extend %dark-blue;
+
+			&:active {
+				@extend %dark-blue;
+			}
+		}
+	}
+}

@@ -11,6 +11,8 @@
 	}
 
 	&.active {
-		color: var(--bs-dark-blue);
+		a {
+			color: var(--bs-dark-blue);
+		}
 	}
 }

@@ -77,7 +77,6 @@ $veteran = new Veteran( get_the_ID(), $acf_fields );
 						'class'   => 'btn-outline-primary text-white',
 						'text'    => 'Read More',
 					),
-					'dark-blue',
 				);
 				?>
 			</div>

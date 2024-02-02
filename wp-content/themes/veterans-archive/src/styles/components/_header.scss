@@ -2,7 +2,8 @@
 
 .logo {
 	--size: 12rem;
-	max-width: var(--size);
+	width: clamp(100%, var(--size), auto);
+	// max-width: var(--size);
 	max-height: var(--size);
 }
 
