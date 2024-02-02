@@ -42,38 +42,40 @@ $nav_items = array(
 );
 
 ?>
-<ul class="nav nav-tabs flex-nowrap overflow-x-scroll overflow-y-hidden column-gap-4 align-items-stretch text-center border-0" id="myTab" role="tablist">
-	<?php $is_first = true; ?>
-	<?php foreach ( $nav_items as $nav_item ) : ?>
-	<?php
-		if ( $nav_item['is_empty'] ) {
-			continue;
-		}
-		?>
-	<li class="nav-item h-100 mb-0" role="presentation">
-		<?php
-		$buttons = new Buttons();
-		$buttons->the_tab_button(
-			$nav_item['id'],
-			$nav_item['label'],
-			$is_first,
-			'h-auto'
-		);
-		?>
-	</li>
-	<?php $is_first = false; ?>
-	<?php endforeach; ?>
-</ul>
+
+<nav role='navigation'>
+	<ul class="nav nav-tabs flex-nowrap column-gap-4 overflow-x-scroll overflow-y-hidden align-items-stretch text-center border-0" id="myTab" role="tablist">
+		<?php $is_first = true; ?>
+		<?php foreach ( $nav_items as $nav_item ) : ?>
+			<?php
+			if ( $nav_item['is_empty'] ) {
+				continue;
+			}
+			?>
+		<li class="nav-item h-auto mb-0 d-flex justify-content-center align-items-stretch" role="presentation">
+			<?php
+			$buttons = new Buttons();
+			$buttons->the_tab_button(
+				$nav_item['id'],
+				$nav_item['label'],
+				$is_first,
+			);
+			?>
+		</li>
+			<?php $is_first = false; ?>
+		<?php endforeach; ?>
+	</ul>
+</nav>
 <div class="tab-content mt-3" id="myTabContent">
 	<?php $is_first = true; ?>
 	<?php foreach ( $nav_items as $tab_content ) : ?>
-	<?php
+		<?php
 		if ( $tab_content['is_empty'] ) {
 			continue;
 		}
 		?>
-	<div class="tab-pane fade <?php echo $is_first ? ' show active' : ''; ?>" id="<?php echo "{$tab_content['id']}-tab-pane"; ?>" role="tabpanel"
-		 aria-labelledby="<?php echo "{$tab_content['id']}-tab"; ?>">
+	<div class="tab-pane fade <?php echo $is_first ? ' show active' : ''; ?>" id="<?php echo "{$tab_content['id']}-tab-pane"; ?>" role="tabpanel" tabindex="0"
+		aria-labelledby="<?php echo "{$tab_content['id']}-tab"; ?>">
 		<?php $is_first = false; ?>
 		<ul class="<?php echo "{$tab_content['id']}-list ms-3"; ?>">
 			<?php

@@ -29,7 +29,7 @@ $buttons = new Buttons();
 			<h2 class="text-uppercase text-dark-blue">Additional Materials</h2>
 		</div>
 	</div>
-	<div class="row row-cols-lg-3 justify-content-between gap-5">
+	<div class="row row-cols-lg-3 justify-content-between align-items-stretch row-gap-4">
 		<?php
 		foreach ( $veteran->additional_materials as $additional_material ) :
 			switch ( $additional_material->type['value'] ) {
@@ -46,23 +46,24 @@ $buttons = new Buttons();
 					$icon = '<i class="fa-2xl fa-solid fa-link"></i>';
 			}
 			?>
-		<div class="card gx-0 flex-grow-1 flex-row">
-			<div class="col-4 text-white bg-secondary p-5 d-flex justify-content-center align-items-center">
-				<?php echo $icon; ?>
-			</div>
-			<div class="col-8">
-				<div class="card-body d-flex flex-column">
-					<h3 class="card-title mb-5">
-						<?php echo $additional_material->description; ?>
-					</h3>
-					<?php
-					$btn_args = cno_build_veteran_button_args( $additional_material );
-					$buttons->the_button(
-						$btn_args,
-						'white',
-						'mt-auto align-self-start'
-					);
-					?>
+		<div class="col flex-grow-1">
+			<div class="card gx-0 flex-row h-100">
+				<div class="col-4 text-white bg-secondary p-5 d-flex justify-content-center align-items-center">
+					<?php echo $icon; ?>
+				</div>
+				<div class="col-8">
+					<div class="card-body h-100 d-flex flex-column">
+						<h3 class="card-title mb-5">
+							<?php echo $additional_material->description; ?>
+						</h3>
+						<?php
+						$btn_args = cno_build_veteran_button_args( $additional_material );
+						$buttons->the_button(
+							$btn_args,
+							'mt-auto align-self-start'
+						);
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -71,10 +72,10 @@ $buttons = new Buttons();
 </section>
 <?php if ( $veteran->needs_additional_materials_modal() ) : ?>
 <div class="modal fade" tabindex="-1" id='additional-materials-modal' aria-labelledby="additional-materials-modal-label" aria-hidden='true'>
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class='modal-title fs-4 text-dark-blue display-6' id='additional-materials-modal-label'>Hi there</h1>
+				<h1 class='modal-title fs-4 text-dark-blue display-6 text-uppercase' id='additional-materials-modal-label'>Hi there</h1>
 				<button type="button" class="btn-close" data-bs-dismiss='modal' aria-label='Close modal'></button>
 			</div>
 			<div class="modal-body overflow-x-hidden"></div>
@@ -90,7 +91,6 @@ $buttons = new Buttons();
 							'type'            => 'button',
 						),
 					),
-					'white'
 				);
 				?>
 			</div>

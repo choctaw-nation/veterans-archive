@@ -26,7 +26,7 @@ $with_filters = $args['with_filters'] || false;
 			<div class="col-lg-auto flex-grow-1">
 				<input type="text" class="form-control flex-grow-1 flex-shrink-0" id="search" name='s' placeholder='Try searching by name, conflict, branch, or more' />
 			</div>
-			<div class="col-lg-auto d-flex gap-2">
+			<div class="col-lg-auto d-flex flex-wrap flex-sm-nowrap gap-2">
 				<?php
 					$buttons = new Buttons();
 					$buttons->the_button(

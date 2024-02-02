@@ -1,0 +1,22 @@
+%outline-primary-hover {
+	border-color: var(--bs-green);
+	color: var(--bs-dark);
+	background-color: var(--bs-green);
+}
+.card-footer {
+	.btn-container {
+		&:hover,
+		&:focus-within {
+			.btn-outline-primary {
+				@extend %outline-primary-hover;
+
+				&:active {
+					@extend %outline-primary-hover;
+				}
+				&.active {
+					@extend %outline-primary-hover;
+				}
+			}
+		}
+	}
+}

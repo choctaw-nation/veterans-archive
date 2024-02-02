@@ -61,16 +61,27 @@ class Buttons {
 	public function get_the_tab_button( string $id, string $text, bool $is_active = false, string $container_class = '' ) {
 		$this->init_props(
 			array(
-				'class'           => '', // intentionally left empty
-				'container_class' => $container_class,
-			)
+				'class' => ( $is_active ? 'btn-outline-dark-blue ' : '' ) . 'btn-outline-primary',
+			),
+			$container_class
 		);
-		$classes     = array( 'nav-link' );
-		$classes[]   = $is_active ? 'active' : '';
-		$classes     = join( ' ', $classes );
-		$tab_button  = "<button role='tab' type='button' data-bs-toggle='tab' class='{$classes} aria-controls='{$id}-tab-pane'  id='{$id}-tab' data-bs-target='#{$id}-tab-pane' ";
-		$tab_button .= $is_active ? "aria-selected='true'" : "aria-selected='false'";
-		$tab_button .= ">{$text}</button>";
+		$this->container_class .= 'align-items-stretch';
+		$classes                = array(
+			'nav-link',
+			'btn',
+			'btn-outline-primary',
+			'text-uppercase',
+			'display-6',
+			'fs-5',
+			'border-0',
+			'z-2',
+			'mb-0',
+		);
+		$classes[]              = $is_active ? 'active' : '';
+		$classes                = join( ' ', $classes );
+		$tab_button             = "<button role='tab' type='button' data-bs-toggle='tab' class='{$classes}' aria-controls='{$id}-tab-pane'  id='{$id}-tab' data-bs-target='#{$id}-tab-pane'";
+		$tab_button            .= $is_active ? "aria-selected='true'" : "aria-selected='false'";
+		$tab_button            .= ">{$text}</button>";
 		return $this->get_the_button_container( $tab_button );
 	}
 
@@ -125,8 +136,8 @@ class Buttons {
 			if ( strrpos( $this->args['class'], 'light' ) ) {
 				$classes[] = str_replace( 'btn-outline', 'text', $this->args['class'] );
 			}
-			if ( strrpos( $this->args['class'], 'primary' ) ) {
-				$classes[] = 'text-primary';
+			if ( strrpos( $this->args['class'], 'dark' ) ) {
+				$classes[] = str_replace( 'btn-outline', 'text', $this->args['class'] );
 			}
 		}
 		$classes = join( ' ', $classes );
@@ -168,7 +179,7 @@ class Buttons {
 	 * @param string $classes The classes for the input element
 	 */
 	private function get_the_input( $classes ): string {
-		$element = "<{$this->args['element']} type='{$this->args['type']}' class='{$classes}' value='{$this->args['value']}' style='--bs-btn-hover-bg:transparent;'";
+		$element = "<{$this->args['element']} type='{$this->args['type']}' class='{$classes}' value='{$this->args['value']}'";
 
 		$attribute = $this->get_the_attribute( 'aria-label' );
 		if ( $attribute ) {
@@ -185,7 +196,7 @@ class Buttons {
 	 * @param string $classes The classes for the anchor element
 	 */
 	private function get_the_anchor( $classes ): string {
-		$anchor     = "<{$this->args['element']} href='{$this->args['href']}' class='{$classes}' style='--bs-btn-hover-bg:transparent;'";
+		$anchor     = "<{$this->args['element']} href='{$this->args['href']}' class='{$classes}'";
 		$attributes = array(
 			'target',
 			'rel',
@@ -208,7 +219,7 @@ class Buttons {
 	 * @param string $classes The classes for the element
 	 */
 	private function get_the_element( $classes ): string {
-		$element = "<{$this->args['element']} class='{$classes}' style='--bs-btn-hover-bg:transparent;'";
+		$element = "<{$this->args['element']} class='{$classes}'";
 		if ( isset( $this->args['attributes'] ) ) {
 			foreach ( $this->args['attributes'] as $attr => $value ) {
 				$element .= " {$attr}='{$value}'";
