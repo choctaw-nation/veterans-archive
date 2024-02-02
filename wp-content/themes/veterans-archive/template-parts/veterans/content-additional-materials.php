@@ -42,6 +42,9 @@ $buttons = new Buttons();
 				case 'text':
 					$icon = '<i class="fa-2xl fa-solid fa-file-pdf"></i>';
 					break;
+				case 'video':
+					$icon = '<i class="fa-2xl fa-solid fa-video"></i>';
+					break;
 				default:
 					$icon = '<i class="fa-2xl fa-solid fa-link"></i>';
 			}

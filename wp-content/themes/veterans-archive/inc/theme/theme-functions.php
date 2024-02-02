@@ -43,6 +43,9 @@ function cno_build_veteran_button_args( Additional_Material $additional_material
 		case 'photo-gallery':
 			$btn_args['attributes']['data-cno-src'] = wp_json_encode( $additional_material->photo_gallery, );
 			break;
+		case 'video':
+			$btn_args['attributes']['data-cno-src'] = wp_json_encode( $additional_material->video, );
+			break;
 	}
 	$btn_args['class'] = 'btn-outline-primary';
 	$btn_args['text']  = 'Audio' === $label ? "Listen to {$label} clip" : "View {$label}";

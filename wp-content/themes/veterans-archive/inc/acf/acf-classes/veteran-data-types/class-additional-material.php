@@ -42,6 +42,13 @@ class Additional_Material {
 	public ?array $photo_gallery;
 
 	/**
+	 * URL of video
+	 *
+	 * @var ?string $video
+	 */
+	public ?string $video;
+
+	/**
 	 * Constructor
 	 *
 	 * @param array $acf ACF data
@@ -60,6 +67,11 @@ class Additional_Material {
 			}
 		} else {
 			$this->photo_gallery = null;
+		}
+		if ( ! empty( $acf['video'] ) ) {
+			$this->video = $acf['video'];
+		} else {
+			$this->video = null;
 		}
 	}
 

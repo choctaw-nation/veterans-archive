@@ -1095,7 +1095,8 @@
 									"link": "Link",
 									"photo-gallery": "Photo Gallery",
 									"audio": "Audio",
-									"text": "PDF"
+									"text": "PDF",
+									"video": "Video"
 								},
 								"default_value": false,
 								"return_format": "array",
@@ -1235,6 +1236,35 @@
 								"show_in_graphql": 1,
 								"graphql_description": "",
 								"graphql_field_name": "pdf"
+							},
+							{
+								"key": "field_65bd63e234bdd",
+								"label": "Video",
+								"name": "video",
+								"aria-label": "",
+								"type": "oembed",
+								"instructions": "",
+								"required": 0,
+								"conditional_logic": [
+									[
+										{
+											"field": "field_65a14fa752785",
+											"operator": "==",
+											"value": "video"
+										}
+									]
+								],
+								"wrapper": {
+									"width": "",
+									"class": "",
+									"id": ""
+								},
+								"width": "",
+								"height": "",
+								"show_in_graphql": 1,
+								"graphql_description": "",
+								"graphql_field_name": "video",
+								"graphql_non_null": 0
 							}
 						]
 					}
