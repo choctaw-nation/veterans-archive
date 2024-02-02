@@ -7,7 +7,7 @@ new ( class ModalHandler {
 	private modalBody: HTMLElement;
 	private type: string;
 	private title: string;
-	private src: string | string[];
+	private src: Array< { url: string; alt: string; srcset: string } > | string;
 	private swiper: HTMLDivElement;
 	private swiperThumbs: HTMLDivElement;
 
@@ -130,9 +130,11 @@ new ( class ModalHandler {
 		);
 		const wrapper = document.createElement( 'div' );
 		wrapper.classList.add( 'swiper-wrapper' );
-		this.src.forEach( ( src: string ) => {
+		this.src.forEach( ( { url, alt, srcset } ) => {
 			const slide = document.createElement( 'img' );
-			slide.src = src;
+			slide.src = url;
+			slide.srcset = srcset;
+			slide.alt = alt;
 			slide.loading = 'lazy';
 			slide.classList.add( 'swiper-slide' );
 			wrapper.appendChild( slide );

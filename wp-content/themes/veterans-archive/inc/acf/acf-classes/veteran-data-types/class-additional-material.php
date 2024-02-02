@@ -52,7 +52,11 @@ class Additional_Material {
 		$this->set_the_url( $acf );
 		if ( ! empty( $acf['photo_gallery'] ) ) {
 			foreach ( $acf['photo_gallery'] as $photo ) {
-				$this->photo_gallery[] = $photo['url'];
+				$this->photo_gallery[] = array(
+					'url'    => esc_url( $photo['url'] ),
+					'alt'    => esc_attr( $photo['alt'] ),
+					'srcset' => wp_get_attachment_image_srcset( $photo['ID'] ),
+				);
 			}
 		} else {
 			$this->photo_gallery = null;

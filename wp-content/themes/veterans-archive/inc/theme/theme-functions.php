@@ -49,6 +49,7 @@ function cno_build_veteran_button_args( Additional_Material $additional_material
 	return $btn_args;
 }
 
+
 /**
  * Enqueues the page style.
  *
