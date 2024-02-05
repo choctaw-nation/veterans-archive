@@ -8,12 +8,10 @@
 
 use ChoctawNation\Components\Buttons;
 
-$with_browse  = $args['with_browse'] || false;
-$with_filters = $args['with_filters'] || false;
-
+$with_browse = $args['with_browse'] || false;
 ?>
-<search class="row my-3">
-	<form class="col" action="/">
+<search class="row my-3" id='search'>
+	<form class="col" action="/veterans">
 		<div class="row">
 			<div class="col">
 				<label for="search" class="form-label">
@@ -48,13 +46,6 @@ $with_filters = $args['with_filters'] || false;
 					}
 					?>
 			</div>
-		</div>
-		<div class="row">
-			<?php if ( $with_filters ) : ?>
-			<div class="col-12 my-3">
-				<button>filter</button><button>filter</button><button>filter</button>
-			</div>
-			<?php endif; ?>
 		</div>
 	</form>
 </search>

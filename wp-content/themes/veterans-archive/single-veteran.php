@@ -8,7 +8,7 @@
 use ChoctawNation\ACF\Veteran;
 use ChoctawNation\Components\Divider;
 
-get_header( 'search' );
+get_header();
 $acf_fields    = array(
 	'bio'                      => get_field( 'bio' ),
 	'service_information'      => get_field( 'service_information' ),

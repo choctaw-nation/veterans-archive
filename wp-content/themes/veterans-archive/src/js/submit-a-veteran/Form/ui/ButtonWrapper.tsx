@@ -9,7 +9,9 @@ export default function ButtonWrapper( {
 	classes?: string;
 	innerClass?: string;
 } ) {
-	const classList = `btn-container position-relative justify-content-center align-items-center p-1 d-inline-flex ${ classes }`;
+	const classList = `btn-container position-relative justify-content-center align-items-center p-1 d-inline-flex ${
+		classes ? `${ classes }` : ''
+	}`;
 
 	return (
 		<div className={ classList }>

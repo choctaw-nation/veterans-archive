@@ -179,12 +179,14 @@ class Theme_Init {
 				'styles'  => array( 'bootstrap' ),
 			)
 		);
+		$rest           = new Veteran_Rest_Route();
+		$rest->set_veteran_data();
 		wp_localize_script(
 			'global',
 			'cnoSiteData',
 			array(
 				'rootUrl' => home_url(),
-				'nonce'   => wp_create_nonce( 'wp_rest' ),
+				'vetData' => get_transient( 'veteran_data' ) ?? null,
 			)
 		);
 
@@ -205,6 +207,15 @@ class Theme_Init {
 			get_template_directory_uri() . '/dist/vendors/bootstrapTab.js',
 			array_unique( array( ...$bs_tab['dependencies'], 'bootstrap' ) ),
 			$bs_tab['version'],
+			array( 'strategy' => 'defer' )
+		);
+
+		$veteran_archive = require_once get_template_directory() . '/dist/pages/veteranArchive.asset.php';
+		wp_register_script(
+			'search',
+			get_template_directory_uri() . '/dist/pages/veteranArchive.js',
+			array_unique( array( ...$veteran_archive['dependencies'], 'global' ) ),
+			$veteran_archive['version'],
 			array( 'strategy' => 'defer' )
 		);
 	}
