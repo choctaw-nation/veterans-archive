@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-export default function ButtonWrapper( {
+export const ButtonWrapper = memo( function ButtonWrapper( {
 	children,
 	classes,
 	innerClass,
@@ -23,4 +23,4 @@ export default function ButtonWrapper( {
 			{ children }
 		</div>
 	);
-}
+} );

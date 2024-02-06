@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import ButtonWrapper from '../ui/ButtonWrapper';
+import { ButtonWrapper } from '../ui/ButtonWrapper';
 
 function makePlural( word: string ): string {
 	if ( word.endsWith( 'y' ) ) {

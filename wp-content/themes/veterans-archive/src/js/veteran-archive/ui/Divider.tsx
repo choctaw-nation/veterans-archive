@@ -1,5 +1,5 @@
-import React from 'react';
-export default function Divider( {
+import React, { memo } from 'react';
+export const Divider = memo( function Divider( {
 	direction = 'start',
 	color,
 	classes,
@@ -25,4 +25,4 @@ export default function Divider( {
 			</div>
 		</div>
 	);
-}
+} );

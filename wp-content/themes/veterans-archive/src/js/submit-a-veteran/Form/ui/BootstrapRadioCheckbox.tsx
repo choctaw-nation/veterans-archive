@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
-import ButtonWrapper from './ButtonWrapper';
+import { ButtonWrapper } from './ButtonWrapper';
 
 export type RadioButtonField = {
 	label: string;

@@ -1,8 +1,8 @@
-import React from 'react';
-import ButtonWrapper from '../../submit-a-veteran/Form/ui/ButtonWrapper';
-import Divider from '../ui/Divider';
+import React, { memo } from 'react';
+import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
+import { Divider } from '../ui/Divider';
 
-export default function VeteranPreview( { post } ) {
+export const VeteranPreview = memo( function VeteranPreview( { post } ) {
 	const {
 		featuredImage,
 		title,
@@ -94,4 +94,4 @@ export default function VeteranPreview( { post } ) {
 			</div>
 		</div>
 	);
-}
+} );
