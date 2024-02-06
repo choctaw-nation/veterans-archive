@@ -48,7 +48,6 @@ export default function BootstrapInput( {
 			}
 		}
 	}, [ errors, registration ] );
-
 	return (
 		<>
 			<input
