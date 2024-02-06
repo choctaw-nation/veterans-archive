@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import ButtonWrapper from '../../ui/ButtonWrapper';
+import { ButtonWrapper } from '../../ui/ButtonWrapper';
 
 const FIELD_NAME = 'additional_materials.links';
 export default function AdditionalLinks() {

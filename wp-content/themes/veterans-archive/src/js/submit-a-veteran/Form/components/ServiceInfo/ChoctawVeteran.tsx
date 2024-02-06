@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import ButtonWrapper from '../../ui/ButtonWrapper';
+import { ButtonWrapper } from '../../ui/ButtonWrapper';
 import ErrorMessage from '../ErrorMessage';
 
 const FIELD_NAME: string = 'service_information.choctaw_veteran_of_the_month';

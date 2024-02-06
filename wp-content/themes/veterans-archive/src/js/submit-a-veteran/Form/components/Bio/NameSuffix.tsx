@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import ButtonWrapper from '../../ui/ButtonWrapper';
+import { ButtonWrapper } from '../../ui/ButtonWrapper';
 
 export default function NameSuffix() {
 	const { register, watch, resetField } = useFormContext();

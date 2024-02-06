@@ -27,6 +27,7 @@ module.exports = {
 			const entries = {
 				global: `.${ THEME_DIR }/src/index.js`,
 				veteranSubmission: `.${ THEME_DIR }/src/js/submit-a-veteran/App.tsx`,
+				'pages/veteranArchive': `.${ THEME_DIR }/src/js/veteran-archive/App.tsx`,
 				'vendors/fontawesome': `.${ THEME_DIR }/src/styles/vendors/fontawesome.scss`,
 				'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 				'vendors/bootstrapTab': `.${ THEME_DIR }/src/js/vendors/bs-tab.ts`,

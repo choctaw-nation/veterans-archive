@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-export default function ButtonWrapper( {
+export const ButtonWrapper = memo( function ButtonWrapper( {
 	children,
 	classes,
 	innerClass,
@@ -9,7 +9,9 @@ export default function ButtonWrapper( {
 	classes?: string;
 	innerClass?: string;
 } ) {
-	const classList = `btn-container position-relative justify-content-center align-items-center p-1 d-inline-flex ${ classes }`;
+	const classList = `btn-container position-relative justify-content-center align-items-center p-1 d-inline-flex ${
+		classes ? `${ classes }` : ''
+	}`;
 
 	return (
 		<div className={ classList }>
@@ -21,4 +23,4 @@ export default function ButtonWrapper( {
 			{ children }
 		</div>
 	);
-}
+} );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import StateSelect from './StateSelect';
-import ButtonWrapper from '../../ui/ButtonWrapper';
+import { ButtonWrapper } from '../../ui/ButtonWrapper';
 
 const fieldGroupName = 'bio.home_areas';
 export default function HomeAreas() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonWrapper from '../ui/ButtonWrapper';
+import { ButtonWrapper } from '../ui/ButtonWrapper';
 
 export default function FinalPage( { data } ) {
 	if ( ! data ) {
