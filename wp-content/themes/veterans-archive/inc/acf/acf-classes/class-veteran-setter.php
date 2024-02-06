@@ -54,7 +54,11 @@ class Veteran_Setter extends Veteran_Data {
 
 		$this->middle_name = empty( $acf['middle_name'] ) ? null : esc_textarea( $acf['middle_name'] );
 		$this->nickname    = empty( $acf['nickname'] ) ? null : esc_textarea( $acf['nickname'] );
-		$this->set_the_home_areas( $acf['home_areas'] );
+		if ( $acf['home_areas'] ) {
+			$this->set_the_home_areas( $acf['home_areas'] );
+		} else {
+			$this->home_areas = null;
+		}
 		$this->birth = $acf['year_of_birth'] ?: null;
 		$this->death = $acf['year_of_death'] ?: null;
 	}

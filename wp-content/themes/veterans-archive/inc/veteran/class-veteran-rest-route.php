@@ -81,13 +81,13 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 		$current_post_count = wp_count_posts( 'veteran' )->publish;
 		$cached_post_count  = get_transient( 'veteran_post_count' );
 
-		// if ( ! $cached_post_count || $current_post_count !== $cached_post_count ) {
+		if ( ! $cached_post_count || $current_post_count !== $cached_post_count ) {
 			// Update the post count transient
-			// set_transient( 'veteran_post_count', $current_post_count );
+			set_transient( 'veteran_post_count', $current_post_count );
 
 			// Set the veteran data to the cache
 			$this->set_veteran_data();
-		// }
+		}
 		// Get the cached data
 		$cached_data = get_transient( 'veteran_data' );
 
