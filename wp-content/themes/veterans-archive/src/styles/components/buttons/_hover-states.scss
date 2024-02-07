@@ -1,14 +1,15 @@
 %primary {
 	border-color: var(--bs-dark-blue);
 	background-color: var(--bs-green);
+	color: white;
 
-	&:not(.nav-link) {
-		color: var(--bs-dark-blue);
-	}
+	// &:not(.nav-link) {
+	// 	color: var(--bs-dark-blue);
+	// }
 
-	&:where(.nav-link) {
-		color: white;
-	}
+	// &:where(.nav-link) {
+	// 	color: white;
+	// }
 }
 
 %light {
