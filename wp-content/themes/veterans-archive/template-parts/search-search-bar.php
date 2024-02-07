@@ -10,7 +10,7 @@ use ChoctawNation\Components\Buttons;
 
 $with_browse = $args['with_browse'] || false;
 ?>
-<search class="row my-3" id='search'>
+<search class="row my-3" id='search-container'>
 	<form class="col" action="/veterans">
 		<div class="row">
 			<div class="col">
