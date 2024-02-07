@@ -1,7 +1,14 @@
 %primary {
 	border-color: var(--bs-dark-blue);
-	color: var(--bs-dark-blue);
 	background-color: var(--bs-green);
+
+	&:not(.nav-link) {
+		color: var(--bs-dark-blue);
+	}
+
+	&:where(.nav-link) {
+		color: white;
+	}
 }
 
 %light {
@@ -16,8 +23,8 @@
 
 %dark-blue {
 	color: var(--bs-light) !important;
-	// background-color: var(--bs-dark-blue);
 }
+
 .btn-container {
 	&:hover,
 	&:focus-within {

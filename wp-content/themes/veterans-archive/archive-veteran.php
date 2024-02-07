@@ -8,16 +8,17 @@
 wp_enqueue_script( 'search' );
 get_header();
 ?>
-<?php if ( ! have_posts() ) : ?>
-<div class="container">
-	<div class="row my-5 py-5">
-		<div class="col">
-			<p>Couldn't find any veterans! Please try again.</p>
+<div id="search"></div>
+<noscript>
+	<?php if ( ! have_posts() ) : ?>
+	<div class="container">
+		<div class="row my-5 py-5">
+			<div class="col">
+				<p>Couldn't find any veterans! Please try again.</p>
+			</div>
 		</div>
 	</div>
-</div>
-<?php else : ?>
-<div id="search">
+	<?php else : ?>
 	<div class="container my-5 py-5">
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4">
 			<?php while ( have_posts() ) : ?>
@@ -28,7 +29,8 @@ get_header();
 			<?php endwhile; ?>
 		</div>
 	</div>
-</div>
-	<?php
-endif;
+	<?php endif; ?>
+</noscript>
+
+<?php
 get_footer();

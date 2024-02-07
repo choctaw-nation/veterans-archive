@@ -19,9 +19,9 @@ $with_browse = $args['with_browse'] || false;
 				</label>
 			</div>
 		</div>
-		<div class="row align-items-center row-gap-2">
-			<div class="col-lg-auto flex-grow-1">
-				<input type="text" class="form-control flex-grow-1 flex-shrink-0" id="search" name='s' placeholder='Try searching by name, conflict, branch, or more' />
+		<div class="row align-items-stretch row-gap-2">
+			<div class="col-lg-auto flex-grow-1 h-auto">
+				<input type="text" class="form-control flex-grow-1 flex-shrink-0 h-auto py-3" id="search" name='s' placeholder='Try searching by name, conflict, branch, or more' />
 			</div>
 			<div class="col-lg-auto d-flex flex-wrap flex-sm-nowrap gap-2">
 				<?php

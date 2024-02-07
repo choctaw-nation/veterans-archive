@@ -3,6 +3,8 @@
  * Nav: Breadcrumbs
  *
  * @package ChoctawNation
+ *
+ * TODO: #34 Deprecate on live launch?
  */
 
 ?>

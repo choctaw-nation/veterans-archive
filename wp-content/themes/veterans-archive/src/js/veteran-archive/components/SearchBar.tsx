@@ -41,7 +41,9 @@ export function SearchBar( {
 					</ButtonWrapper>
 				</div>
 			</div>
-			<div className="row my-3 row-gap-3">{ children }</div>
+			<div className="row my-3 row-gap-3" id="filters-container">
+				{ children }
+			</div>
 		</form>
 	);
 }

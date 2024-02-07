@@ -61,7 +61,7 @@ class Buttons {
 	public function get_the_tab_button( string $id, string $text, bool $is_active = false, string $container_class = '' ) {
 		$this->init_props(
 			array(
-				'class' => ( $is_active ? 'btn-outline-dark-blue ' : '' ) . 'btn-outline-primary',
+				'class' => ( $is_active ? 'border-dark-blue ' : '' ) . 'btn-outline-primary',
 			),
 			$container_class
 		);
