@@ -76,6 +76,84 @@ class Additional_Material {
 	}
 
 	/**
+	 * Gets the icon
+	 */
+	public function get_the_icon(): string {
+		switch ( $this->type['value'] ) {
+			case 'audio':
+				return '<i class="fa-2xl fa-solid fa-volume-high"></i>';
+			case 'photo-gallery':
+				return '<i class="fa-2xl fa-solid fa-images"></i>';
+			case 'text':
+				return '<i class="fa-2xl fa-solid fa-file-pdf"></i>';
+			case 'video':
+				return '<i class="fa-2xl fa-solid fa-video"></i>';
+			default:
+				return '<i class="fa-2xl fa-solid fa-link"></i>';
+		}
+	}
+
+	/**
+	 * Echoes the additional material icon
+	 */
+	public function the_icon() {
+		echo $this->get_the_icon();
+	}
+
+	/**
+	 * Gets the title
+	 */
+	public function get_the_title() {
+		return $this->description;
+	}
+
+	/**
+	 * Echoes the title
+	 */
+	public function the_title() {
+		echo $this->get_the_title();
+	}
+
+	public function get_the_modal_button() {
+			$material_type   = $this->type['value'];
+			$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
+			$label           = $this->type['label'];
+
+			$btn_args = $is_text_or_link ?
+			array(
+				'href'    => $this->url,
+				'target'  => '_blank',
+				'rel'     => 'noopener noreferrer',
+				'element' => 'a',
+			) :
+			array(
+				'element'    => 'button',
+				'attributes' => array(
+					'type'           => 'button',
+					'data-bs-toggle' => 'modal',
+					'data-bs-target' => '#additional-materials-modal',
+					'data-cno-type'  => $material_type,
+					'data-cno-title' => $this->description,
+				),
+			);
+
+			switch ( $material_type ) {
+				case 'audio':
+					$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->url );
+					break;
+				case 'photo-gallery':
+					$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->photo_gallery, );
+					break;
+				case 'video':
+					$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->video, );
+					break;
+			}
+			$btn_args['class'] = 'btn-outline-primary';
+			$btn_args['text']  = 'Audio' === $label ? "Listen to {$label} clip" : "View {$label}";
+			return $btn_args;
+	}
+
+	/**
 	 * Sets the URL
 	 *
 	 * @param array $acf ACF data

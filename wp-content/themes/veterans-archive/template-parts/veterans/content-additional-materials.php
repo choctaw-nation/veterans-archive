@@ -19,8 +19,21 @@ $veteran = $args[0];
 if ( $veteran->needs_additional_materials_modal() ) {
 	$loader = new Asset_Loader( 'veteranSingle', Enqueue_Type::both, 'pages', );
 }
-$divider = new Divider();
-$buttons = new Buttons();
+$divider              = new Divider();
+$buttons              = new Buttons();
+$additional_materials = array();
+
+if ( $veteran->additional_materials ) {
+	foreach ( $veteran->additional_materials as $additional_material ) {
+		$material_type = $additional_material->type['value'];
+		if ( ! isset( $additional_materials[ $material_type ] ) ) {
+			$additional_materials[ $material_type ] = array();
+		}
+
+		$additional_materials[ $material_type ][] = $additional_material;
+	}
+}
+
 ?>
 <section class="additional-material my-5">
 	<div class="row my-3">
@@ -29,46 +42,27 @@ $buttons = new Buttons();
 			<h2 class="text-uppercase text-dark-blue">Additional Materials</h2>
 		</div>
 	</div>
-	<div class="row row-cols-lg-3 justify-content-between align-items-stretch row-gap-4">
-		<?php
-		foreach ( $veteran->additional_materials as $additional_material ) :
-			switch ( $additional_material->type['value'] ) {
-				case 'audio':
-					$icon = '<i class="fa-2xl fa-solid fa-volume-high"></i>';
-					break;
-				case 'photo-gallery':
-					$icon = '<i class="fa-2xl fa-solid fa-images"></i>';
-					break;
-				case 'text':
-					$icon = '<i class="fa-2xl fa-solid fa-file-pdf"></i>';
-					break;
-				case 'video':
-					$icon = '<i class="fa-2xl fa-solid fa-video"></i>';
-					break;
-				default:
-					$icon = '<i class="fa-2xl fa-solid fa-link"></i>';
-			}
-			?>
-		<div class="col flex-grow-1">
-			<div class="card gx-0 flex-row h-100">
-				<div class="col-4 text-white bg-secondary p-5 d-flex justify-content-center align-items-center">
-					<?php echo $icon; ?>
-				</div>
-				<div class="col-8">
-					<div class="card-body h-100 d-flex flex-column">
-						<h3 class="card-title mb-5">
-							<?php echo $additional_material->description; ?>
-						</h3>
-						<?php
-						$btn_args = cno_build_veteran_button_args( $additional_material );
-						$buttons->the_button(
-							$btn_args,
-							'mt-auto align-self-start'
-						);
-						?>
-					</div>
-				</div>
-			</div>
+	<?php $columns = count( $additional_materials ); ?>
+	<div class="<?php echo "row row-cols-lg-{$columns} justify-content-between align-items-stretch row-gap-4"; ?>">
+		<?php foreach ( $additional_materials as $material_type => $materials ) : ?>
+		<div class="col">
+			<h3 class="d-block p-3 display-6 text-bg-primary text-uppercase"><?php echo $materials->type['label']; ?></h3>
+			<?php foreach ( $materials as $material ) : ?>
+				<?php
+				$material_type   = $material->type['value'];
+				$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
+				$div_classes     = 'd-flex align-items-center text-green p-3';
+				if ( $is_text_or_link ) {
+					echo "<div class='{$div_classes}'>";
+					$material->the_icon();
+					echo "<a class='ms-3 text-dark-blue fs-5' href='{$material->url}' target='_blank'>{$material->get_the_title()}</a>";
+					echo '</div>';
+				} else {
+					echo 'hello';
+				}
+				?>
+
+			<?php endforeach; ?>
 		</div>
 		<?php endforeach; ?>
 	</div>
@@ -78,7 +72,7 @@ $buttons = new Buttons();
 	<div class="modal-dialog modal-xl modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class='modal-title fs-4 text-dark-blue display-6 text-uppercase' id='additional-materials-modal-label'>Hi there</h1>
+				<h1 class='modal-title fs-4 text-dark-blue display-6 text-uppercase' id='additional-materials-modal-label'>Additional Materials</h1>
 				<button type="button" class="btn-close" data-bs-dismiss='modal' aria-label='Close modal'></button>
 			</div>
 			<div class="modal-body overflow-x-hidden"></div>
