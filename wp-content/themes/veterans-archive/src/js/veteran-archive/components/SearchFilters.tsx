@@ -5,6 +5,7 @@ import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 export const SearchFilters = memo( function SearchFilters( {
 	selected,
 	setSelected,
+	searchInputRef,
 } ) {
 	const { branches, wars, decorations } =
 		window.cnoSiteData.vetData.searchFilters;
@@ -87,6 +88,7 @@ export const SearchFilters = memo( function SearchFilters( {
 									wars: '',
 									decorations: '',
 								} );
+								searchInputRef.current.focus();
 							} }
 						>
 							Reset Filters

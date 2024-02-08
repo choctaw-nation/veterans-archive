@@ -6,6 +6,7 @@ export function SearchBar( {
 	setSearchTerm,
 	isLoading,
 	children,
+	searchInputRef,
 } ) {
 	return (
 		<form className="col" action="/veterans">
@@ -21,6 +22,7 @@ export function SearchBar( {
 			<div className="row align-items-center row-gap-2">
 				<div className="col-lg-auto flex-grow-1">
 					<input
+						ref={ searchInputRef }
 						type="text"
 						className="form-control flex-grow-1 flex-shrink-0"
 						id="search"
