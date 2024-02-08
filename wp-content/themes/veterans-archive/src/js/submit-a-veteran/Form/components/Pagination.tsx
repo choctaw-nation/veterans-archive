@@ -15,6 +15,9 @@ export default function Pagination( {
 	const { trigger, setFocus } = useFormContext();
 
 	useEffect( () => {
+		if ( ! ref ) {
+			return;
+		}
 		if ( 2 === currentPage ) {
 			setFocus( 'service_information.military_branch.0', {
 				shouldSelect: true,
