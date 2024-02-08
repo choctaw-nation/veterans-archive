@@ -25,7 +25,7 @@ $additional_materials = array();
 
 if ( $veteran->additional_materials ) {
 	foreach ( $veteran->additional_materials as $additional_material ) {
-		$material_type = $additional_material->type['value'];
+		$material_type = $additional_material->type['label'];
 		if ( ! isset( $additional_materials[ $material_type ] ) ) {
 			$additional_materials[ $material_type ] = array();
 		}
@@ -46,20 +46,20 @@ if ( $veteran->additional_materials ) {
 	<div class="<?php echo "row row-cols-lg-{$columns} justify-content-between align-items-stretch row-gap-4"; ?>">
 		<?php foreach ( $additional_materials as $material_type => $materials ) : ?>
 		<div class="col">
-			<h3 class="d-block p-3 display-6 text-bg-primary text-uppercase"><?php echo $materials->type['label']; ?></h3>
+			<h3 class="d-block p-3 display-6 text-bg-primary text-uppercase text-white"><?php echo $material_type; ?></h3>
 			<?php foreach ( $materials as $material ) : ?>
-				<?php
+			<?php
 				$material_type   = $material->type['value'];
 				$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
 				$div_classes     = 'd-flex align-items-center text-green p-3';
+				echo "<div class='{$div_classes}'>";
 				if ( $is_text_or_link ) {
-					echo "<div class='{$div_classes}'>";
 					$material->the_icon();
 					echo "<a class='ms-3 text-dark-blue fs-5' href='{$material->url}' target='_blank'>{$material->get_the_title()}</a>";
-					echo '</div>';
 				} else {
-					echo 'hello';
+					$material->the_modal_button();
 				}
+					echo '</div>';
 				?>
 
 			<?php endforeach; ?>

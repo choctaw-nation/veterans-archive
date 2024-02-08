@@ -48,6 +48,7 @@ class Additional_Material {
 	 */
 	public ?string $video;
 
+
 	/**
 	 * Constructor
 	 *
@@ -100,6 +101,7 @@ class Additional_Material {
 		echo $this->get_the_icon();
 	}
 
+
 	/**
 	 * Gets the title
 	 */
@@ -114,43 +116,60 @@ class Additional_Material {
 		echo $this->get_the_title();
 	}
 
+	/**
+	 * Gets the modal button
+	 */
 	public function get_the_modal_button() {
-			$material_type   = $this->type['value'];
-			$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
-			$label           = $this->type['label'];
+		$btn_args = $this->get_the_modal_button_args();
 
-			$btn_args = $is_text_or_link ?
-			array(
-				'href'    => $this->url,
-				'target'  => '_blank',
-				'rel'     => 'noopener noreferrer',
-				'element' => 'a',
-			) :
-			array(
-				'element'    => 'button',
-				'attributes' => array(
-					'type'           => 'button',
-					'data-bs-toggle' => 'modal',
-					'data-bs-target' => '#additional-materials-modal',
-					'data-cno-type'  => $material_type,
-					'data-cno-title' => $this->description,
-				),
-			);
+		$attributes = array_map(
+			function ( $key, $value ) {
+				return "{$key}='{$value}'";
+			},
+			array_keys( $btn_args['attributes'] ),
+			$btn_args['attributes']
+		);
+		$attributes = implode( ' ', $attributes );
+		$markup     = $this->get_the_icon();
+		$markup    .= "<span {$attributes}>{$btn_args['text']}</span>";
+		return $markup;
+	}
 
-			switch ( $material_type ) {
-				case 'audio':
-					$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->url );
-					break;
-				case 'photo-gallery':
-					$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->photo_gallery, );
-					break;
-				case 'video':
-					$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->video, );
-					break;
-			}
-			$btn_args['class'] = 'btn-outline-primary';
-			$btn_args['text']  = 'Audio' === $label ? "Listen to {$label} clip" : "View {$label}";
-			return $btn_args;
+	/**
+	 * Echoes the modal button
+	 */
+	public function the_modal_button() {
+		echo $this->get_the_modal_button();
+	}
+
+	/**
+	 * Gets the modal button arguments
+	 */
+	private function get_the_modal_button_args(): array {
+		$btn_args = array(
+			'attributes' => array(
+				'class'          => 'icon-link ms-2 text-dark-blue fs-5',
+				'role'           => 'button',
+				'data-bs-toggle' => 'modal',
+				'data-bs-target' => '#additional-materials-modal',
+				'data-cno-type'  => $this->type['value'],
+				'data-cno-title' => $this->description,
+			),
+		);
+
+		switch ( $this->type['value'] ) {
+			case 'audio':
+				$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->url );
+				break;
+			case 'photo-gallery':
+				$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->photo_gallery, );
+				break;
+			case 'video':
+				$btn_args['attributes']['data-cno-src'] = wp_json_encode( $this->video, );
+				break;
+		}
+		$btn_args['text'] = 'Audio' === $this->type['label'] ? "Listen to {$this->type['label']} clip" : "View {$this->type['label']}";
+		return $btn_args;
 	}
 
 	/**
