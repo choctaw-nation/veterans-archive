@@ -12,7 +12,7 @@ $footer_col_classes = 'col-auto flex-grow-1 py-5 col-sm-6 d-flex flex-column jus
 <footer class="footer container-fluid">
 	<div class="row">
 		<div class="<?php echo $footer_col_classes; ?> col-lg-4 bg-green">
-			<a href="<?php echo esc_url( site_url() ); ?>" class="fs-3 text-uppercase" aria-label="to Home Page">
+			<a href="<?php echo esc_url( site_url() ); ?>" class="fs-3 text-uppercase text-dark" aria-label="to Home Page">
 				Choctaw Nation <br /> Veterans Archive
 			</a>
 		</div>
@@ -40,11 +40,11 @@ $footer_col_classes = 'col-auto flex-grow-1 py-5 col-sm-6 d-flex flex-column jus
 				?>
 				<?php foreach ( $socials as $social ) : ?>
 				<a href="<?php echo $social['href']; ?>" class="social mx-2" target="_blank" rel="noopener noreferrer" aria-label="<?php echo $social['aria-label']; ?>">
-					<i class="<?php echo "text-white fa-2xl {$social['icon_class']}"; ?>"></i>
+					<i class="<?php echo "text-dark fa-2xl {$social['icon_class']}"; ?>"></i>
 				</a>
 				<?php endforeach; ?>
 			</div>
-			<div id="copyright" class="mt-3 me-5 w-75 text-white">
+			<div id="copyright" class="mt-3 me-5 w-75 text-dark">
 				<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . '&nbsp;Choctaw Nation of Oklahoma. All Rights Reserved.'; ?>
 			</div>
 		</div>
