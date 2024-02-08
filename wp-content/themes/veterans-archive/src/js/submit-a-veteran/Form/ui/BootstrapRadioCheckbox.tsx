@@ -58,7 +58,9 @@ export default function BootstrapRadioCheckbox( {
 	return (
 		<div className="row">
 			<div className="col">
-				<span className="d-block fw-semibold fs-4">{ label }:</span>
+				<span className="d-block fw-semibold fs-4 display-6 text-uppercase text-dark-blue">
+					{ label }
+				</span>
 				{ fields.map( ( field, i ) => {
 					const registrationField =
 						'radio' === args.type

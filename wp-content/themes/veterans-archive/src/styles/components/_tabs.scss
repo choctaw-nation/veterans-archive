@@ -1,4 +1,17 @@
+@use "../abstracts/mixins" as m;
 .nav-tabs {
 	scrollbar-color: var(--bs-primary) var(--bs-dark-blue);
 	scrollbar-gutter: stable;
+}
+
+.tab-pane {
+	ul {
+		@include m.media-breakpoint-up(lg) {
+			column-count: 3;
+			column-gap: 4rem;
+			width: 100%;
+			column-fill: balance;
+			column-rule-width: 1px;
+		}
+	}
 }

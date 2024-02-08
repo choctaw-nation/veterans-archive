@@ -51,11 +51,11 @@ class Veteran extends Veteran_Setter {
 		$last_name  = $name[1];
 		$full_name  = "{$first_name}";
 		if ( $with_nickname && ! empty( $this->nickname ) ) {
-			$full_name .= " {$this->nickname}";
+			$full_name .= ' "' . $this->nickname . '"';
 		}
 		$full_name .= " {$this->middle_name}";
 		if ( $with_maiden_name && ! empty( $this->maiden_name ) ) {
-			$full_name .= " {$this->maiden_name}";
+			$full_name .= " ({$this->maiden_name})";
 		}
 		$full_name .= " {$last_name}";
 		if ( $with_suffix && ! empty( $this->suffix ) ) {

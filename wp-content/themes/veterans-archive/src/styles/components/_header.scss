@@ -1,9 +1,8 @@
 @use "../abstracts/variables" as v;
 
 .logo {
-	--size: 12rem;
+	--size: 8rem;
 	width: clamp(100%, var(--size), auto);
-	// max-width: var(--size);
 	max-height: var(--size);
 }
 

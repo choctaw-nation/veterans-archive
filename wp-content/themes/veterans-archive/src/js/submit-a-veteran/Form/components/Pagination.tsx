@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { ButtonWrapper } from '../ui/ButtonWrapper';
 
@@ -10,12 +10,26 @@ interface PaginationProps {
 export default function Pagination( {
 	currentPage,
 	setCurrentPage,
+	ref,
 } ): React.FC< PaginationProps > {
-	const { trigger } = useFormContext();
+	const { trigger, setFocus } = useFormContext();
+
+	useEffect( () => {
+		if ( 2 === currentPage ) {
+			setFocus( 'service_information.military_branch.0', {
+				shouldSelect: true,
+			} );
+		}
+		if ( 3 === currentPage && ref.current ) {
+			ref.current.focus();
+		}
+	}, [ setFocus, currentPage, ref ] );
+
 	async function handleClick() {
 		const fieldsAreValidated = await trigger();
 		if ( fieldsAreValidated ) {
-			setCurrentPage( ( pageIndex ) => pageIndex + 1 );
+			const nextPage = currentPage + 1;
+			setCurrentPage( nextPage );
 		}
 	}
 
@@ -24,7 +38,7 @@ export default function Pagination( {
 			{ 1 !== currentPage && (
 				<ButtonWrapper innerClass="btn-outline-primary">
 					<button
-						className="btn btn-lg btn-outline-primary border-0 text-uppercase"
+						className="btn btn-lg btn-outline-primary border-0 text-uppercase z-2"
 						type="button"
 						onClick={ () => {
 							setCurrentPage( ( pageIndex ) => pageIndex - 1 );

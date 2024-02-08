@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
 import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 import { Divider } from '../ui/Divider';
-import { VeteranData } from '../types';
-import { set } from 'react-hook-form';
+import { VeteranData, vetData } from '../types';
 
 export const VeteranPreview = memo( function VeteranPreview( {
 	post,
@@ -12,11 +11,7 @@ export const VeteranPreview = memo( function VeteranPreview( {
 	const {
 		featuredImage,
 		permalink,
-		vetData: {
-			wars,
-			dates_of_service: serviceDates,
-			highest_achieved_rank: rank,
-		},
+		vetData: { home_areas, dates_of_service: serviceDates },
 		vetIcon: icon,
 	} = post;
 
@@ -24,21 +19,17 @@ export const VeteranPreview = memo( function VeteranPreview( {
 
 	const meta: Array< { label: string | null; value: string | null } > = [
 		{
-			label: wars && wars.length > 1 ? 'Wars' : 'War',
-			value: wars?.map( ( war ) => war.name )?.join( ', ' ),
-		},
-		{
 			label: 'Dates of Service',
 			value: serviceDates
 				?.map(
 					( date ) =>
-						`${ date.service_start } — ${ date.service_end }`
+						`${ date.service_start } - ${ date.service_end }`
 				)
 				.join( ', ' ),
 		},
 		{
-			label: 'Highest Achieved Rank',
-			value: rank,
+			label: 'Hometown',
+			value: getTheHomeArea( home_areas ),
 		},
 	];
 
@@ -77,7 +68,10 @@ export const VeteranPreview = memo( function VeteranPreview( {
 				</div>
 			</div>
 			<div className="card-footer bg-dark-blue ">
-				<div className="row row-cols-auto justify-content-between align-items-center row-gap-3">
+				<div
+					className="row row-cols-auto justify-content-between align-items-center row-gap-3"
+					style={ { minHeight: 75 } }
+				>
 					<div className="col">
 						<ButtonWrapper
 							classes="btn-outline-primary"
@@ -87,7 +81,7 @@ export const VeteranPreview = memo( function VeteranPreview( {
 								href={ permalink }
 								className="btn btn-outline-primary text-uppercase text-white display-6 fs-5 border-0 z-2"
 							>
-								Read More
+								More Info
 							</a>
 						</ButtonWrapper>
 					</div>
@@ -129,4 +123,22 @@ function setTheFullName( post: VeteranData ): string {
 		fullNameArray.push( suffix );
 	}
 	return fullNameArray.filter( ( name ) => name ).join( ' ' );
+}
+
+/**
+ * Takes the home_areas object and returns the full area
+ * @param homeAreas the home_areas object
+ * @returns the full area
+ */
+function getTheHomeArea( homeAreas: vetData[ 'home_areas' ] ): string | null {
+	let areas = homeAreas?.map( ( area ) => {
+		const flatValues = Object.values( {
+			city: area.city,
+			county: area.county ? `${ area.county } County` : false,
+			state: area.state,
+		} );
+		return flatValues;
+	} );
+	const area = areas?.flat();
+	return area?.filter( ( value ) => value )?.join( ', ' ) || null;
 }
