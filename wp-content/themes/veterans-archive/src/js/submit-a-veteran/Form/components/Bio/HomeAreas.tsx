@@ -13,7 +13,9 @@ export default function HomeAreas() {
 		<>
 			<div className="row">
 				<div className="col">
-					<span className="fw-semibold fs-4">Home Areas</span>
+					<span className="fw-semibold fs-4 display-6 text-uppercase text-dark-blue">
+						Home Areas
+					</span>
 					<br />
 					<small className="fs-6 mb-2 d-block" id="description">
 						Current or last known location of the veteran.

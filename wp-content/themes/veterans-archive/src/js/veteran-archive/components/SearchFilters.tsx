@@ -5,17 +5,18 @@ import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 export const SearchFilters = memo( function SearchFilters( {
 	selected,
 	setSelected,
+	searchInputRef,
 } ) {
 	const { branches, wars, decorations } =
 		window.cnoSiteData.vetData.searchFilters;
 
 	const filters = [
 		{
-			id: 'branches',
-			label: 'Select a branch',
+			id: 'wars',
+			label: 'Select a conflict',
 			values: [
-				{ label: 'Select a branch', value: '' },
-				...branches.map( ( wpTerm ) => {
+				{ label: 'Conflicts', value: '' },
+				...wars.map( ( wpTerm ) => {
 					return {
 						label: wpTerm.name,
 						value: wpTerm.slug,
@@ -24,11 +25,11 @@ export const SearchFilters = memo( function SearchFilters( {
 			],
 		},
 		{
-			id: 'wars',
-			label: 'Select a conflict',
+			id: 'branches',
+			label: 'Select a branch',
 			values: [
-				{ label: 'Select a conflict', value: '' },
-				...wars.map( ( wpTerm ) => {
+				{ label: 'Service Branch', value: '' },
+				...branches.map( ( wpTerm ) => {
 					return {
 						label: wpTerm.name,
 						value: wpTerm.slug,
@@ -87,6 +88,7 @@ export const SearchFilters = memo( function SearchFilters( {
 									wars: '',
 									decorations: '',
 								} );
+								searchInputRef.current.focus();
 							} }
 						>
 							Reset Filters

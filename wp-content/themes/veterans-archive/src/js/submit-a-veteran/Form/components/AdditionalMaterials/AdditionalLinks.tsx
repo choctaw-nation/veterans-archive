@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ButtonWrapper } from '../../ui/ButtonWrapper';
 
 const FIELD_NAME = 'additional_materials.links';
-export default function AdditionalLinks() {
+export default function AdditionalLinks( { formRef } ) {
 	const { register } = useFormContext();
 	const { fields, append, remove } = useFieldArray( {
 		name: FIELD_NAME,
@@ -12,6 +12,7 @@ export default function AdditionalLinks() {
 		return (
 			<ButtonWrapper classes="my-2" innerClass="btn-outline-green">
 				<button
+					ref={ formRef }
 					type="button"
 					onClick={ () =>
 						append( {

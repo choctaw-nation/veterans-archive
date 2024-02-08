@@ -24,7 +24,7 @@ export default function ServiceDates() {
 							service_end: '',
 						} )
 					}
-					className="btn btn-outline-green text-dark-blue text-uppercase w-100"
+					className="btn btn-outline-green display-6 text-dark-blue text-uppercase w-100 fs-6"
 				>
 					Add Service Dates
 				</button>

@@ -6,7 +6,7 @@
  * @package ChoctawNation
  */
 
-$footer_col_classes = 'col-auto flex-grow-1 col-sm-6 py-5 gx-5';
+$footer_col_classes = 'col-auto flex-grow-1 py-5 col-sm-6 d-flex flex-column justify-content-center align-items-center';
 ?>
 
 <footer class="footer container-fluid">
@@ -17,8 +17,8 @@ $footer_col_classes = 'col-auto flex-grow-1 col-sm-6 py-5 gx-5';
 			</a>
 		</div>
 		<div class="col-2 footer-split d-none d-lg-block"></div>
-		<div class="<?php echo $footer_col_classes; ?> bg-primary text-sm-end d-flex flex-column justify-content-center align-items-sm-end">
-			<div class="social-icons">
+		<div class="<?php echo $footer_col_classes; ?> pe-5 bg-primary text-sm-end align-items-sm-end">
+			<div class="social-icons me-5">
 				<?php
 				$socials = array(
 					array(
@@ -44,7 +44,7 @@ $footer_col_classes = 'col-auto flex-grow-1 col-sm-6 py-5 gx-5';
 				</a>
 				<?php endforeach; ?>
 			</div>
-			<div id="copyright" class="mt-3 w-75 text-white">
+			<div id="copyright" class="mt-3 me-5 w-75 text-white">
 				<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . '&nbsp;Choctaw Nation of Oklahoma. All Rights Reserved.'; ?>
 			</div>
 		</div>

@@ -39,7 +39,7 @@ if ( $veteran->additional_materials ) {
 	<div class="row my-3">
 		<div class="col-auto">
 			<?php $divider->the_divider( 'end', 'primary' ); ?>
-			<h2 class="text-uppercase text-dark-blue">Additional Materials</h2>
+			<h2 class="text-uppercase text-dark-blue fs-3">Additional Materials</h2>
 		</div>
 	</div>
 	<?php $columns = count( $additional_materials ); ?>

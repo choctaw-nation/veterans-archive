@@ -91,7 +91,6 @@ export default function useFuzzySearch(
 	} );
 	const [ searchResults, setSearchResults ] = useState( veterans );
 	const [ isLoading, setIsLoading ] = useState( false );
-
 	useEffect( () => {
 		let results: VeteranData[] = [];
 		const hasFilters = Object.values( selectedFilters ).some(

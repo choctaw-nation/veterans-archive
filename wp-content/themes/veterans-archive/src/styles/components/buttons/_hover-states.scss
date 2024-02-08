@@ -1,7 +1,7 @@
 %primary {
 	border-color: var(--bs-dark-blue);
-	color: var(--bs-dark-blue);
 	background-color: var(--bs-green);
+	color: white;
 }
 
 %light {
@@ -16,8 +16,8 @@
 
 %dark-blue {
 	color: var(--bs-light) !important;
-	// background-color: var(--bs-dark-blue);
 }
+
 .btn-container {
 	&:hover,
 	&:focus-within {

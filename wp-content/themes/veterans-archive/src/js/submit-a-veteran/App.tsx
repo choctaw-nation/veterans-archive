@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { FormProvider, useForm } from 'react-hook-form';
 import apiFetch from '@wordpress/api-fetch';
@@ -51,6 +51,7 @@ function App() {
 		const formValues = methods.getValues();
 		setFormValues( formValues );
 	}
+	const formRef = useRef( null );
 
 	const baseStyles = ``;
 
@@ -75,7 +76,9 @@ function App() {
 					>
 						{ 1 === currentPage && <BioFields /> }
 						{ 2 === currentPage && <ServiceInfo /> }
-						{ 3 === currentPage && <AdditionalMaterials /> }
+						{ 3 === currentPage && (
+							<AdditionalMaterials ref={ formRef } />
+						) }
 						{ 4 === currentPage && (
 							<FinalPage data={ formResponse } />
 						) }
@@ -83,6 +86,7 @@ function App() {
 							<Pagination
 								currentPage={ currentPage }
 								setCurrentPage={ setCurrentPage }
+								ref={ formRef }
 							/>
 						) }
 					</form>

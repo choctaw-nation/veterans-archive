@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { SearchBar } from './components/SearchBar';
@@ -27,6 +27,7 @@ function App() {
 		searchTerm,
 		selectedFilters
 	);
+	const searchInput = useRef( null );
 
 	return (
 		<>
@@ -36,10 +37,12 @@ function App() {
 						isLoading={ isLoading }
 						searchTerm={ searchTerm }
 						setSearchTerm={ setSearchTerm }
+						searchInputRef={ searchInput }
 					>
 						<SearchFilters
 							setSelected={ setSelectedFilters }
 							selected={ selectedFilters }
+							searchInputRef={ searchInput }
 						/>
 					</SearchBar>
 				</div>

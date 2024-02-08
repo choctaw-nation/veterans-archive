@@ -16,7 +16,7 @@ export default function Wars() {
 				{ label: 'Vietnam', value: 'Vietnam' },
 				{ label: 'WWII', value: 'WWII' },
 			] }
-			label="War"
+			label="Conflicts"
 		/>
 	);
 }

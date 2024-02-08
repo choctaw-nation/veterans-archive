@@ -6,7 +6,7 @@ import AdditionalLinks from '../components/AdditionalMaterials/AdditionalLinks';
 import ContactInfo from '../components/AdditionalMaterials/ContactInfo';
 import Heading from '../ui/Heading';
 
-export default function AdditionalMaterials() {
+export default function AdditionalMaterials( { ref } ) {
 	const {
 		register,
 		getValues,
@@ -26,7 +26,7 @@ export default function AdditionalMaterials() {
 		<div>
 			<Heading text="Additional Material" />
 			<div className="additional-material">
-				<AdditionalLinks />
+				<AdditionalLinks formRef={ ref } />
 				<p className="fw-semibold mt-3">Additional Media Material</p>
 				<div className="form-check">
 					<label
