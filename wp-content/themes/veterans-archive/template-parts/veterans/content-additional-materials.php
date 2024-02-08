@@ -46,7 +46,7 @@ if ( $veteran->additional_materials ) {
 	<div class="<?php echo "row row-cols-lg-{$columns} justify-content-between align-items-stretch row-gap-4"; ?>">
 		<?php foreach ( $additional_materials as $material_type => $materials ) : ?>
 		<div class="col">
-			<h3 class="d-block p-3 display-6 text-bg-primary text-uppercase text-white"><?php echo $material_type; ?></h3>
+			<h3 class="d-block p-3 display-6 text-bg-dark-blue text-uppercase text-white"><?php echo $material_type; ?></h3>
 			<?php foreach ( $materials as $material ) : ?>
 			<?php
 				$material_type   = $material->type['value'];
