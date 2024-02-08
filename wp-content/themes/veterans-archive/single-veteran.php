@@ -42,7 +42,7 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 							<div class="ratio ratio-1x1">
 								<?php
 								$image_args           = array(
-									'class'   => 'w-auto h-auto object-fit-cover img-thumbnail',
+									'class'   => 'object-fit-cover',
 									'loading' => 'lazy',
 								);
 								$placeholder_image_id = 60;
