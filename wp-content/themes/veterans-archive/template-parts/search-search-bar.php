@@ -8,7 +8,7 @@
 
 use ChoctawNation\Components\Buttons;
 
-$with_browse = $args['with_browse'] || false;
+
 ?>
 <search class="row my-3" id='search-container'>
 	<form class="col" action="/veterans">
@@ -34,16 +34,6 @@ $with_browse = $args['with_browse'] || false;
 							'value'   => 'Search',
 						),
 					);
-					if ( $with_browse ) {
-						$buttons->the_button(
-							array(
-								'element' => 'a',
-								'href'    => '/veterans',
-								'class'   => 'btn-outline-light-green',
-								'text'    => 'Browse',
-							),
-						);
-					}
 					?>
 			</div>
 		</div>

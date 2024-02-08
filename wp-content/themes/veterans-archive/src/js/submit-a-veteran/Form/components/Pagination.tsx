@@ -24,7 +24,7 @@ export default function Pagination( {
 			{ 1 !== currentPage && (
 				<ButtonWrapper innerClass="btn-outline-primary">
 					<button
-						className="btn btn-lg btn-outline-primary border-0 text-uppercase"
+						className="btn btn-lg btn-outline-primary border-0 text-uppercase z-2"
 						type="button"
 						onClick={ () => {
 							setCurrentPage( ( pageIndex ) => pageIndex - 1 );

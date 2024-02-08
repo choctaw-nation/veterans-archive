@@ -5,14 +5,12 @@
  * @package ChoctawNation
  */
 
-get_header();
+get_header( 'search' );
 ?>
 <main class='site-content <?php echo $post->post_name; ?>'>
-	<?php get_template_part( 'template-parts/section', 'hero' ); ?>
 	<article class="container py-5">
 		<?php the_content(); ?>
 	</article>
-
 </main>
 <?php
 get_footer();

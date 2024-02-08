@@ -14,9 +14,7 @@ get_template_part( 'template-parts/header/base', 'header' );
 			'template-parts/search',
 			'search-bar',
 			array(
-				'bg_color'     => 'dark-blue',
-				'with_browse'  => false,
-				'with_filters' => true,
+				'bg_color' => 'dark-blue',
 			)
 		);
 		?>

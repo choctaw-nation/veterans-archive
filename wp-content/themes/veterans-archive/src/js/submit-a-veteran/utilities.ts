@@ -106,18 +106,8 @@ export const emptyFormData = {
 			additional_decorations: [],
 		},
 		highest_rank_achieved: '',
-		choctaw_veteran_of_the_month: [
-			{
-				year_received: null,
-				district: null,
-			},
-		],
-		dates_of_service: [
-			{
-				service_start: null,
-				service_end: null,
-			},
-		],
+		choctaw_veteran_of_the_month: [],
+		dates_of_service: [],
 		overseas_duty: [ '' ],
 		stateside_assignments: [ '' ],
 		jobs: [ '' ],

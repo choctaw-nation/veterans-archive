@@ -33,7 +33,7 @@ export default function ChoctawVeteranOfTheMonth() {
 	} else {
 		return (
 			<>
-				<label className="d-block fw-semibold form-label">
+				<label className="d-block fw-semibold form-label display-6 text-uppercase text-dark-blue">
 					Choctaw Veteran of the Month
 				</label>
 				{ fields.map( ( field, i ) => (

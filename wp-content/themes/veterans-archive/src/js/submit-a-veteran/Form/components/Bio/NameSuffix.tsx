@@ -9,8 +9,8 @@ export default function NameSuffix() {
 
 	return (
 		<fieldset className="row">
-			<legend className="col-form-label col-sm-2 fw-semibold fs-4">
-				Name Suffix:
+			<legend className="col-form-label col-sm-2 fw-semibold fs-4 display-6 text-uppercase text-dark-blue">
+				Name Suffix
 			</legend>
 			<div className="col-auto flex-grow-1">
 				<div className="form-check">

@@ -16,7 +16,7 @@ const root = document.getElementById( 'root' );
 createRoot( root ).render( <App /> );
 
 function App() {
-	const [ currentPage, setCurrentPage ] = useState( 1 );
+	const [ currentPage, setCurrentPage ] = useState( 3 );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const [ formResponse, setFormResponse ] = useState( null );
 	const [ formValues, setFormValues ] = useState( emptyFormData );
