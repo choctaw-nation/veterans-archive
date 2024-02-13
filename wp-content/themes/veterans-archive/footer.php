@@ -40,7 +40,7 @@ $footer_col_classes = 'col-auto flex-grow-1 py-5 col-sm-6 d-flex flex-column jus
 				?>
 				<?php foreach ( $socials as $social ) : ?>
 				<a href="<?php echo $social['href']; ?>" class="social mx-2" target="_blank" rel="noopener noreferrer" aria-label="<?php echo $social['aria-label']; ?>">
-					<i class="<?php echo "text-dark fa-2xl {$social['icon_class']}"; ?>"></i>
+					<i class="<?php echo "fa-2xl {$social['icon_class']}"; ?>"></i>
 				</a>
 				<?php endforeach; ?>
 			</div>

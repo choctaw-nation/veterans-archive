@@ -40,7 +40,7 @@ export default function Decorations() {
 					label="Major Decorations"
 				/>
 			</div>
-			<div className="col-auto d-flex flex-column flex-grow-1">
+			<div className="col-auto flex-grow-1">
 				<Repeater
 					label="Additional Decoration"
 					id="decorations"

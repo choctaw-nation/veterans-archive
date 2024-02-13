@@ -66,7 +66,7 @@ export default function ServiceInfo() {
 					<div className="col">
 						<ServiceDates />
 					</div>
-					<div className="col d-flex flex-column">
+					<div className="col">
 						<Repeater
 							label="Overseas Duty"
 							id="overseas-duty"

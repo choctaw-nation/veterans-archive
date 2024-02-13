@@ -168,8 +168,6 @@ class Theme_Init {
 			)
 		);
 
-		$fontawesome = new Asset_Loader( 'fontawesome', Enqueue_Type::style, 'vendors' );
-
 		$global_scripts = new Asset_Loader(
 			'global',
 			Enqueue_Type::both,
