@@ -12,23 +12,10 @@ export const SearchFilters = memo( function SearchFilters( {
 
 	const filters = [
 		{
-			id: 'wars',
-			label: 'Select a conflict',
-			values: [
-				{ label: 'Conflicts', value: '' },
-				...wars.map( ( wpTerm ) => {
-					return {
-						label: wpTerm.name,
-						value: wpTerm.slug,
-					};
-				} ),
-			],
-		},
-		{
 			id: 'branches',
 			label: 'Select a branch',
 			values: [
-				{ label: 'Service Branch', value: '' },
+				{ label: 'SERVICE BRANCH', value: '' },
 				...branches.map( ( wpTerm ) => {
 					return {
 						label: wpTerm.name,
@@ -41,8 +28,21 @@ export const SearchFilters = memo( function SearchFilters( {
 			id: 'decorations',
 			label: 'Select a decoration',
 			values: [
-				{ label: 'Select a decoration', value: '' },
+				{ label: 'SELECT A DECORATION', value: '' },
 				...decorations.map( ( wpTerm ) => {
+					return {
+						label: wpTerm.name,
+						value: wpTerm.slug,
+					};
+				} ),
+			],
+		},
+		{
+			id: 'wars',
+			label: 'Select a conflict',
+			values: [
+				{ label: 'CONFLICTS', value: '' },
+				...wars.map( ( wpTerm ) => {
 					return {
 						label: wpTerm.name,
 						value: wpTerm.slug,
@@ -80,7 +80,7 @@ export const SearchFilters = memo( function SearchFilters( {
 						innerClass="btn-outline-light"
 					>
 						<button
-							className="btn btn-outline-light z-2 border-0 w-100 text-uppercase  fs-5"
+							className="btn btn-outline-light z-2 border-0 w-100 text-uppercase fs-5"
 							onClick={ ( ev ) => {
 								ev.preventDefault();
 								setSelected( {

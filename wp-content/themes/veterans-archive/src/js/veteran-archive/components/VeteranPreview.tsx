@@ -36,18 +36,23 @@ export const VeteranPreview = memo( function VeteranPreview( {
 	return (
 		<div className="card shadow h-100">
 			{ post.featuredImage && (
-				<div
-					className="ratio ratio-1x1 card-img-top"
-					dangerouslySetInnerHTML={ {
-						__html: featuredImage,
-					} }
-				></div>
+				<a href={ permalink }>
+					<div
+						className="ratio ratio-1x1 card-img-top"
+						dangerouslySetInnerHTML={ {
+							__html: featuredImage,
+						} }
+					/>
+				</a>
 			) }
 			<div className="card-body d-flex flex-column">
 				<Divider direction="end" color="green" classes="mb-3" />
-				<span className="card-title h4 text-uppercase text-dark-blue mb-4">
+				<a
+					href={ permalink }
+					className="card-title h4 text-uppercase text-dark-blue mb-4"
+				>
 					{ fullName }
-				</span>
+				</a>
 				<div className="card-text-py-2 mb-2">
 					<div className="ms-4 at-a-glance">
 						{ meta.map( ( item, index ) => {

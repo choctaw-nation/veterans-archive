@@ -21,7 +21,7 @@ export default function BSSelect( {
 			innerClass="btn-outline-light h-100"
 		>
 			<select
-				className="form-select btn btn-outline-light text-uppercase h-100 fs-5 z-2 w-100 border-0"
+				className="form-select btn btn-outline-light h-100 fs-5 z-2 w-100 border-0"
 				aria-label={ ariaLabel }
 				value={ selected }
 				onChange={ ( ev ) => {
@@ -30,11 +30,7 @@ export default function BSSelect( {
 			>
 				{ options.map( ( { value, label }, i ) => {
 					return (
-						<option
-							value={ value }
-							key={ i }
-							style={ { textTransform: 'none' } }
-						>
+						<option value={ value } key={ i }>
 							{ label }
 						</option>
 					);

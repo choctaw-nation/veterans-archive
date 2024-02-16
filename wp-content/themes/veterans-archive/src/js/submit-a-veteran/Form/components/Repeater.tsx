@@ -34,7 +34,10 @@ export default function Repeater( {
 
 	if ( fields.length === 0 ) {
 		return (
-			<ButtonWrapper classes="my-2" innerClass="btn-outline-green">
+			<ButtonWrapper
+				classes="my-2 w-auto flex-grow-0"
+				innerClass="btn-outline-green"
+			>
 				<button
 					type="button"
 					onClick={ () =>

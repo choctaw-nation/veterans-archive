@@ -1,0 +1,10 @@
+.additional-material {
+	.icon-link {
+		color: var(--bs-dark-blue);
+		transition: var(--transition-standard);
+
+		&:hover {
+			color: var(--bs-green);
+		}
+	}
+}

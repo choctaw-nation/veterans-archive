@@ -148,7 +148,7 @@ class Additional_Material {
 	private function get_the_modal_button_args(): array {
 		$btn_args = array(
 			'attributes' => array(
-				'class'          => 'icon-link ms-2 text-dark-blue fs-5',
+				'class'          => 'icon-link ms-2 fs-5',
 				'role'           => 'button',
 				'data-bs-toggle' => 'modal',
 				'data-bs-target' => '#additional-materials-modal',

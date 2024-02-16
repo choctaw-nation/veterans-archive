@@ -55,7 +55,7 @@ if ( $veteran->additional_materials ) {
 				echo "<div class='{$div_classes}'>";
 				if ( $is_text_or_link ) {
 					$material->the_icon();
-					echo "<a class='ms-3 text-dark-blue fs-5' href='{$material->url}' target='_blank'>{$material->get_the_title()}</a>";
+					echo "<a class='ms-3 fs-5 icon-link' href='{$material->url}' target='_blank'>{$material->get_the_title()}</a>";
 				} else {
 					$material->the_modal_button();
 				}

@@ -22,7 +22,7 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 <div class="container">
 	<div class="row mt-5">
 		<div class="col">
-			<a href="/veterans" class='display-6 fs-5 text-uppercase'>Back to All Veterans</a>
+			<a href="/veterans" class='display-6 fs-5 text-uppercase'><i class="fa-sharp fa-solid fa-caret-left"></i>&nbsp;Back to All Veterans</a>
 		</div>
 	</div>
 	<article>

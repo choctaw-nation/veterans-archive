@@ -37,7 +37,7 @@ get_template_part( 'template-parts/section', 'hero' );
 	);
 	?>
 </section>
-<section class="bg-light-green my-5 py-5">
+<section class="bg-light-green mt-5 py-5">
 	<?php
 	$section_2 = get_field( 'section_2' );
 	$cols      = count( $section_2 );
@@ -67,16 +67,19 @@ get_template_part( 'template-parts/section', 'hero' );
 </section>
 <?php
 $additional_sections = get_field( 'two_col_media_content' );
-foreach ( $additional_sections as $index => $section ) {
-	echo '<section class="container my-5 py-5">';
-	get_template_part(
-		'template-parts/content',
-		'two-col',
-		array(
-			'acf'      => $section,
-			'reversed' => ( 0 === $index % 2 ),
-		)
-	);
-	echo '</section>';
+if ( $additional_sections ) {
+	foreach ( $additional_sections as $index => $section ) {
+		echo '<section class="container my-5 py-5">';
+		get_template_part(
+			'template-parts/content',
+			'two-col',
+			array(
+				'acf'      => $section,
+				'reversed' => ( 0 === $index % 2 ),
+			)
+		);
+		echo '</section>';
+	}
 }
+
 get_footer();

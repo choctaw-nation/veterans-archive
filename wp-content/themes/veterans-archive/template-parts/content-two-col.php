@@ -32,7 +32,7 @@ $buttons  = new Buttons();
 			<?php echo esc_textarea( $acf['headline'] ); ?>
 		</h2>
 		<?php
-		$direction = $reversed ? 'start' : 'end';
+		$direction = $reversed ? 'end' : 'start';
 		$divider->the_divider( $direction );
 		echo "<div class='mb-auto'>" . acf_esc_html( $acf['subheadline'] ) . '</div>';
 		?>
