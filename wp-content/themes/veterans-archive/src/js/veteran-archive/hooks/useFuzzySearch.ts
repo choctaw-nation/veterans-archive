@@ -10,6 +10,21 @@ const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
 		weight: 2,
 	},
 	{
+		name: 'datesOfService',
+		getFn: ( veteran ) => {
+			if ( veteran.vetData?.dates_of_service ) {
+				return veteran.vetData.dates_of_service
+					.map( ( date ) => {
+						const dates: string[] = [];
+						dates.push( date.service_end.toString() );
+						dates.push( date.service_start.toString() );
+						return dates;
+					} )
+					.flat();
+			} else return '';
+		},
+	},
+	{
 		name: 'rank',
 		getFn: ( veteran ) => veteran.vetData?.highest_achieved_rank,
 	},
