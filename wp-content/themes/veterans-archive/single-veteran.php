@@ -110,6 +110,9 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 						if ( $veteran->get_the_highest_achieved_rank() ) {
 							echo "<li class='{$li_classes}'><span class='{$label_classes}'>Highest Achieved Rank</span><p>{$veteran->get_the_highest_achieved_rank()}</p></li>";
 						}
+						if ( $veteran->get_the_choctaw_veteran_of_the_month() ) {
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>Choctaw Veteran of the Month</span><p>{$veteran->get_the_choctaw_veteran_of_the_month()}</p></li>";
+						}
 						?>
 					</ul>
 				</div>

@@ -312,11 +312,18 @@ class Veteran extends Veteran_Setter {
 	 * Get the Veteran's Choctaw Veteran of the Month data
 	 */
 	public function get_the_choctaw_veteran_of_the_month(): ?string {
-		if ( ! $this->choctaw_veteran_of_the_month ) {
+		if ( ! $this->choctaw_veteran_of_the_month || empty( $this->choctaw_veteran_of_the_month ) ) {
 			return '';
 		}
-
-		return "{$this->choctaw_veteran_of_the_month->year} - District {$this->choctaw_veteran_of_the_month->district}";
+		$years     = array();
+		$districts = array();
+		foreach ( $this->choctaw_veteran_of_the_month as $choctaw_veteran_of_the_month ) {
+			$years[]     = absint( $choctaw_veteran_of_the_month->year );
+			$districts[] = absint( $choctaw_veteran_of_the_month->district );
+		}
+		$years     = implode( ', ', $years );
+		$districts = implode( ', ', $districts );
+		return "Received {$years} - District {$districts}";
 	}
 
 	/**
