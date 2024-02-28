@@ -34,7 +34,7 @@ class Dates_Of_Service {
 	 * @param array $acf ACF data.
 	 */
 	public function __construct( array $acf ) {
-		$this->service_start = $acf['service_start'];
-		$this->service_end   = $acf['service_end'];
+		$this->service_start = isset( $acf['service_start'] ) ? $acf['service_start'] : null;
+		$this->service_end   = isset( $acf['service_end'] ) ? $acf['service_end'] : null;
 	}
 }
