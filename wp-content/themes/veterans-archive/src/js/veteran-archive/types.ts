@@ -31,7 +31,7 @@ export type vetData = {
 	branches_of_service: WP_Term[];
 	dates_of_service: Array< {
 		service_start: number;
-		service_end: number;
+		service_end?: number;
 	} > | null;
 	wars: WP_Term[] | null;
 	decorations: {

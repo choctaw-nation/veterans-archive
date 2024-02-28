@@ -23,7 +23,7 @@ export const VeteranPreview = memo( function VeteranPreview( {
 			value: serviceDates
 				?.map(
 					( date ) =>
-						`${ date.service_start } - ${ date.service_end }`
+						`${ date.service_start } - ${ date.service_end || '' }`
 				)
 				.join( ', ' ),
 		},
