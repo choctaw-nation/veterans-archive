@@ -298,6 +298,9 @@ class Veteran extends Veteran_Setter {
 	 * Get the Veteran's military unit(s)
 	 */
 	public function get_the_military_units(): ?string {
+		if ( ! $this->military_units ) {
+			return null;
+		}
 		return implode( ', ', $this->military_units );
 	}
 
