@@ -160,6 +160,9 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	private function get_the_veteran_icon( Veteran $veteran ): ?string {
 		if ( $veteran->branches_of_service ) {
 			$image = get_field( 'branch_icon', "military-branch_{$veteran->branches_of_service[0]->term_id}" );
+			if ( ! $image ) {
+				return null;
+			}
 			$image = wp_get_attachment_image(
 				$image['id'],
 				'thumbnail',
