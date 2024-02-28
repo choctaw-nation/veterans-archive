@@ -107,6 +107,9 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 						if ( $veteran->get_the_service_branches() ) {
 							echo "<li class='{$li_classes}'><span class='{$label_classes}'>" . ( 1 < count( $veteran->branches_of_service ) ? 'Branches of Service' : 'Branch of Service' ) . "</span><p>{$veteran->get_the_service_branches()}</p></li>";
 						}
+						if ( $veteran->get_the_military_units() ) {
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>" . ( 1 < count( $veteran->branches_of_service ) ? 'Military Units' : 'Military Unit' ) . "</span><p>{$veteran->get_the_military_units()}</p></li>";
+						}
 						if ( $veteran->get_the_highest_achieved_rank() ) {
 							echo "<li class='{$li_classes}'><span class='{$label_classes}'>Highest Achieved Rank</span><p>{$veteran->get_the_highest_achieved_rank()}</p></li>";
 						}
