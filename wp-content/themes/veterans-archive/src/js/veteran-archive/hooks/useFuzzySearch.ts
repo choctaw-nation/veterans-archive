@@ -16,7 +16,7 @@ const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
 				return veteran.vetData.dates_of_service
 					.map( ( date ) => {
 						const dates: string[] = [];
-						dates.push( date.service_end.toString() );
+						dates.push( date.service_end?.toString() );
 						dates.push( date.service_start.toString() );
 						return dates;
 					} )
