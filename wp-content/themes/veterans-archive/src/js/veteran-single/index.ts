@@ -139,7 +139,7 @@ new ( class ModalHandler {
 			slide.srcset = srcset;
 			slide.alt = alt;
 			slide.loading = 'lazy';
-			slide.classList.add( 'swiper-slide' );
+			slide.classList.add( 'swiper-slide', 'object-fit-cover' );
 			wrapper.appendChild( slide );
 		} );
 		swiperEl.appendChild( wrapper );
