@@ -165,7 +165,13 @@ class Veteran extends Veteran_Setter {
 		}
 		$dates = array();
 		foreach ( $this->dates_of_service as $date ) {
-			$dates[] = $date->service_start . ' &ndash; ' . $date->service_end;
+			if ( $date->service_start === $date->service_end ) {
+				$dates[] = $date->service_start;
+			} elseif ( $date->service_start && empty( $date->service_end ) ) {
+				$dates[] = $date->service_start;
+			} else {
+				$dates[] = $date->service_start . ' &ndash; ' . $date->service_end;
+			}
 		}
 		return implode( ', ', $dates );
 	}
