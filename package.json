@@ -1,6 +1,6 @@
 {
 	"name": "cno-veterans-archive",
-	"version": "1.9.5",
+	"version": "1.9.6",
 	"description": "Custom WP theme for CNO sites",
 	"main": "wp-content/themes/veterans-archive/src/index.js",
 	"prettier": "@wordpress/prettier-config",
@@ -18,12 +18,12 @@
 	"dependencies": {
 		"bootstrap": "^5.3.3",
 		"fuse.js": "^7.0.0",
-		"react-hook-form": "^7.50.1",
+		"react-hook-form": "^7.51.0",
 		"swiper": "^11.0.7"
 	},
 	"devDependencies": {
 		"@hookform/devtools": "^4.3.1",
-		"@wordpress/scripts": "^27.3.0",
+		"@wordpress/scripts": "^27.4.0",
 		"eslint-config-react-app": "^7.0.1",
 		"wp-types": "^3.64.0"
 	}
