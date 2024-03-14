@@ -11,3 +11,5 @@ get_template_part( 'template-parts/section', 'hero' );
 <div class="container">
 	<?php echo get_field( 'page_content' ); ?>
 </div>
+<?php
+get_footer();
