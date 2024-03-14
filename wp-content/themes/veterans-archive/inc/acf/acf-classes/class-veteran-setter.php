@@ -134,6 +134,9 @@ class Veteran_Setter extends Veteran_Data {
 	}
 
 	protected function set_the_dates_of_service( array $acf ) {
+		if ( empty( $acf ) ) {
+			$this->dates_of_service = null;
+		}
 		foreach ( $acf as $date_of_service ) {
 			$this->dates_of_service[] = new Dates_Of_Service( $date_of_service );
 		}

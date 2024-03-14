@@ -118,6 +118,8 @@ class Veteran_Factory extends Veteran_Setter {
 		$this->military_units        = $this->handle_arrays( $params['military_units'] );
 		if ( ! empty( $params['choctaw_veteran_of_the_month'] ) ) {
 			$this->set_the_choctaw_veteran_of_the_month( $params['choctaw_veteran_of_the_month'] );
+		} else {
+			$this->choctaw_veteran_of_the_month = null;
 		}
 	}
 

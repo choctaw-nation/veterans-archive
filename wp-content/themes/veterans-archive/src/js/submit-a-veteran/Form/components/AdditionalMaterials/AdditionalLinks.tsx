@@ -16,7 +16,10 @@ export default function AdditionalLinks( { formRef } ) {
 					type="button"
 					onClick={ () =>
 						append( {
-							material_type: 'link',
+							material_type: {
+								value: 'link',
+								label: 'Link',
+							},
 							description_of_material: '',
 							material_link: '',
 						} )
