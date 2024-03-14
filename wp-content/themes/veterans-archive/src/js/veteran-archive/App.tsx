@@ -18,6 +18,8 @@ if ( root ) {
 			window.cnoSiteData.vetData = response;
 			createRoot( root ).render( <App /> );
 		} );
+	} else {
+		createRoot( root ).render( <App /> );
 	}
 }
 
