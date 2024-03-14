@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import { SearchBar } from './components/SearchBar';
 import { VeteranPreview } from './components/VeteranPreview';
-import { getSearchParams } from './utilities';
+import { getSearchParams, getVeteransData } from './utilities';
 import useFuzzySearch from './hooks/useFuzzySearch';
 import BootstrapSpinner from '../submit-a-veteran/Form/ui/BootstrapSpinner';
 import { SearchFilters } from './components/SearchFilters';
@@ -12,7 +12,13 @@ import { SelectedFiltersState } from './types';
 
 const root = document.getElementById( 'search' );
 if ( root ) {
-	createRoot( root ).render( <App /> );
+	const data = window.cnoSiteData.vetData;
+	if ( ! data ) {
+		getVeteransData().then( ( response ) => {
+			window.cnoSiteData.vetData = response;
+			createRoot( root ).render( <App /> );
+		} );
+	}
 }
 
 function App() {
@@ -48,13 +54,13 @@ function App() {
 				</div>
 			</section>
 			<div className="container my-5 py-5">
-				{ isLoading && <BootstrapSpinner /> }
-				{ ( searchResults?.length === 0 || ! searchResults ) && (
+				{ isLoading ? (
+					<BootstrapSpinner />
+				) : searchResults?.length === 0 || ! searchResults ? (
 					<p>No veterans found</p>
-				) }
-				{ ! isLoading && (
+				) : (
 					<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4">
-						{ searchResults?.length > 0 &&
+						{ searchResults.length > 0 &&
 							searchResults.map( ( veteran ) => (
 								<div
 									className="col"

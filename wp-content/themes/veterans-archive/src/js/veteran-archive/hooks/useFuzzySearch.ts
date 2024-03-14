@@ -1,6 +1,5 @@
 import Fuse, { IFuseOptions } from 'fuse.js';
 import { useState, useEffect } from 'react';
-import { getVeteransData } from '../utilities';
 import { VeteranData, SelectedFiltersState } from '../types';
 
 const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
@@ -93,20 +92,14 @@ export default function useFuzzySearch(
 	searchTerm: string,
 	selectedFilters: SelectedFiltersState
 ) {
-	const [ veterans ]: VeteranData[][] = useState< VeteranData[] >( () => {
-		let vets: VeteranData[] = window.cnoSiteData.vetData.veterans;
-		if ( ! vets || 0 === vets.length ) {
-			getVeteransData()
-				.then( ( response ) => {
-					vets = response;
-				} )
-				.catch( ( err ) => console.error( err ) );
-		}
-		return vets;
-	} );
+	const [ veterans ] = useState< VeteranData[] >(
+		window.cnoSiteData.vetData.veterans
+	);
 	const [ searchResults, setSearchResults ] = useState( veterans );
 	const [ isLoading, setIsLoading ] = useState( false );
+
 	useEffect( () => {
+		if ( ! veterans || 0 === veterans?.length ) return;
 		let results: VeteranData[] = [];
 		const hasFilters = Object.values( selectedFilters ).some(
 			( val ) => val !== ''

@@ -1,11 +1,26 @@
 import apiFetch from '@wordpress/api-fetch';
 import { VeteranData } from './types';
+import { WP_Term } from 'wp-types';
 
 /**
  * Get veterans data from the Rest Endpoint
  */
-export async function getVeteransData(): Promise< VeteranData[] > {
-	const response: VeteranData[] = await apiFetch( {
+export async function getVeteransData(): Promise< {
+	searchFilters: {
+		branches: WP_Term[];
+		wars: WP_Term[];
+		decorations: WP_Term[];
+	};
+	veterans: VeteranData[];
+} > {
+	const response: {
+		searchFilters: {
+			branches: WP_Term[];
+			wars: WP_Term[];
+			decorations: WP_Term[];
+		};
+		veterans: VeteranData[];
+	} = await apiFetch( {
 		path: 'veterans-archive/v1/veterans',
 		headers: {
 			'Content-Type': 'application/json',
