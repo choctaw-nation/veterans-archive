@@ -159,8 +159,7 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			);
 		}
 
-		$x = set_transient( 'veteran_data', $data );
-		return $x;
+		set_transient( 'veteran_data', $data );
 	}
 
 	/**
