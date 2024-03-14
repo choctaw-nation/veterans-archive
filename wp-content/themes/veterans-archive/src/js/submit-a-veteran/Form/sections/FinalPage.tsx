@@ -5,7 +5,9 @@ export default function FinalPage( { data } ) {
 	if ( ! data ) {
 		return;
 	}
-	const { user_name, user_email, first_name, last_name } = data;
+	const {
+		data: { user_name, user_email, first_name, last_name },
+	} = data;
 
 	return (
 		<>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import ErrorMessage from '../components/ErrorMessage';
@@ -6,7 +6,7 @@ import AdditionalLinks from '../components/AdditionalMaterials/AdditionalLinks';
 import ContactInfo from '../components/AdditionalMaterials/ContactInfo';
 import Heading from '../ui/Heading';
 
-export default function AdditionalMaterials( { ref } ) {
+export const AdditionalMaterials = forwardRef( ( props, ref ) => {
 	const {
 		register,
 		getValues,
@@ -78,4 +78,4 @@ export default function AdditionalMaterials( { ref } ) {
 			</div>
 		</div>
 	);
-}
+} );

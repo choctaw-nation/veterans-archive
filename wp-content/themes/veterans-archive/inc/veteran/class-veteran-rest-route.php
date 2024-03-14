@@ -26,7 +26,7 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			array(
 				'methods'             => array( \WP_REST_Server::CREATABLE ),
 				'callback'            => array( $this, 'create_veteran' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'create_veteran_permissions_check' ),
 			)
 		);
 
@@ -47,7 +47,7 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	 * @param \WP_REST_Request $request The request object.
 	 */
 	public function create_veteran( $request ) {
-		$params  = $request->get_params();
+		$params  = $request->get_param( 'data' );
 		$veteran = new Veteran_Factory( $params );
 		$code    = 500;
 		$data    = array(
@@ -69,6 +69,33 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			return $veteran->id;
 		}
 		return new \WP_REST_Response( $data, $code, array( 'Content-Type' => 'application/json' ) );
+	}
+
+	/**
+	 * Check if the current user can create a veteran post based on Google reCaptcha
+	 *
+	 * @param \WP_REST_Request $request The request object.
+	 */
+	public function create_veteran_permissions_check( $request ) {
+		$has_permission = false;
+		$response       = wp_remote_post(
+			'https://www.google.com/recaptcha/api/siteverify',
+			array(
+				'body' => array(
+					'secret'   => RECAPTCHA_SECRET,
+					'response' => $request->get_param( 'recaptcha' ),
+				),
+			)
+		);
+		if ( is_wp_error( $response ) ) {
+			return $has_permission;
+		} else {
+			$response = json_decode( wp_remote_retrieve_body( $response ) );
+			if ( $response->success && $response->score > 0.5 && 'submit' === $response->action ) {
+				$has_permission = true;
+			}
+		}
+		return $has_permission;
 	}
 
 	/**
