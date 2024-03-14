@@ -70,7 +70,7 @@ class Email_Generator {
 	 * @param Veteran_Factory $veteran Veteran Data.
 	 */
 	public function __construct( Veteran_Factory $veteran ) {
-		$this->admin_email     = 'kroelke@choctawnation.com';
+		$this->admin_email     = 'judy.allen@choctawnation.com';
 		$this->veteran         = $veteran;
 		$this->veteran_data    = wp_json_encode( $this->veteran, JSON_PRETTY_PRINT );
 		$this->veteran_name    = $this->veteran->first_name . ' ' . $this->veteran->last_name;
