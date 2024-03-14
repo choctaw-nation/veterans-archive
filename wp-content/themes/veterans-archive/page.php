@@ -9,7 +9,7 @@ get_header( 'search' );
 ?>
 <main class='site-content <?php echo $post->post_name; ?>'>
 	<article class="container py-5">
-		<?php the_content(); ?>
+		<?php echo get_field( 'page_content' ); ?>
 	</article>
 </main>
 <?php
