@@ -138,14 +138,6 @@ class Theme_Init {
 	 */
 	public function enqueue_cno_scripts() {
 		$this->register_veteran_scripts();
-		$this->remove_wordpress_styles(
-			array(
-				'classic-theme-styles',
-				'wp-block-library',
-				'dashicons',
-				'global-styles',
-			)
-		);
 
 		if ( 'prod' === $_ENV['CNO_ENV'] ) {
 			$this->load_google_tag_manager();
@@ -178,7 +170,6 @@ class Theme_Init {
 			)
 		);
 		$rest           = new Veteran_Rest_Route();
-		$rest->set_veteran_data();
 		wp_localize_script(
 			'global',
 			'cnoSiteData',
@@ -194,6 +185,15 @@ class Theme_Init {
 			get_stylesheet_uri(),
 			array( 'global' ),
 			wp_get_theme()->get( 'Version' )
+		);
+
+		$this->remove_wordpress_styles(
+			array(
+				'classic-theme-styles',
+				'wp-block-library',
+				'dashicons',
+				'global-styles',
+			)
 		);
 	}
 

@@ -130,6 +130,8 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			array(
 				'post_type'      => 'veteran',
 				'posts_per_page' => -1,
+				'order'          => 'ASC',
+				'orderby'        => 'title',
 			)
 		);
 		$data  = array(
@@ -157,7 +159,8 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			);
 		}
 
-		set_transient( 'veteran_data', $data );
+		$x = set_transient( 'veteran_data', $data );
+		return $x;
 	}
 
 	/**
