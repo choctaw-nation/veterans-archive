@@ -53,6 +53,7 @@ export default function BioFields() {
 							registrationArgs: {
 								required: 'This field is required',
 							},
+							additionalClasses: 'text-dark',
 						} }
 						fields={ [
 							{
