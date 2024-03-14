@@ -6,6 +6,9 @@
  * @since 1.1.0
  */
 
+if ( ! has_post_thumbnail() ) {
+	return;
+}
 ?>
 
 <header class="hero position-relative">
