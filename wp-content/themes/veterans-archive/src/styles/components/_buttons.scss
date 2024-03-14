@@ -2,6 +2,29 @@
  * Buttons
  * Used to create the Air Force style buttons
  */
-
+@use "../abstracts/variables" as v;
+@use "bootstrap/scss/vendor/rfs" as rfs;
 @use "./buttons/clip-paths";
 @use "./buttons/hover-states";
+
+input[type="submit"].gform_button.button {
+	border-radius: var(--bs-border-radius);
+	border-color: var(--bs-dark-blue);
+	border-width: 5px;
+
+	background-color: transparent;
+	color: var(--bs-dark-blue);
+	padding: 1rem 2rem;
+
+	font-weight: 800;
+	white-space: nowrap;
+	text-transform: uppercase;
+	@include rfs.font-size(1.6rem);
+	font-family: v.$font-headings;
+	transition: all var(--transition-standard);
+
+	&:hover {
+		background-color: var(--bs-dark-blue);
+		color: var(--bs-white);
+	}
+}
