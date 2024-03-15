@@ -1,11 +1,12 @@
 {
 	"name": "cno-veterans-archive",
-	"version": "1.9.6",
+	"version": "1.9.7",
 	"description": "Custom WP theme for CNO sites",
 	"main": "wp-content/themes/veterans-archive/src/index.js",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
-		"extends @wordpress/browserslist-config"
+		"extends @wordpress/browserslist-config",
+		"IE 11"
 	],
 	"scripts": {
 		"build": "wp-scripts build",

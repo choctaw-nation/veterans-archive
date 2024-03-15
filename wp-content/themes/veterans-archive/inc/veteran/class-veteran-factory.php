@@ -15,6 +15,7 @@ use ChoctawNation\ACF\Veteran_Setter;
 
 /**
  * Veteran Factory
+ * Creates a Veteran Post Type prepares the data for ACF consumption.
  */
 class Veteran_Factory extends Veteran_Setter {
 	/**

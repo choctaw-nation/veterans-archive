@@ -8,7 +8,17 @@
 wp_enqueue_script( 'search' );
 get_header();
 ?>
-<div id="search"></div>
+<div id="search">
+	<div class="container py-5">
+		<div class="row">
+			<div class="col">
+				<div className="spinner-border text-primary" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <noscript>
 	<?php if ( ! have_posts() ) : ?>
 	<div class="container">
@@ -22,7 +32,7 @@ get_header();
 	<div class="container my-5 py-5">
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4">
 			<?php while ( have_posts() ) : ?>
-				<?php the_post(); ?>
+			<?php the_post(); ?>
 			<div class="col">
 				<?php get_template_part( 'template-parts/veterans/content', 'veteran-preview' ); ?>
 			</div>
