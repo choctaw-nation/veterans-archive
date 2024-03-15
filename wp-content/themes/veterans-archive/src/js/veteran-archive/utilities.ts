@@ -26,7 +26,6 @@ export async function getVeteransData(): Promise< {
 			'Content-Type': 'application/json',
 		},
 	} );
-	console.log( response );
 	if ( ! response ) {
 		throw new Error( 'No response' );
 	} else {
