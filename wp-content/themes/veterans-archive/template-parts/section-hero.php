@@ -12,6 +12,12 @@ if ( ! has_post_thumbnail() ) {
 ?>
 
 <header class="hero position-relative">
-	<div class="hero__bg w-100 h-100 object-fit-cover" style="background-image:url(<?php the_post_thumbnail_url( 'hero' ); ?>);">
-	</div>
+	<?php
+	the_post_thumbnail(
+		'hero',
+		array(
+			'class' => 'hero__img w-100 h-100 object-fit-cover skip-lazy',
+		)
+	);
+	?>
 </header>
