@@ -90,10 +90,11 @@ const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
 
 export default function useFuzzySearch(
 	searchTerm: string,
-	selectedFilters: SelectedFiltersState
+	selectedFilters: SelectedFiltersState,
+	vetData
 ) {
 	const [ veterans ] = useState< VeteranData[] >(
-		window.cnoSiteData.vetData.veterans
+		vetData.veterans || window.cnoSiteData.vetData.veterans
 	);
 	const [ searchResults, setSearchResults ] = useState( veterans );
 	const [ isLoading, setIsLoading ] = useState( false );

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { SearchBar } from './components/SearchBar';
@@ -12,18 +12,16 @@ import { SelectedFiltersState } from './types';
 
 const root = document.getElementById( 'search' );
 if ( root ) {
-	const data = window.cnoSiteData.vetData;
-	if ( ! data ) {
-		getVeteransData().then( ( response ) => {
-			window.cnoSiteData.vetData = response;
-			createRoot( root ).render( <App /> );
-		} );
-	} else {
-		createRoot( root ).render( <App /> );
-	}
+	createRoot( root ).render(
+		<App appLoad={ ! window.cnoSiteData?.vetData ? true : false } />
+	);
 }
 
-function App() {
+function App( { appLoad }: { appLoad: boolean } ) {
+	const [ initialLoad, setInitialLoad ] = useState( appLoad );
+	const [ vetData, setVetData ] = useState(
+		! appLoad ? window.cnoSiteData.vetData : null
+	);
 	const [ selectedFilters, setSelectedFilters ] =
 		useState< SelectedFiltersState >( {
 			branches: '',
@@ -33,16 +31,29 @@ function App() {
 	const [ searchTerm, setSearchTerm ] = useState( getSearchParams() );
 	const { searchResults, isLoading } = useFuzzySearch(
 		searchTerm,
-		selectedFilters
+		selectedFilters,
+		vetData
 	);
 	const searchInput = useRef( null );
+	console.log( appLoad, initialLoad, searchResults );
+	useEffect( () => {
+		if ( ! vetData ) {
+			setInitialLoad( true );
+			getVeteransData()
+				.then( ( response ) => {
+					setVetData( response );
+					setInitialLoad( false );
+				} )
+				.finally( () => setInitialLoad( false ) );
+		}
+	}, [ initialLoad, vetData ] );
 
 	return (
 		<>
 			<section className="bg-dark-blue py-3">
 				<div className="container">
 					<SearchBar
-						isLoading={ isLoading }
+						isLoading={ initialLoad || isLoading }
 						searchTerm={ searchTerm }
 						setSearchTerm={ setSearchTerm }
 						searchInputRef={ searchInput }
@@ -56,7 +67,7 @@ function App() {
 				</div>
 			</section>
 			<div className="container my-5 py-5">
-				{ isLoading ? (
+				{ isLoading || initialLoad ? (
 					<BootstrapSpinner />
 				) : searchResults?.length === 0 || ! searchResults ? (
 					<p>No veterans found</p>
@@ -64,10 +75,7 @@ function App() {
 					<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4">
 						{ searchResults.length > 0 &&
 							searchResults.map( ( veteran ) => (
-								<div
-									className="col"
-									key={ veteran.vetData.post_id }
-								>
+								<div className="col" key={ veteran.id }>
 									<VeteranPreview post={ veteran } />
 								</div>
 							) ) }

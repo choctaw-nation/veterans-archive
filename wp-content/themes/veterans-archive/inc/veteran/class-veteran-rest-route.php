@@ -7,7 +7,7 @@
 
 namespace ChoctawNation;
 
-use ChoctawNation\ACF\Veteran;
+use ChoctawNation\ACF\Veteran_Setter;
 use ChoctawNation\Veteran_Factory;
 
 /**
@@ -100,15 +100,13 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 
 	/**
 	 * Get veterans data
-	 *
-	 * @param \WP_REST_Request $request The request object.
 	 */
-	public function get_veterans( $request ) {
+	public function get_veterans() {
 		// Check if the current post count of 'veteran' is equal to the cached post count
 		$current_post_count = wp_count_posts( 'veteran' )->publish;
 		$cached_post_count  = get_transient( 'veteran_post_count' );
-
-		if ( ! $cached_post_count || $current_post_count !== $cached_post_count ) {
+		$cached_data        = get_transient( 'veteran_data' );
+		if ( ( ! $cached_post_count || ! $current_post_count !== $cached_post_count ) || ! $cached_data || empty( $cached_data['veterans'] ) ) {
 			// Update the post count transient
 			set_transient( 'veteran_post_count', $current_post_count );
 
@@ -149,12 +147,13 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 				'has_additional_materials' => get_field( 'has_additional_materials', $post->ID ),
 				'additional_materials'     => get_field( 'additional_materials', $post->ID ),
 			);
-			$veteran            = new Veteran( $post->ID, $acf_fields );
+			$veteran            = new Veteran_Setter( $acf_fields );
 			$data['veterans'][] = array(
+				'id'            => $post->ID,
 				'title'         => $post->post_title,
 				'permalink'     => get_permalink( $post->ID ),
 				'vetData'       => $veteran,
-				'featuredImage' => $this->get_the_veteran_thumbnail( $veteran ),
+				'featuredImage' => $this->get_the_veteran_thumbnail( $post->ID ),
 				'vetIcon'       => $this->get_the_veteran_icon( $veteran ),
 			);
 		}
@@ -165,17 +164,17 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	/**
 	 * Get the veteran thumbnail
 	 *
-	 * @param Veteran $veteran The veteran object.
+	 * @param int $post_id The veteran object.
 	 */
-	private function get_the_veteran_thumbnail( Veteran $veteran ): string {
+	private function get_the_veteran_thumbnail( int $post_id ): string {
 		$placeholder_image_id = 60;
 		$image_size           = 'large';
 		$image_args           = array(
 			'loading' => 'lazy',
 			'class'   => 'w-100 object-fit-cover',
 		);
-		return has_post_thumbnail( $veteran->post_id ) ? get_the_post_thumbnail(
-			$veteran->post_id,
+		return has_post_thumbnail( $post_id ) ? get_the_post_thumbnail(
+			$post_id,
 			$image_size,
 			$image_args,
 		) : wp_get_attachment_image( $placeholder_image_id, $image_size, false, $image_args );
@@ -184,9 +183,9 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	/**
 	 * Get the veteran branch of service icon
 	 *
-	 * @param Veteran $veteran The veteran object.
+	 * @param Veteran_Setter $veteran The veteran object.
 	 */
-	private function get_the_veteran_icon( Veteran $veteran ): ?string {
+	private function get_the_veteran_icon( Veteran_Setter $veteran ): ?string {
 		if ( $veteran->branches_of_service ) {
 			$image = get_field( 'branch_icon', "military-branch_{$veteran->branches_of_service[0]->term_id}" );
 			if ( ! $image ) {

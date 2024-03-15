@@ -16,11 +16,16 @@ use ChoctawNation\ACF\Veteran_Data_Types\Dates_Of_Service;
 use ChoctawNation\ACF\Veteran_Data_Types\Decorations;
 use ChoctawNation\ACF\Veteran_Data_Types\Home_Area;
 
+
 /**
  * Creates WP-like API to generate markup
  */
 class Veteran_Setter extends Veteran_Data {
 	protected bool $needs_additional_materials_modal;
+
+	public function __construct( array $acf ) {
+		$this->init_props( $acf );
+	}
 
 	// phpcs:ignore
 	protected function init_props( array $acf ) {
@@ -171,5 +176,37 @@ class Veteran_Setter extends Veteran_Data {
 			}
 		}
 		return false;
+	}
+
+	public function __serialize() {
+		return array(
+			'gender'                       => $this->gender,
+			'maiden_name'                  => $this->maiden_name,
+			'suffix'                       => $this->suffix,
+			'middle_name'                  => $this->middle_name,
+			'nickname'                     => $this->nickname,
+			'home_areas'                   => $this->home_areas,
+			'birth'                        => $this->birth,
+			'death'                        => $this->death,
+			'branches_of_service'          => $this->branches_of_service,
+			'dates_of_service'             => $this->dates_of_service,
+			'wars'                         => $this->wars,
+			'decorations'                  => $this->decorations,
+			'overseas_duty'                => $this->overseas_duty,
+			'stateside_assignments'        => $this->stateside_assignments,
+			'jobs'                         => $this->jobs,
+			'advanced_training'            => $this->advanced_training,
+			'highest_achieved_rank'        => $this->highest_achieved_rank,
+			'military_units'               => $this->military_units,
+			'choctaw_veteran_of_the_month' => $this->choctaw_veteran_of_the_month,
+			'has_additional_materials'     => $this->has_additional_materials,
+			'additional_materials'         => $this->has_additional_materials ? $this->additional_materials : null,
+		);
+	}
+
+	public function __unserialize( $serialized_data ) {
+		foreach ( $serialized_data as $key => $value ) {
+			$this->$key = $value;
+		}
 	}
 }
