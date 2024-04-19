@@ -18,7 +18,7 @@ $footer_col_classes = 'col-auto flex-grow-1 py-5 col-sm-6 d-flex flex-column jus
 		</div>
 		<div class="col-2 footer-split d-none d-lg-block"></div>
 		<div class="<?php echo $footer_col_classes; ?> pe-5 bg-primary text-sm-end align-items-sm-end">
-			<div class="social-icons me-5">
+			<div class="social-icons me-5 d-none">
 				<?php
 				$socials = array(
 					array(
