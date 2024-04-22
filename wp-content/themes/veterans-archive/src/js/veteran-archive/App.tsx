@@ -35,7 +35,7 @@ function App( { appLoad }: { appLoad: boolean } ) {
 		vetData
 	);
 	const searchInput = useRef( null );
-	console.log( appLoad, initialLoad, searchResults );
+
 	useEffect( () => {
 		if ( ! vetData ) {
 			setInitialLoad( true );
