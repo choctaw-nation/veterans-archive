@@ -28,7 +28,22 @@ export function SearchBar( {
 						id="search"
 						name="s"
 						value={ searchTerm }
-						onChange={ ( e ) => setSearchTerm( e.target.value ) }
+						onChange={ ( e ) => {
+							setSearchTerm( e.target.value );
+
+							// Update the URL with the search term
+							const searchParams = new URLSearchParams(
+								window.location.search
+							);
+							searchParams.set( 's', e.target.value );
+							window.history.pushState(
+								{},
+								'',
+								`${
+									window.location.pathname
+								}?${ searchParams.toString() }`
+							);
+						} }
 						placeholder="Try searching by name, rank, hometown, or more"
 					/>
 				</div>
