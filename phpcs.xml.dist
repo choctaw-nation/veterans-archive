@@ -37,7 +37,6 @@
 		<exclude name="WordPress.PHP.DontExtract.extract_extract" />
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals" />
 		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
-		<exclude name="Generic.Files.EndFileNewline.NotFound" />
 	</rule>
 
 	<!-- Let's also check that everything is properly documented. -->
