@@ -119,7 +119,7 @@ class Email_Generator {
 
 		$message = wp_mail( $this->admin_email, $subject, $body, $headers );
 		if ( ! $message ) {
-			throw new WP_Error( 'email_failed', "Failed to send email to {$this->submitter_name}.", $this->veteran_data );
+			throw new WP_Error( 'email_failed', "Failed to send email to {$this->submitter_name}.", $this->veteran_data ); // phpcs:ignore
 		}
 	}
 
@@ -140,7 +140,7 @@ class Email_Generator {
 
 		$message = wp_mail( $to, $subject, $body, $headers );
 		if ( ! $message ) {
-			throw new \WP_Error( 'email_failed', 'Failed to send admin notice email.', $this->veteran_data );
+			throw new \WP_Error( 'email_failed', 'Failed to send admin notice email.', $this->veteran_data ); // phpcs:ignore
 		}
 	}
 }

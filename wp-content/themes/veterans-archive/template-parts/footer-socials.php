@@ -5,7 +5,6 @@
  * @package ChoctawNation
  */
 
-
 $socials = array(
 	array(
 		'icon_class' => 'fa-brands fa-x-twitter',

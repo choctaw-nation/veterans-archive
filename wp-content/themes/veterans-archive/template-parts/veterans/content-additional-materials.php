@@ -48,7 +48,7 @@ if ( $veteran->additional_materials ) {
 		<div class="col">
 			<h3 class="d-block p-3 display-6 text-bg-dark-blue text-uppercase text-white"><?php echo $material_type; ?></h3>
 			<?php foreach ( $materials as $material ) : ?>
-			<?php
+				<?php
 				$material_type   = $material->type['value'];
 				$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
 				$div_classes     = 'd-flex align-items-center text-green p-3';

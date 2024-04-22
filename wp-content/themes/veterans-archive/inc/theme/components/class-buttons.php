@@ -15,7 +15,19 @@ namespace ChoctawNation\Components;
  * Button Generator
  */
 class Buttons {
+	/**
+	 * The Button's Args
+	 *
+	 * @see https://github.com/choctaw-nation/veterans-archive/wiki#button-args
+	 * @var array $args
+	 */
 	private array $args;
+
+	/**
+	 * The Button's Container Class
+	 *
+	 * @var string|string[] $container_class
+	 */
 	private string|array $container_class;
 
 	/**

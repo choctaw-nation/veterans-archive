@@ -13,27 +13,57 @@ namespace ChoctawNation\ACF;
  * Creates WP-like API to generate markup
  */
 class Veteran extends Veteran_Setter {
+	/**
+	 * The post ID
+	 *
+	 * @var int
+	 */
 	public int $post_id;
 
+	/**
+	 * The constructor
+	 *
+	 * @param int   $post_id The post ID
+	 * @param array $acf_fields The ACF fields
+	 */
 	public function __construct( $post_id, $acf_fields ) {
 		$this->post_id = $post_id;
 		$this->init_props( $acf_fields );
 	}
 
-
-	public function get_the_gender() {
+	/**
+	 * Returns the gender
+	 *
+	 * @return string
+	 */
+	public function get_the_gender(): string {
 		return $this->gender;
 	}
 
-	public function the_gender() {
+	/**
+	 * Echoes the gender
+	 *
+	 * @return void
+	 */
+	public function the_gender(): void {
 		echo $this->get_the_gender();
 	}
 
-	public function get_the_maiden_name() {
+	/**
+	 * Returns the Veteran's maiden name
+	 *
+	 * @return ?string
+	 */
+	public function get_the_maiden_name(): ?string {
 		return $this->maiden_name;
 	}
 
-	public function the_maiden_name() {
+	/**
+	 * Echoes the Veteran's maiden name
+	 *
+	 * @return void
+	 */
+	public function the_maiden_name(): void {
 		echo $this->get_the_maiden_name();
 	}
 
@@ -77,15 +107,19 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Get the Veteran's birth date (year only)
+	 *
+	 * @return ?int
 	 */
 	public function get_the_birth_date(): ?int {
-		return $this->birth ?: null;
+		return $this->birth ?: null; //phpcs:ignore
 	}
 
 	/**
 	 * Echoes the Veteran's birth date (year only)
+	 *
+	 * @return void
 	 */
-	public function the_birth_date() {
+	public function the_birth_date(): void {
 		echo $this->get_the_birth_date();
 	}
 
@@ -93,18 +127,22 @@ class Veteran extends Veteran_Setter {
 	 * Get the Veteran's death date (year only)
 	 */
 	public function get_the_death_date(): ?int {
-			return $this->death ?: null;
+			return $this->death ?: null; // phpcs:ignore
 	}
 
 	/**
 	 * Echoes the Veteran's death date (year only)
+	 *
+	 * @return void
 	 */
-	public function the_death_date() {
+	public function the_death_date(): void {
 		echo $this->get_the_death_date();
 	}
 
 	/**
 	 * Get the Veteran's home town(s)
+	 *
+	 * @return ?string
 	 */
 	public function get_the_hometown(): ?string {
 		if ( ! $this->home_areas ) {
@@ -128,13 +166,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's home town(s)
+	 *
+	 * @return void
 	 */
-	public function the_hometown() {
+	public function the_hometown(): void {
 		echo $this->get_the_hometown();
 	}
 
 	/**
 	 * Returns the Veteran's military branch(es) as a string, e.g. "<b>Branches of Service:</b> Army, Navy, Air Force"
+	 *
+	 * @return ?string
 	 */
 	public function get_the_service_branches(): ?string {
 		if ( ! $this->branches_of_service ) {
@@ -151,8 +193,10 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's military branch(es) as a string, e.g. "<b>Branches of Service:</b> Army, Navy, Air Force"
+	 *
+	 * @return void
 	 */
-	public function the_service_branches() {
+	public function the_service_branches(): void {
 		echo $this->get_the_service_branches();
 	}
 
@@ -178,13 +222,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's dates of service
+	 *
+	 * @return void
 	 */
-	public function the_service_dates() {
+	public function the_service_dates(): void {
 		echo $this->get_the_service_dates();
 	}
 
 	/**
 	 * Get the Veteran's wars
+	 *
+	 * @return ?string
 	 */
 	public function get_the_wars(): ?string {
 		$wars = array();
@@ -199,13 +247,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's wars as a string
+	 *
+	 * @return void
 	 */
-	public function the_wars() {
+	public function the_wars(): void {
 		echo $this->get_the_wars();
 	}
 
 	/**
 	 * Get the Veteran's decorations
+	 *
+	 * @return ?array
 	 */
 	public function get_the_decorations(): ?array {
 		if ( ! $this->decorations ) {
@@ -225,13 +277,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's decorations
+	 *
+	 * @return void
 	 */
-	public function the_decorations() {
+	public function the_decorations(): void {
 		echo $this->get_the_decorations();
 	}
 
 	/**
 	 * Get the Veteran's overseas duty
+	 *
+	 * @return ?string
 	 */
 	public function get_the_overseas_duty(): ?string {
 		return join( ', ', $this->overseas_duty );
@@ -239,13 +295,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's overseas duty
+	 *
+	 * @return void
 	 */
-	public function the_overseas_duty() {
+	public function the_overseas_duty(): void {
 		echo $this->get_the_overseas_duty();
 	}
 
 	/**
 	 * Get the Veteran's stateside assignments
+	 *
+	 * @return ?string
 	 */
 	public function get_the_stateside_assignments(): ?string {
 		return join( ', ', $this->stateside_assignments );
@@ -253,13 +313,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's stateside assignments
+	 *
+	 * @return void
 	 */
-	public function the_stateside_assignments() {
+	public function the_stateside_assignments(): void {
 		echo $this->get_the_stateside_assignments();
 	}
 
 	/**
 	 * Get the Veteran's jobs
+	 *
+	 * @return ?string
 	 */
 	public function get_the_jobs(): ?string {
 		return join( ', ', $this->jobs );
@@ -267,13 +331,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's jobs
+	 *
+	 * @return void
 	 */
-	public function the_jobs() {
+	public function the_jobs(): void {
 		echo $this->get_the_jobs();
 	}
 
 	/**
 	 * Get the Veteran's advanced training
+	 *
+	 * @return ?string
 	 */
 	public function get_the_advanced_training(): ?string {
 		return join( ', ', $this->advanced_training );
@@ -281,13 +349,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's advanced training
+	 *
+	 * @return void
 	 */
-	public function the_advanced_training() {
+	public function the_advanced_training(): void {
 		echo $this->get_the_advanced_training();
 	}
 
 	/**
 	 * Get the Veteran's highest achieved rank
+	 *
+	 * @return ?string
 	 */
 	public function get_the_highest_achieved_rank(): ?string {
 		return $this->highest_achieved_rank;
@@ -295,13 +367,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's highest achieved rank
+	 *
+	 * @return void
 	 */
-	public function the_highest_achieved_rank() {
+	public function the_highest_achieved_rank(): void {
 		echo $this->get_the_highest_achieved_rank();
 	}
 
 	/**
 	 * Get the Veteran's military unit(s)
+	 *
+	 * @return ?string
 	 */
 	public function get_the_military_units(): ?string {
 		if ( ! $this->military_units ) {
@@ -312,13 +388,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's military unit(s)
+	 *
+	 * @return void
 	 */
-	public function the_military_units() {
+	public function the_military_units(): void {
 		echo $this->get_the_military_units();
 	}
 
 	/**
 	 * Get the Veteran's Choctaw Veteran of the Month data
+	 *
+	 * @return ?string
 	 */
 	public function get_the_choctaw_veteran_of_the_month(): ?string {
 		if ( ! $this->choctaw_veteran_of_the_month || empty( $this->choctaw_veteran_of_the_month ) ) {
@@ -337,13 +417,17 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's Choctaw Veteran of the Month data
+	 *
+	 * @return void
 	 */
-	public function the_choctaw_veteran_of_the_month() {
+	public function the_choctaw_veteran_of_the_month(): void {
 		echo $this->get_the_choctaw_veteran_of_the_month();
 	}
 
 	/**
 	 * Get the Veteran's additional materials
+	 *
+	 * @return ?string
 	 */
 	public function get_the_additional_materials(): ?string {
 		if ( ! $this->has_additional_materials ) {
@@ -371,8 +455,10 @@ class Veteran extends Veteran_Setter {
 
 	/**
 	 * Echoes the Veteran's additional materials
+	 *
+	 * @return void
 	 */
-	public function the_additional_materials() {
+	public function the_additional_materials(): void {
 		echo $this->get_the_additional_materials();
 	}
 
@@ -388,6 +474,11 @@ class Veteran extends Veteran_Setter {
 			|| ! empty( $this->jobs );
 	}
 
+	/**
+	 * Whether the veteran has content to display inside of 'additional materials'
+	 *
+	 * @return bool
+	 */
 	public function needs_additional_materials_modal(): bool {
 		return $this->needs_additional_materials_modal;
 	}

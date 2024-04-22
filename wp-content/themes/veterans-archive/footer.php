@@ -18,7 +18,6 @@ $footer_col_classes = 'col-auto flex-grow-1 py-5 col-sm-6 d-flex flex-column jus
 		</div>
 		<div class="col-2 footer-split d-none d-lg-block"></div>
 		<div class="<?php echo $footer_col_classes; ?> pe-5 bg-primary text-sm-end align-items-sm-end">
-			<?php // get_template_part( 'template-parts/footer', 'socials' ); ?>
 			<div id="copyright" class="mt-3 me-5 w-75 text-dark">
 				<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . '&nbsp;Choctaw Nation of Oklahoma. All Rights Reserved.'; ?>
 			</div>

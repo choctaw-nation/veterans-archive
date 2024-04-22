@@ -6,20 +6,6 @@
  * @package ChoctawNation
  */
 
-use ChoctawNation\ACF\Veteran_Data_Types\Additional_Material;
-
-function cno_get_material_label( string $type ): string {
-	$labels = array(
-		'link'          => 'Link',
-		'text'          => 'Text',
-		'photo-gallery' => 'Photo Gallery',
-		'video'         => 'Video',
-	);
-
-	return $labels[ $type ];
-}
-
-
 /**
  * Enqueues the page style.
  *

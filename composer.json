@@ -18,6 +18,10 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
+	"scripts": {
+		"phpcs": "phpcs wp-content/themes/veterans-archive/*.php wp-content/themes/veterans-archive/**/*.php wp-content/themes/veterans-archive/**/**/*.php wp-content/themes/veterans-archive/**/**/**/*.php",
+		"phpcbf": "phpcbf wp-content/themes/veterans-archive/*.php wp-content/themes/veterans-archive/**/*.php wp-content/themes/veterans-archive/**/**/*.php wp-content/themes/veterans-archive/**/**/**/*.php "
+	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "*"
 	}

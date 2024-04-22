@@ -175,7 +175,7 @@ class Theme_Init {
 			'cnoSiteData',
 			array(
 				'rootUrl' => home_url(),
-				'vetData' => get_transient( 'veteran_data' ) ?: $rest->get_veterans(),
+				'vetData' => get_transient( 'veteran_data' ) ?: $rest->get_veterans(), // phpcs:ignore
 			)
 		);
 

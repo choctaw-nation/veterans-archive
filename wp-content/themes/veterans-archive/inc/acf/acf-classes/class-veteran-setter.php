@@ -21,8 +21,18 @@ use ChoctawNation\ACF\Veteran_Data_Types\Home_Area;
  * Creates WP-like API to generate markup
  */
 class Veteran_Setter extends Veteran_Data {
+	/**
+	 * Whether the veteran needs the additional materials modal
+	 *
+	 * @var bool
+	 */
 	protected bool $needs_additional_materials_modal;
 
+	/**
+	 * The Constructor
+	 *
+	 * @param array $acf the ACF data
+	 */
 	public function __construct( array $acf ) {
 		$this->init_props( $acf );
 	}
@@ -41,6 +51,12 @@ class Veteran_Setter extends Veteran_Data {
 		}
 	}
 
+	/**
+	 * Validate the ACF fields. Returns "False" if not a field.
+	 *
+	 * @param array $acf the ACF field
+	 * @return bool
+	 */
 	private function validate_acf( array $acf ): bool {
 		foreach ( $acf as $field ) {
 			if ( ! $field ) {
@@ -51,7 +67,11 @@ class Veteran_Setter extends Veteran_Data {
 		}
 	}
 
-	// phpcs:ignore
+	/**
+	 * Set the bio properties
+	 *
+	 * @param array $acf the ACF field
+	 */
 	protected function set_the_bio( array $acf ) {
 		$this->gender      = $acf['gender'];
 		$this->maiden_name = ( 'Female' === $this->gender ) ? esc_textarea( $acf['maiden_name'] ) : null;
@@ -64,10 +84,15 @@ class Veteran_Setter extends Veteran_Data {
 		} else {
 			$this->home_areas = null;
 		}
-		$this->birth = $acf['year_of_birth'] ?: null;
-		$this->death = $acf['year_of_death'] ?: null;
+		$this->birth = $acf['year_of_birth'] ?: null; // phpcs:ignore
+		$this->death = $acf['year_of_death'] ?: null; // phpcs:ignore
 	}
 
+	/**
+	 * Set the name suffix
+	 *
+	 * @param array $acf the ACF field
+	 */
 	private function set_the_name_suffix( array $acf ) {
 		if ( ! empty( $acf['name_suffix'] ) && empty( $acf['name_suffixOther'] ) ) {
 			$this->suffix = esc_textarea( $acf['name_suffix'] );
@@ -77,7 +102,11 @@ class Veteran_Setter extends Veteran_Data {
 			$this->suffix = null;
 		}
 	}
-
+	/**
+	 * Set the home areas property to an array of Home Area objects
+	 *
+	 * @param array $acf the ACF field
+	 */
 	private function set_the_home_areas( array $acf ) {
 		$is_empty = count(
 			array_filter(
@@ -98,9 +127,13 @@ class Veteran_Setter extends Veteran_Data {
 		}
 	}
 
-	// phpcs:ignore
-	protected function set_the_service_information(array $acf) {
-		$this->branches_of_service = $acf['military_branch'] ?: null;
+	/**
+	 * Set the service information properties
+	 *
+	 * @param array $acf the ACF field
+	 */
+	protected function set_the_service_information( array $acf ) {
+		$this->branches_of_service = $acf['military_branch'] ?: null; // phpcs:ignore
 
 		if ( $acf['dates_of_service'] ) {
 			$this->set_the_dates_of_service( $acf['dates_of_service'] );
@@ -108,7 +141,7 @@ class Veteran_Setter extends Veteran_Data {
 			$this->dates_of_service = null;
 		}
 
-		$this->wars = $acf['war'] ?: null;
+		$this->wars = $acf['war'] ?: null; // phpcs:ignore
 
 		$decorations = new Decorations( $acf['decorations'] );
 		if ( $decorations->have_decorations() ) {
@@ -138,6 +171,11 @@ class Veteran_Setter extends Veteran_Data {
 		}
 	}
 
+	/**
+	 * Set the dates of service property to an array of Dates Of Service objects
+	 *
+	 * @param array $acf the ACF field
+	 */
 	protected function set_the_dates_of_service( array $acf ) {
 		if ( empty( $acf ) ) {
 			$this->dates_of_service = null;
@@ -161,14 +199,23 @@ class Veteran_Setter extends Veteran_Data {
 		return $flattened;
 	}
 
-	// phpcs:ignore
-	protected function set_the_additional_materials(array $acf) {
+	/**
+	 * Set the additional materials property to an array of Additional Material objects
+	 *
+	 * @param array $acf the ACF field
+	 */
+	protected function set_the_additional_materials( array $acf ) {
 		foreach ( $acf as  $additional_materials ) {
 			$this->additional_materials[] = new Additional_Material( $additional_materials['additional_material'] );
 		}
 		$this->needs_additional_materials_modal = $this->needs_additional_materials_modal();
 	}
 
+	/**
+	 * Check if the veteran needs the additional materials modal
+	 *
+	 * @return bool
+	 */
 	private function needs_additional_materials_modal(): bool {
 		foreach ( $this->additional_materials as $additional_material ) {
 			if ( 'link' !== $additional_material->type['value'] && 'text' !== $additional_material->type['value'] ) {
@@ -178,6 +225,11 @@ class Veteran_Setter extends Veteran_Data {
 		return false;
 	}
 
+	/**
+	 * Serialize the object
+	 *
+	 * @return array
+	 */
 	public function __serialize() {
 		return array(
 			'gender'                       => $this->gender,
@@ -204,6 +256,11 @@ class Veteran_Setter extends Veteran_Data {
 		);
 	}
 
+	/**
+	 * Unserialize the object
+	 *
+	 * @param array $serialized_data the serialized data
+	 */
 	public function __unserialize( $serialized_data ) {
 		foreach ( $serialized_data as $key => $value ) {
 			$this->$key = $value;

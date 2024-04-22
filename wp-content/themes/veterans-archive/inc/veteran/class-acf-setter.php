@@ -139,7 +139,7 @@ class ACF_Setter {
 				},
 				$data->dates_of_service
 			) : null,
-			'field_65a0670a2e315' => ($data->decorations && $data->decorations->additional_decorations) ? array(
+			'field_65a0670a2e315' => ( $data->decorations && $data->decorations->additional_decorations ) ? array(
 				'field_65a151ca3506e' => array_map(
 					function ( $data ) {
 						return array(

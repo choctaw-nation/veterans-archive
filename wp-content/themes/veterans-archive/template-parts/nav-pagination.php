@@ -1,3 +1,12 @@
+<?php
+/**
+ * Nav: Pagination
+ *
+ * @package ChoctawNation
+ * TODO: Deprecate?
+ */
+
+?>
 <nav aria-label="Search Results Pagination">
 	<ul class="pagination justify-content-center">
 		<?php
