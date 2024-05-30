@@ -29,8 +29,8 @@ export type vetData = {
 	birth: number | null;
 	death: number | null;
 	branches_of_service: WP_Term[];
-	dates_of_service: Array< {
-		service_start: number;
+	dates_of_service?: Array< {
+		service_start?: number;
 		service_end?: number;
 	} > | null;
 	wars: WP_Term[] | null;
