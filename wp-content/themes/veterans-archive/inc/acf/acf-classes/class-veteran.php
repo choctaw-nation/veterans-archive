@@ -55,6 +55,9 @@ class Veteran extends Veteran_Setter {
 	 * @return ?string
 	 */
 	public function get_the_maiden_name(): ?string {
+		if ( ! $this->maiden_name ) {
+			return null;
+		}
 		return trim( $this->maiden_name );
 	}
 
