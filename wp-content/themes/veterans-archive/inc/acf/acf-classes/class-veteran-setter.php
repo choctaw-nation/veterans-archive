@@ -46,8 +46,12 @@ class Veteran_Setter extends Veteran_Data {
 		$this->set_the_bio( $acf['bio'] );
 		$this->set_the_service_information( $acf['service_information'] );
 		$this->has_additional_materials = $acf['has_additional_materials'];
-		if ( $this->has_additional_materials ) {
+		if ( $this->has_additional_materials && is_array( $acf['additional_materials'] ) ) {
 			$this->set_the_additional_materials( $acf['additional_materials'] );
+		} else {
+			$this->additional_materials             = null;
+			$this->needs_additional_materials_modal = false;
+			$this->has_additional_materials         = false;
 		}
 	}
 
@@ -74,11 +78,10 @@ class Veteran_Setter extends Veteran_Data {
 	 */
 	protected function set_the_bio( array $acf ) {
 		$this->gender      = $acf['gender'];
-		$this->maiden_name = ( 'Female' === $this->gender ) ? esc_textarea( $acf['maiden_name'] ) : null;
+		$this->maiden_name = ( 'Female' === $this->gender ) ? trim( esc_textarea( $acf['maiden_name'] ) ) : null;
 		$this->set_the_name_suffix( $acf );
-
-		$this->middle_name = empty( $acf['middle_name'] ) ? null : esc_textarea( $acf['middle_name'] );
-		$this->nickname    = empty( $acf['nickname'] ) ? null : esc_textarea( $acf['nickname'] );
+		$this->middle_name = empty( $acf['middle_name'] ) ? null : trim( esc_textarea( $acf['middle_name'] ) );
+		$this->nickname    = empty( $acf['nickname'] ) ? null : trim( esc_textarea( $acf['nickname'] ) );
 		if ( $acf['home_areas'] ) {
 			$this->set_the_home_areas( $acf['home_areas'] );
 		} else {
@@ -95,9 +98,9 @@ class Veteran_Setter extends Veteran_Data {
 	 */
 	private function set_the_name_suffix( array $acf ) {
 		if ( ! empty( $acf['name_suffix'] ) && empty( $acf['name_suffixOther'] ) ) {
-			$this->suffix = esc_textarea( $acf['name_suffix'] );
+			$this->suffix = trim( esc_textarea( $acf['name_suffix'] ) );
 		} elseif ( ! empty( $acf['name_suffixOther'] ) ) {
-			$this->suffix = esc_textarea( $acf['name_suffixOther'] );
+			$this->suffix = trim( esc_textarea( $acf['name_suffixOther'] ) );
 		} else {
 			$this->suffix = null;
 		}
@@ -157,7 +160,7 @@ class Veteran_Setter extends Veteran_Data {
 		$this->jobs = $acf['jobs'] ? $this->flatten_acf_repeater( $acf['jobs'], 'job' ) : null;
 
 		$this->advanced_training     = $acf['advanced_training'] ? $this->flatten_acf_repeater( $acf['advanced_training'], 'advanced_training_description' ) : null;
-		$this->highest_achieved_rank = $acf['highest_rank_achieved'] ? esc_textarea( $acf['highest_rank_achieved'] ) : null;
+		$this->highest_achieved_rank = $acf['highest_rank_achieved'] ? trim( esc_textarea( $acf['highest_rank_achieved'] ) ) : null;
 
 		$this->military_units = $acf['military_units'] ? $this->flatten_acf_repeater( $acf['military_units'], 'military_unit' ) : null;
 
@@ -194,7 +197,7 @@ class Veteran_Setter extends Veteran_Data {
 	private function flatten_acf_repeater( array $acf_repeater, string $key ): array {
 		$flattened = array();
 		foreach ( $acf_repeater as $acf ) {
-			$flattened[] = $acf[ $key ];
+			$flattened[] = trim( $acf[ $key ] );
 		}
 		return $flattened;
 	}

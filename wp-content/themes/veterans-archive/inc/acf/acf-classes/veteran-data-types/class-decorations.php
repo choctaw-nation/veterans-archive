@@ -58,9 +58,9 @@ class Decorations {
 		$this->decorations = $acf['decorations'];
 		foreach ( $acf['additional_decorations'] as $decoration ) {
 			if ( isset( $decoration['name'] ) ) {
-				$this->additional_decorations[] = esc_textarea( $decoration['name'] );
+				$this->additional_decorations[] = trim( esc_textarea( $decoration['name'] ) );
 			} else {
-				$this->additional_decorations[] = esc_textarea( $decoration );
+				$this->additional_decorations[] = trim( esc_textarea( $decoration ) );
 
 			}
 		}

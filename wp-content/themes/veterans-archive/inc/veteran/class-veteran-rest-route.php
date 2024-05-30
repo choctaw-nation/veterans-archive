@@ -9,6 +9,7 @@ namespace ChoctawNation;
 
 use ChoctawNation\ACF\Veteran_Setter;
 use ChoctawNation\Veteran_Factory;
+use WP_Error;
 
 /**
  * Veteran Rest API Route Handler
@@ -75,8 +76,9 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	 * Check if the current user can create a veteran post based on Google reCaptcha
 	 *
 	 * @param \WP_REST_Request $request The request object.
+	 * @return bool|WP_Error Returns true if the user has permission, or false | WP_Error object if the user does not have permission.
 	 */
-	public function create_veteran_permissions_check( $request ) {
+	public function create_veteran_permissions_check( $request ): bool|WP_Error {
 		$has_permission = false;
 		$response       = wp_remote_post(
 			'https://www.google.com/recaptcha/api/siteverify',
@@ -91,8 +93,12 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			return $has_permission;
 		} else {
 			$response = json_decode( wp_remote_retrieve_body( $response ) );
-			if ( $response->success && $response->score > 0.5 && 'submit' === $response->action ) {
-				$has_permission = true;
+			if ( $response->success && 'submit' === $response->action ) {
+				if ( $response->score > 0.5 ) {
+					$has_permission = true;
+				} else {
+					return new WP_Error( 'recaptcha_error', 'Your reCAPTCHA score is too low, so Google thinks you aren\'t a human.', array( 'status' => 403 ) );
+				}
 			}
 		}
 		return $has_permission;
