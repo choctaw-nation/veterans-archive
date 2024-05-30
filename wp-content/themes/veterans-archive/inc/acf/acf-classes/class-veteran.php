@@ -55,7 +55,7 @@ class Veteran extends Veteran_Setter {
 	 * @return ?string
 	 */
 	public function get_the_maiden_name(): ?string {
-		return $this->maiden_name;
+		return trim( $this->maiden_name );
 	}
 
 	/**
@@ -152,10 +152,10 @@ class Veteran extends Veteran_Setter {
 			foreach ( $this->home_areas as $home_area ) {
 				$location = array();
 				if ( $home_area->city ) {
-					$location[] = $home_area->city;
+					$location[] = trim( $home_area->city );
 				}
 				if ( $home_area->county ) {
-					$location[] = $home_area->county;
+					$location[] = trim( $home_area->county );
 				}
 				$location[] = $home_area->state;
 				$home[]     = join( ', ', $location );

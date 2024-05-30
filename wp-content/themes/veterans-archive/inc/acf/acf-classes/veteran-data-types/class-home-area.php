@@ -39,8 +39,8 @@ class Home_Area {
 	 * @param array $acf ACF array.
 	 */
 	public function __construct( array $acf ) {
-		$this->city   = ! empty( $acf['city'] ) ? esc_textarea( $acf['city'] ) : null;
-		$this->county = ! empty( $acf['county'] ) ? esc_textarea( $acf['county'] ) : null;
+		$this->city   = ! empty( $acf['city'] ) ? trim( esc_textarea( $acf['city'] ) ) : null;
+		$this->county = ! empty( $acf['county'] ) ? trim( esc_textarea( $acf['county'] ) ) : null;
 		$this->state  = $acf['state'];
 	}
 }
