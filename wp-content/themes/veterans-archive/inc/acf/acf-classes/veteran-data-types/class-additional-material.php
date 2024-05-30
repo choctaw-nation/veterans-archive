@@ -55,7 +55,7 @@ class Additional_Material {
 	 * @param array $acf ACF data
 	 */
 	public function __construct( array $acf ) {
-		$this->description = esc_textarea( $acf['description_of_material'] );
+		$this->description = trim( esc_textarea( $acf['description_of_material'] ) );
 		$this->type        = $acf['material_type'];
 		$this->set_the_url( $acf );
 		if ( ! empty( $acf['photo_gallery'] ) ) {
