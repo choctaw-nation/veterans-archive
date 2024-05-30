@@ -1,5 +1,5 @@
 {
-	"name": "choctaw-nation/template-theme",
+	"name": "choctaw-nation/veterans-archive",
 	"description": "a template theme to fork",
 	"type": "library",
 	"repositories": [
@@ -19,8 +19,8 @@
 		}
 	},
 	"scripts": {
-		"phpcs": "phpcs wp-content/themes/veterans-archive/*.php wp-content/themes/veterans-archive/**/*.php wp-content/themes/veterans-archive/**/**/*.php wp-content/themes/veterans-archive/**/**/**/*.php",
-		"phpcbf": "phpcbf wp-content/themes/veterans-archive/*.php wp-content/themes/veterans-archive/**/*.php wp-content/themes/veterans-archive/**/**/*.php wp-content/themes/veterans-archive/**/**/**/*.php "
+		"phpcs": "phpcs --ignore=wp-content/themes/veterans-archive/dist/ --extensions=php wp-content/themes/veterans-archive/",
+		"phpcbf": "phpcs --ignore=wp-content/themes/veterans-archive/dist/ --extensions=php wp-content/themes/veterans-archive/"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "*"
