@@ -49,6 +49,11 @@ class Decorations {
 		}
 	}
 
+	/**
+	 * Initialize properties.
+	 *
+	 * @param array $acf ACF data.
+	 */
 	private function init_props( array $acf ) {
 		$this->decorations = $acf['decorations'];
 		foreach ( $acf['additional_decorations'] as $decoration ) {
@@ -61,6 +66,11 @@ class Decorations {
 		}
 	}
 
+	/**
+	 * Check if decorations exist.
+	 *
+	 * @return bool
+	 */
 	public function have_decorations(): bool {
 		return $this->decorations_exist;
 	}
