@@ -76,6 +76,7 @@ class Veteran_Factory extends Veteran_Setter {
 			return;
 		}
 		if ( $id ) {
+			$this->store_contact_info( $id );
 			$acf_setter = new ACF_Setter( $id );
 			$acf_setter->set_the_fields( $this );
 			if ( $acf_setter->has_errors() ) {
@@ -250,11 +251,11 @@ class Veteran_Factory extends Veteran_Setter {
 	/**
 	 * Sets the contact info
 	 *
-	 * @param array $acf the $_POST data
+	 * @param array $params the $_POST data
 	 */
-	private function set_contact_info( array $acf ) {
-		$this->user_name  = esc_textarea( $acf['name'] );
-		$this->user_email = sanitize_email( $acf['email'] );
+	private function set_contact_info( array $params ) {
+		$this->user_name  = esc_textarea( $params['name'] );
+		$this->user_email = sanitize_email( $params['email'] );
 	}
 
 	/**
@@ -269,5 +270,18 @@ class Veteran_Factory extends Veteran_Setter {
 			),
 			true
 		);
+	}
+
+	/**
+	 * Store the contact info in post meta
+	 *
+	 * @param int $id the post ID
+	 */
+	private function store_contact_info( int $id ) {
+		$email    = update_post_meta( $id, 'submitting_user_email', $this->user_email );
+		$username = update_post_meta( $id, 'submitting_user_name', $this->user_name );
+		if ( ! $email || ! $username ) {
+			error_log( 'Failed to store contact info for:' . $this->user_email ); // phpcs:ignore
+		}
 	}
 }

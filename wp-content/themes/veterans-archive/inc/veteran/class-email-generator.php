@@ -89,19 +89,19 @@ class Email_Generator {
 	 */
 	public function send_emails() {
 		try {
-			$this->send_user_email();
 			$this->send_admin_email();
+			$this->send_thank_you_email();
 		} catch ( \WP_Error $e ) {
 			return 'Error sending emails: ' . $e->get_error_message();
 		}
 	}
 
 	/**
-	 * Send email to User that their Veteran has been submitted and is ready for review
+	 * Send notification email to admin on user submission
 	 *
 	 * @throws \WP_Error Throws an error if the email fails to send.
 	 */
-	private function send_user_email() {
+	private function send_admin_email() {
 		$subject   = 'New Veteran Submitted!';
 		$headers   = $this->headers;
 		$headers[] = 'Reply-To: ' . $this->submitter_email;
@@ -116,19 +116,21 @@ class Email_Generator {
 		<p>Please login to review the submission.</p>
 		<p>Submitted Data: {$this->veteran_data}</p>
 		";
-
+		error_log( 'Attempting to send email to admin: ' . $this->admin_email ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 		$message = wp_mail( $this->admin_email, $subject, $body, $headers );
+		error_log( 'Email send result: ' . ( $message ? 'Success' : 'Failure' ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+
 		if ( ! $message ) {
 			throw new WP_Error( 'email_failed', "Failed to send email to {$this->submitter_name}.", $this->veteran_data ); // phpcs:ignore
 		}
 	}
 
 	/**
-	 * Send email to Admin that a new Veteran has been submitted and is ready for review
+	 * Send thank you email
 	 *
 	 * @throws \WP_Error Throws an error if the email fails to send.
 	 */
-	private function send_admin_email() {
+	private function send_thank_you_email() {
 		$to        = "{$this->veteran->user_name} <{$this->submitter_email}>";
 		$subject   = 'Yakoke for your submission!';
 		$headers   = $this->headers;
@@ -138,7 +140,9 @@ class Email_Generator {
 		<p>{$this->veteran_name} has been submitted for review! If you have any questions, please reach out {$this->admin_email}</p>
 		<p>Submitted Data: {$this->veteran_data}</p>";
 
+		error_log( 'Attempting to send thank you email to: ' . $to ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 		$message = wp_mail( $to, $subject, $body, $headers );
+		error_log( 'Email send result: ' . ( $message ? 'Success' : 'Failure' ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 		if ( ! $message ) {
 			throw new \WP_Error( 'email_failed', 'Failed to send admin notice email.', $this->veteran_data ); // phpcs:ignore
 		}
