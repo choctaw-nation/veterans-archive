@@ -15,6 +15,11 @@ use WP_Error;
  * Veteran Rest API Route Handler
  */
 class Veteran_Rest_Route extends \WP_REST_Controller {
+	/**
+	 * Transient expiration time
+	 *
+	 * @var int $transient_expiration
+	 */
 	private int $transient_expiration = 60 * 60 * 24; // 24 hours
 
 	// phpcs:ignore
