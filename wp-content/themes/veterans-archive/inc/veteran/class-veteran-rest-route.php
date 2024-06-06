@@ -15,6 +15,13 @@ use WP_Error;
  * Veteran Rest API Route Handler
  */
 class Veteran_Rest_Route extends \WP_REST_Controller {
+	/**
+	 * Transient expiration time
+	 *
+	 * @var int $transient_expiration
+	 */
+	private int $transient_expiration = 60 * 60 * 24; // 24 hours
+
 	// phpcs:ignore
 	public function register_routes() {
 		$version   = '1';
@@ -108,21 +115,16 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	 * Get veterans data
 	 */
 	public function get_veterans() {
-		// Check if the current post count of 'veteran' is equal to the cached post count
 		$current_post_count = wp_count_posts( 'veteran' )->publish;
 		$cached_post_count  = get_transient( 'veteran_post_count' );
 		$cached_data        = get_transient( 'veteran_data' );
-		if ( ( ! $cached_post_count || ! $current_post_count !== $cached_post_count ) || ! $cached_data || empty( $cached_data['veterans'] ) ) {
-			// Update the post count transient
-			set_transient( 'veteran_post_count', $current_post_count );
 
-			// Set the veteran data to the cache
+		if ( ( ! $cached_post_count || ! $current_post_count !== $cached_post_count ) || ! $cached_data || empty( $cached_data['veterans'] ) ) {
+			set_transient( 'veteran_post_count', $current_post_count, $this->transient_expiration );
 			$this->set_veteran_data();
 		}
-		// Get the cached data
-		$cached_data = get_transient( 'veteran_data' );
 
-		// Return the cached data
+		$cached_data = get_transient( 'veteran_data' );
 		return new \WP_REST_Response( $cached_data, 200, array( 'Content-Type' => 'application/json' ) );
 	}
 
@@ -164,7 +166,7 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 			);
 		}
 
-		set_transient( 'veteran_data', $data );
+		set_transient( 'veteran_data', $data, $this->transient_expiration );
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Blank, Container
+ * Template Name: Contact Page
  *
  * @package ChoctawNation
  */
@@ -14,6 +14,11 @@ get_template_part( 'template-parts/section', 'hero' );
 			<?php echo get_field( 'page_content' ); ?>
 		</div>
 	</div>
+	<aside class="row">
+		<div class="col fs-6">
+			<?php get_template_part( 'template-parts/content', 'recaptcha-notice' ); ?>
+		</div>
+	</aside>
 </div>
 <?php
 get_footer();

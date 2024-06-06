@@ -1,5 +1,10 @@
 import { WP_Term } from 'wp-types';
 
+export type VeteranMeta = Array< {
+	label: string | null;
+	value: string | null;
+} >;
+
 export type SelectedFiltersState = {
 	branches: string;
 	wars: string;

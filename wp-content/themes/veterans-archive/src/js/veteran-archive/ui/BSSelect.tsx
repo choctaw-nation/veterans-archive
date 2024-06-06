@@ -17,7 +17,7 @@ export default function BSSelect( {
 } ) {
 	return (
 		<ButtonWrapper
-			classes="btn-ouline-light h-100"
+			classes="btn-outline-light h-100"
 			innerClass="btn-outline-light h-100"
 		>
 			<select

@@ -9,6 +9,7 @@ import BootstrapSpinner from '../submit-a-veteran/Form/ui/BootstrapSpinner';
 import { SearchFilters } from './components/SearchFilters';
 
 import { SelectedFiltersState } from './types';
+import PaginationBar from './components/PaginationBar';
 
 const root = document.getElementById( 'search' );
 if ( root ) {
@@ -35,6 +36,10 @@ function App( { appLoad }: { appLoad: boolean } ) {
 		vetData
 	);
 	const searchInput = useRef( null );
+	const [ results, setResults ] = useState( [] );
+	const [ currentPage, setCurrentPage ] = useState( 1 );
+	const [ resultsPerPage, setResultsPerPage ] = useState( 9 );
+	const [ totalPages, setTotalPages ] = useState( 0 );
 
 	useEffect( () => {
 		if ( ! vetData ) {
@@ -47,6 +52,21 @@ function App( { appLoad }: { appLoad: boolean } ) {
 				.finally( () => setInitialLoad( false ) );
 		}
 	}, [ initialLoad, vetData ] );
+
+	useEffect( () => {
+		if ( searchResults ) {
+			currentPage === 1
+				? setResults( searchResults.slice( 0, resultsPerPage ) )
+				: setResults(
+						searchResults.slice(
+							( currentPage - 1 ) * resultsPerPage,
+							currentPage * resultsPerPage
+						)
+				  );
+
+			setTotalPages( Math.ceil( searchResults.length / resultsPerPage ) );
+		}
+	}, [ searchResults, currentPage, resultsPerPage ] );
 
 	return (
 		<>
@@ -66,28 +86,46 @@ function App( { appLoad }: { appLoad: boolean } ) {
 					</SearchBar>
 				</div>
 			</section>
-			<div className="container my-5 py-5">
+			<div className="container my-5 gx-0">
 				{ isLoading || initialLoad ? (
 					<BootstrapSpinner />
 				) : searchResults?.length === 0 || ! searchResults ? (
 					<p>No veterans found</p>
 				) : (
-					<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4">
-						{ searchResults.length > 0 &&
-							searchResults.map( ( veteran ) => (
-								<div className="col" key={ veteran.id }>
-									<VeteranPreview post={ veteran } />
+					<>
+						<PaginationBar
+							currentPage={ currentPage }
+							searchResults={ searchResults }
+							setCurrentPage={ setCurrentPage }
+							resultsPerPage={ resultsPerPage }
+							setResultsPerPage={ setResultsPerPage }
+							totalPages={ totalPages }
+						/>
+						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4 my-4">
+							{ searchResults.length > 0 &&
+								results.map( ( veteran ) => (
+									<div className="col" key={ veteran.id }>
+										<VeteranPreview post={ veteran } />
+									</div>
+								) ) }
+							{ searchResults.length === 0 && (
+								<div className="col flex-grow-1">
+									<p>
+										No results found. Trying searching for
+										something else or changing your filters.
+									</p>
 								</div>
-							) ) }
-						{ searchResults.length === 0 && (
-							<div className="col flex-grow-1">
-								<p>
-									No results found. Trying searching for
-									something else or changing your filters.
-								</p>
-							</div>
-						) }
-					</div>
+							) }
+						</div>
+						<PaginationBar
+							currentPage={ currentPage }
+							searchResults={ searchResults }
+							setCurrentPage={ setCurrentPage }
+							setResultsPerPage={ setResultsPerPage }
+							resultsPerPage={ resultsPerPage }
+							totalPages={ totalPages }
+						/>
+					</>
 				) }
 			</div>
 		</>

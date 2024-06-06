@@ -1,13 +1,21 @@
 import React from 'react';
 import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 
+interface Props {
+	searchTerm: string;
+	setSearchTerm: ( searchTerm: string ) => void;
+	isLoading: boolean;
+	children: React.ReactNode;
+	searchInputRef: React.RefObject< HTMLInputElement >;
+}
+
 export function SearchBar( {
 	searchTerm,
 	setSearchTerm,
 	isLoading,
 	children,
 	searchInputRef,
-} ) {
+}: Props ) {
 	return (
 		<form className="col" action="/veterans">
 			<div className="row">
