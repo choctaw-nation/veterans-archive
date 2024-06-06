@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 import { Divider } from '../ui/Divider';
-import { VeteranData, vetData } from '../types';
+import { VeteranData, VeteranMeta, vetData } from '../types';
+import VeteranPreviewMeta from './VeteranPreviewMeta';
 
 export const VeteranPreview = memo( function VeteranPreview( {
 	post,
@@ -17,14 +18,17 @@ export const VeteranPreview = memo( function VeteranPreview( {
 
 	const fullName = setTheFullName( post );
 
-	const meta: Array< { label: string | null; value: string | null } > = [
+	const meta: VeteranMeta = [
 		{
 			label: 'Dates of Service',
 			value: serviceDates
-				?.map(
-					( date ) =>
-						`${ date.service_start } - ${ date.service_end || '' }`
-				)
+				?.map( ( date ) => {
+					const { service_start, service_end } = date;
+					if ( ! service_start && ! service_end ) {
+						return null;
+					}
+					return `${ service_start } – ${ service_end }`;
+				} )
 				.join( ', ' ),
 		},
 		{
@@ -55,20 +59,7 @@ export const VeteranPreview = memo( function VeteranPreview( {
 				</a>
 				<div className="card-text-py-2 mb-2">
 					<div className="ms-4 at-a-glance">
-						{ meta.map( ( item, index ) => {
-							const { label, value } = item;
-							if ( ! value || ! label ) {
-								return null;
-							}
-							return (
-								<div className="mb-3" key={ index }>
-									<p className="text-uppercase text-dark-blue fs-5 mb-0 display-6">
-										{ label }
-									</p>
-									<p>{ value }</p>
-								</div>
-							);
-						} ) }
+						<VeteranPreviewMeta meta={ meta } />
 					</div>
 				</div>
 			</div>

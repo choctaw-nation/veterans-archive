@@ -269,12 +269,18 @@ class Veteran extends Veteran_Setter {
 
 		$decorations_array = array();
 
-		foreach ( $this->decorations->decorations as $decoration ) {
-			$decorations_array[] = $decoration->name;
+		if ( $this->decorations->decorations ) {
+			foreach ( $this->decorations->decorations as $decoration ) {
+				$decorations_array[] = $decoration->name;
+			}
 		}
-		foreach ( $this->decorations->additional_decorations as $additional_decoration ) {
-			$decorations_array[] = $additional_decoration;
+
+		if ( $this->decorations->additional_decorations ) {
+			foreach ( $this->decorations->additional_decorations as $additional_decoration ) {
+				$decorations_array[] = $additional_decoration;
+			}
 		}
+
 		return $decorations_array;
 	}
 
