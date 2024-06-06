@@ -43,12 +43,12 @@ if ( $veteran->additional_materials ) {
 		</div>
 	</div>
 	<?php $columns = count( $additional_materials ); ?>
-	<div class="<?php echo "row row-cols-lg-{$columns} justify-content-between align-items-stretch row-gap-4"; ?>">
+	<div class="<?php echo "row row-cols-1 row-cols-sm-auto row-cols-lg-{$columns} justify-content-between align-items-stretch row-gap-4"; ?>">
 		<?php foreach ( $additional_materials as $material_type => $materials ) : ?>
-		<div class="col">
+		<div class="col flex-grow-1 flex-shrink-1">
 			<h3 class="d-block p-3 display-6 text-bg-dark-blue text-uppercase text-white"><?php echo $material_type; ?></h3>
-			<?php foreach ( $materials as $material ) : ?>
-				<?php
+			<?php
+			foreach ( $materials as $material ) {
 				$material_type   = $material->type['value'];
 				$is_text_or_link = 'text' === $material_type || 'link' === $material_type;
 				$div_classes     = 'd-flex align-items-center text-green p-3';
@@ -59,10 +59,9 @@ if ( $veteran->additional_materials ) {
 				} else {
 					$material->the_modal_button();
 				}
-					echo '</div>';
-				?>
-
-			<?php endforeach; ?>
+				echo '</div>';
+			}
+			?>
 		</div>
 		<?php endforeach; ?>
 	</div>
