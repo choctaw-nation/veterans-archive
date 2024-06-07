@@ -4,6 +4,17 @@ A custom theme that powers the Choctaw Veterans Archive
 
 # Changelog
 
+## v1.1.1
+
+-   Handled page title on searches with react
+-   Handled PHP errors
+-   Added container gutter back
+-   Updated fuzzy searching weighting and included additional decorations properly
+-   Updated typography to clamp base font size to 1.6rem
+-   Updated pagination bar styles in responsive
+-   Updated pagination buttons to always show and be disabled
+-   Bug fix: Reset the current page after a user did a search
+
 ## v1.1.0
 
 -   Add reCaptcha notices where needed.

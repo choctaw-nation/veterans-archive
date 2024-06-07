@@ -6,6 +6,16 @@ const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
 	{
 		name: 'title',
 		getFn: ( veteran ) => veteran.title,
+		weight: 3,
+	},
+	{
+		name: 'nickname',
+		getFn: ( veteran ) => veteran.vetData?.nickname,
+		weight: 2,
+	},
+	{
+		name: 'maidanName',
+		getFn: ( veteran ) => veteran.vetData?.maiden_name,
 		weight: 2,
 	},
 	{
@@ -43,9 +53,18 @@ const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
 		name: 'decorations',
 		getFn: ( veteran ) => {
 			if ( veteran.vetData?.decorations?.decorations ) {
-				return veteran.vetData?.decorations?.decorations.map(
-					( decoration ) => decoration.name
+				let allDecorations: string[] = [];
+				allDecorations.push(
+					...veteran.vetData.decorations.decorations.map(
+						( decoration ) => decoration.name
+					)
 				);
+				if ( veteran.vetData.decorations.additional_decorations ) {
+					allDecorations.push(
+						...veteran.vetData.decorations.additional_decorations
+					);
+				}
+				return allDecorations;
 			} else {
 				return '';
 			}
@@ -54,37 +73,22 @@ const fuzzySearchKeys: IFuseOptions< VeteranData >[ 'keys' ] = [
 	{
 		name: 'statesideAssignment',
 		getFn: ( veteran ) => veteran.vetData?.stateside_assignments,
-		weight: 0.3,
 	},
 	{
 		name: 'jobs',
 		getFn: ( veteran ) => veteran.vetData?.jobs,
-		weight: 0.3,
 	},
 	{
 		name: 'overseasDuty',
 		getFn: ( veteran ) => veteran.vetData?.overseas_duty,
-		weight: 0.3,
 	},
 	{
 		name: 'militaryUnits',
 		getFn: ( veteran ) => veteran.vetData?.military_units,
-		weight: 0.5,
-	},
-	{
-		name: 'nickname',
-		getFn: ( veteran ) => veteran.vetData?.nickname,
-		weight: 0.7,
-	},
-	{
-		name: 'maidanName',
-		getFn: ( veteran ) => veteran.vetData?.maiden_name,
-		weight: 0.7,
 	},
 	{
 		name: 'advancedTraining',
 		getFn: ( veteran ) => veteran.vetData?.advanced_training,
-		weight: 0.3,
 	},
 ];
 
@@ -119,7 +123,7 @@ export default function useFuzzySearch(
 				const fuse = new Fuse< VeteranData >( veterans, {
 					minMatchCharLength: 3,
 					keys: fuzzySearchKeys,
-					threshold: 0.3,
+					threshold: 0.2,
 				} );
 
 				const result = fuse.search( searchTerm );

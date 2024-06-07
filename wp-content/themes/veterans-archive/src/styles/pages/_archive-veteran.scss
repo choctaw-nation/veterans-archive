@@ -1,3 +1,7 @@
+.btn-container:has(button:disabled) {
+	cursor: not-allowed;
+}
+
 %outline-primary-hover {
 	border-color: var(--bs-green);
 	color: var(--bs-dark);
