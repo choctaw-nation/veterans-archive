@@ -40,6 +40,22 @@ function App( { appLoad }: { appLoad: boolean } ) {
 	const [ currentPage, setCurrentPage ] = useState( 1 );
 	const [ resultsPerPage, setResultsPerPage ] = useState( 9 );
 	const [ totalPages, setTotalPages ] = useState( 0 );
+	function handleSearch( ev ) {
+		setSearchTerm( ev.target.value );
+		const searchParams = new URLSearchParams( window.location.search );
+		searchParams.set( 's', ev.target.value );
+		window.history.pushState(
+			{},
+			'',
+			`${ window.location.pathname }?${ searchParams.toString() }`
+		);
+		if ( ev.target.value === '' ) {
+			window.history.pushState( {}, '', `${ window.location.pathname }` );
+			document.title = 'All Veterans | Choctaw Nation Veterans Archive';
+			return;
+		}
+		document.title = `Search Results for "${ ev.target.value }"`;
+	}
 
 	useEffect( () => {
 		if ( ! vetData ) {
@@ -52,6 +68,12 @@ function App( { appLoad }: { appLoad: boolean } ) {
 				.finally( () => setInitialLoad( false ) );
 		}
 	}, [ initialLoad, vetData ] );
+
+	useEffect( () => {
+		if ( searchTerm ) {
+			setCurrentPage( 1 );
+		}
+	}, [ searchTerm ] );
 
 	useEffect( () => {
 		if ( searchResults ) {
@@ -75,8 +97,9 @@ function App( { appLoad }: { appLoad: boolean } ) {
 					<SearchBar
 						isLoading={ initialLoad || isLoading }
 						searchTerm={ searchTerm }
-						setSearchTerm={ setSearchTerm }
+						handleSearch={ handleSearch }
 						searchInputRef={ searchInput }
+						children={ undefined }
 					>
 						<SearchFilters
 							setSelected={ setSelectedFilters }
@@ -86,7 +109,7 @@ function App( { appLoad }: { appLoad: boolean } ) {
 					</SearchBar>
 				</div>
 			</section>
-			<div className="container my-5 gx-0">
+			<div className="container my-5">
 				{ isLoading || initialLoad ? (
 					<BootstrapSpinner />
 				) : searchResults?.length === 0 || ! searchResults ? (
@@ -117,14 +140,17 @@ function App( { appLoad }: { appLoad: boolean } ) {
 								</div>
 							) }
 						</div>
-						<PaginationBar
-							currentPage={ currentPage }
-							searchResults={ searchResults }
-							setCurrentPage={ setCurrentPage }
-							setResultsPerPage={ setResultsPerPage }
-							resultsPerPage={ resultsPerPage }
-							totalPages={ totalPages }
-						/>
+						{ totalPages > 1 && (
+							<PaginationBar
+								inFooter={ true }
+								currentPage={ currentPage }
+								searchResults={ searchResults }
+								setCurrentPage={ setCurrentPage }
+								setResultsPerPage={ setResultsPerPage }
+								resultsPerPage={ resultsPerPage }
+								totalPages={ totalPages }
+							/>
+						) }
 					</>
 				) }
 			</div>

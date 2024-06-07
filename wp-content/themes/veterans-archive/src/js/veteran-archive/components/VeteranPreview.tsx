@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 import { Divider } from '../ui/Divider';
-import { VeteranData, VeteranMeta, vetData } from '../types';
+import { VeteranData } from '../types';
 import VeteranPreviewMeta from './VeteranPreviewMeta';
 
 export const VeteranPreview = memo( function VeteranPreview( {
@@ -12,30 +12,11 @@ export const VeteranPreview = memo( function VeteranPreview( {
 	const {
 		featuredImage,
 		permalink,
-		vetData: { home_areas, dates_of_service: serviceDates },
+		vetData: { home_areas: homeAreas, dates_of_service: serviceDates },
 		vetIcon: icon,
 	} = post;
 
 	const fullName = setTheFullName( post );
-
-	const meta: VeteranMeta = [
-		{
-			label: 'Dates of Service',
-			value: serviceDates
-				?.map( ( date ) => {
-					const { service_start, service_end } = date;
-					if ( ! service_start && ! service_end ) {
-						return null;
-					}
-					return `${ service_start } – ${ service_end }`;
-				} )
-				.join( ', ' ),
-		},
-		{
-			label: 'Hometown',
-			value: getTheHomeArea( home_areas ),
-		},
-	];
 
 	return (
 		<div className="card shadow h-100">
@@ -59,7 +40,10 @@ export const VeteranPreview = memo( function VeteranPreview( {
 				</a>
 				<div className="card-text-py-2 mb-2">
 					<div className="ms-4 at-a-glance">
-						<VeteranPreviewMeta meta={ meta } />
+						<VeteranPreviewMeta
+							serviceDates={ serviceDates }
+							homeAreas={ homeAreas }
+						/>
 					</div>
 				</div>
 			</div>
@@ -119,22 +103,4 @@ function setTheFullName( post: VeteranData ): string {
 		fullNameArray.push( suffix );
 	}
 	return fullNameArray.filter( ( name ) => name ).join( ' ' );
-}
-
-/**
- * Takes the home_areas object and returns the full area
- * @param homeAreas the home_areas object
- * @returns the full area
- */
-function getTheHomeArea( homeAreas: vetData[ 'home_areas' ] ): string | null {
-	let areas = homeAreas?.map( ( area ) => {
-		const flatValues = Object.values( {
-			city: area.city,
-			county: area.county ? `${ area.county } County` : false,
-			state: area.state,
-		} );
-		return flatValues;
-	} );
-	const area = areas?.flat();
-	return area?.filter( ( value ) => value )?.join( ', ' ) || null;
 }

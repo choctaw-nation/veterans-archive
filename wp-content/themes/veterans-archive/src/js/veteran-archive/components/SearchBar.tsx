@@ -3,7 +3,7 @@ import { ButtonWrapper } from '../../submit-a-veteran/Form/ui/ButtonWrapper';
 
 interface Props {
 	searchTerm: string;
-	setSearchTerm: ( searchTerm: string ) => void;
+	handleSearch: ( searchTerm: string ) => void;
 	isLoading: boolean;
 	children: React.ReactNode;
 	searchInputRef: React.RefObject< HTMLInputElement >;
@@ -11,7 +11,7 @@ interface Props {
 
 export function SearchBar( {
 	searchTerm,
-	setSearchTerm,
+	handleSearch,
 	isLoading,
 	children,
 	searchInputRef,
@@ -20,7 +20,7 @@ export function SearchBar( {
 		<form className="col" action="/veterans">
 			<div className="row">
 				<div className="col">
-					<label htmlFor="search" className="form-label">
+					<label htmlFor="search-bar" className="form-label">
 						<h1 className="fw-light display-1 text-uppercase text-light-green">
 							Find a veteran
 						</h1>
@@ -33,25 +33,10 @@ export function SearchBar( {
 						ref={ searchInputRef }
 						type="text"
 						className="form-control flex-grow-1 flex-shrink-0"
-						id="search"
-						name="s"
+						id="search-bar"
+						name="search-bar"
 						value={ searchTerm }
-						onChange={ ( e ) => {
-							setSearchTerm( e.target.value );
-
-							// Update the URL with the search term
-							const searchParams = new URLSearchParams(
-								window.location.search
-							);
-							searchParams.set( 's', e.target.value );
-							window.history.pushState(
-								{},
-								'',
-								`${
-									window.location.pathname
-								}?${ searchParams.toString() }`
-							);
-						} }
+						onChange={ handleSearch }
 						placeholder="Try searching by name, rank, hometown, or more"
 					/>
 				</div>

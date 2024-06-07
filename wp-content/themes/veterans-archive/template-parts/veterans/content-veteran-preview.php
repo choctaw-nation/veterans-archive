@@ -83,17 +83,19 @@ $veteran = new Veteran( get_the_ID(), $acf_fields );
 			<?php
 			if ( $veteran->branches_of_service ) {
 				$image = get_field( 'branch_icon', "military-branch_{$veteran->branches_of_service[0]->term_id}" );
-				$image = wp_get_attachment_image(
-					$image['id'],
-					'thumbnail',
-					false,
-					array(
-						'class'   => 'object-fit-contain',
-						'loading' => 'lazy',
-						'style'   => 'filter:invert(1);width:7.5rem;height:7.5rem;',
-					)
-				);
-				echo "<div class='col'><figure>{$image}</figure></div>";
+				if ( $image ) {
+					$image = wp_get_attachment_image(
+						$image['id'],
+						'thumbnail',
+						false,
+						array(
+							'class'   => 'object-fit-contain',
+							'loading' => 'lazy',
+							'style'   => 'filter:invert(1);width:7.5rem;height:7.5rem;',
+						)
+					);
+					echo "<div class='col'><figure>{$image}</figure></div>";
+				}
 			}
 			?>
 		</div>

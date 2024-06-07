@@ -7,12 +7,7 @@ a {
 
 p,
 li {
-	@include m.media-breakpoint-up(sm) {
-		font-size: 1.8rem;
-	}
-	@include m.media-breakpoint-up(lg) {
-		font-size: 2rem;
-	}
+	font-size: clamp(1.6rem, calc(1.285rem + 0.42vw), 2rem);
 }
 
 body {
