@@ -4,6 +4,10 @@ A custom theme that powers the Choctaw Veterans Archive
 
 # Changelog
 
+## v1.1.2
+
+-   Swap pagination for infinite scroll
+
 ## v1.1.1
 
 -   Handled page title on searches with react
