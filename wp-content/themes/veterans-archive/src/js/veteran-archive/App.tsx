@@ -9,7 +9,6 @@ import BootstrapSpinner from '../submit-a-veteran/Form/ui/BootstrapSpinner';
 import { SearchFilters } from './components/SearchFilters';
 
 import { SelectedFiltersState } from './types';
-import PaginationBar from './components/PaginationBar';
 
 const root = document.getElementById( 'search' );
 if ( root ) {
@@ -30,16 +29,17 @@ function App( { appLoad }: { appLoad: boolean } ) {
 			decorations: '',
 		} );
 	const [ searchTerm, setSearchTerm ] = useState( getSearchParams() );
-	const { searchResults, isLoading } = useFuzzySearch(
+	const { searchResults, isLoading, totalPages } = useFuzzySearch(
 		searchTerm,
 		selectedFilters,
 		vetData
 	);
 	const searchInput = useRef( null );
-	const [ results, setResults ] = useState( [] );
+	const [ results, setResults ] = useState( searchResults.slice( 0, 9 ) );
 	const [ currentPage, setCurrentPage ] = useState( 1 );
-	const [ resultsPerPage, setResultsPerPage ] = useState( 9 );
-	const [ totalPages, setTotalPages ] = useState( 0 );
+
+	const viewMore = useRef( null );
+
 	function handleSearch( ev ) {
 		setSearchTerm( ev.target.value );
 		const searchParams = new URLSearchParams( window.location.search );
@@ -70,25 +70,34 @@ function App( { appLoad }: { appLoad: boolean } ) {
 	}, [ initialLoad, vetData ] );
 
 	useEffect( () => {
-		if ( searchTerm ) {
-			setCurrentPage( 1 );
+		if ( searchResults ) {
+			setResults( searchResults.slice( 0, currentPage * 9 ) );
 		}
-	}, [ searchTerm ] );
+	}, [ searchResults, currentPage ] );
 
 	useEffect( () => {
-		if ( searchResults ) {
-			currentPage === 1
-				? setResults( searchResults.slice( 0, resultsPerPage ) )
-				: setResults(
-						searchResults.slice(
-							( currentPage - 1 ) * resultsPerPage,
-							currentPage * resultsPerPage
-						)
-				  );
+		const viewMoreDiv = viewMore.current;
+		const observer = new IntersectionObserver(
+			( entries ) => {
+				if ( entries[ 0 ].isIntersecting ) {
+					setCurrentPage( ( prevPage ) => {
+						return prevPage > totalPages ? prevPage : prevPage + 1;
+					} );
+				}
+			},
+			{ threshold: 0.5 }
+		);
 
-			setTotalPages( Math.ceil( searchResults.length / resultsPerPage ) );
+		if ( viewMoreDiv ) {
+			observer.observe( viewMoreDiv );
 		}
-	}, [ searchResults, currentPage, resultsPerPage ] );
+
+		return () => {
+			if ( viewMoreDiv ) {
+				observer.disconnect();
+			}
+		};
+	}, [] );
 
 	return (
 		<>
@@ -110,20 +119,12 @@ function App( { appLoad }: { appLoad: boolean } ) {
 				</div>
 			</section>
 			<div className="container my-5">
-				{ isLoading || initialLoad ? (
+				{ initialLoad ? (
 					<BootstrapSpinner />
 				) : searchResults?.length === 0 || ! searchResults ? (
 					<p>No veterans found</p>
 				) : (
 					<>
-						<PaginationBar
-							currentPage={ currentPage }
-							searchResults={ searchResults }
-							setCurrentPage={ setCurrentPage }
-							resultsPerPage={ resultsPerPage }
-							setResultsPerPage={ setResultsPerPage }
-							totalPages={ totalPages }
-						/>
 						<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-gap-4 my-4">
 							{ searchResults.length > 0 &&
 								results.map( ( veteran ) => (
@@ -140,17 +141,7 @@ function App( { appLoad }: { appLoad: boolean } ) {
 								</div>
 							) }
 						</div>
-						{ totalPages > 1 && (
-							<PaginationBar
-								inFooter={ true }
-								currentPage={ currentPage }
-								searchResults={ searchResults }
-								setCurrentPage={ setCurrentPage }
-								setResultsPerPage={ setResultsPerPage }
-								resultsPerPage={ resultsPerPage }
-								totalPages={ totalPages }
-							/>
-						) }
+						<div id="more" ref={ viewMore }></div>
 					</>
 				) }
 			</div>

@@ -100,7 +100,9 @@ export default function useFuzzySearch(
 	const [ veterans ] = useState< VeteranData[] >(
 		vetData.veterans || window.cnoSiteData.vetData.veterans
 	);
-	const [ searchResults, setSearchResults ] = useState( veterans );
+	const [ searchResults, setSearchResults ] =
+		useState< VeteranData[] >( veterans );
+	const [ totalPages ] = useState( searchResults.length / 9 );
 	const [ isLoading, setIsLoading ] = useState( false );
 
 	useEffect( () => {
@@ -123,7 +125,7 @@ export default function useFuzzySearch(
 				const fuse = new Fuse< VeteranData >( veterans, {
 					minMatchCharLength: 3,
 					keys: fuzzySearchKeys,
-					threshold: 0.2,
+					threshold: 0.25,
 				} );
 
 				const result = fuse.search( searchTerm );
@@ -145,7 +147,7 @@ export default function useFuzzySearch(
 		}
 	}, [ searchTerm, veterans, selectedFilters ] );
 
-	return { searchResults, isLoading, veterans, setSearchResults };
+	return { searchResults, isLoading, veterans, setSearchResults, totalPages };
 }
 
 /**
