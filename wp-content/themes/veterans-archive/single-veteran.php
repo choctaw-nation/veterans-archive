@@ -22,7 +22,8 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 <div class="container">
 	<div class="row mt-5">
 		<div class="col">
-			<a href="/veterans" class='display-6 fs-5 text-uppercase'><i class="fa-sharp fa-solid fa-caret-left"></i>&nbsp;Back to All Veterans</a>
+			<a href="/veterans" class='display-6 fs-5 text-uppercase'><i
+					class="fa-sharp fa-solid fa-caret-left"></i>&nbsp;Back to All Veterans</a>
 		</div>
 	</div>
 	<article>
@@ -108,8 +109,15 @@ $label_classes = 'display-6 fs-3 text-uppercase text-dark-blue d-block';
 							echo "<li class='{$li_classes}'><span class='{$label_classes}'>" . ( 1 < count( $veteran->branches_of_service ) ? 'Branches of Service' : 'Branch of Service' ) . "</span><p>{$veteran->get_the_service_branches()}</p></li>";
 						}
 						if ( $veteran->get_the_military_units() ) {
-							echo "<li class='{$li_classes}'><span class='{$label_classes}'>" . ( 1 < count( $veteran->branches_of_service ) ? 'Military Units' : 'Military Unit' ) . "</span><p>{$veteran->get_the_military_units()}</p></li>";
+							$units = $veteran->get_the_military_units();
+							if ( is_array( $veteran->branches_of_service ) || $veteran->branches_of_service instanceof Countable ) {
+								$label = ( count( $veteran->branches_of_service ) > 1 ) ? 'Military Units' : 'Military Unit';
+							} else {
+								$label = 'Military Unit';
+							}
+							echo "<li class='{$li_classes}'><span class='{$label_classes}'>{$label}</span><p>{$units}</p></li>";
 						}
+
 						if ( $veteran->get_the_highest_achieved_rank() ) {
 							echo "<li class='{$li_classes}'><span class='{$label_classes}'>Highest Achieved Rank</span><p>{$veteran->get_the_highest_achieved_rank()}</p></li>";
 						}
