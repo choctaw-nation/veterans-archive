@@ -97,7 +97,7 @@ function App( { appLoad }: { appLoad: boolean } ) {
 				observer.disconnect();
 			}
 		};
-	}, [] );
+	}, [ totalPages ] );
 
 	return (
 		<>

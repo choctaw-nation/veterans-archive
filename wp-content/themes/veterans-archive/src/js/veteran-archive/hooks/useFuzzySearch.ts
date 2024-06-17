@@ -126,6 +126,7 @@ export default function useFuzzySearch(
 					minMatchCharLength: 3,
 					keys: fuzzySearchKeys,
 					threshold: 0.25,
+					findAllMatches: true,
 				} );
 
 				const result = fuse.search( searchTerm );
