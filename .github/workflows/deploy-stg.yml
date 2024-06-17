@@ -1,8 +1,8 @@
-name: Deploy to Production Env
+name: Deploy to Staging Env
 on:
     push:
         branches:
-            - main
+            - stg
 
 # Cancel all previous workflow runs for the same branch that have not yet completed.
 concurrency:
@@ -42,4 +42,4 @@ jobs:
               uses: wpengine/github-action-wpe-site-deploy@v3
               with:
                   WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
-                  WPE_ENV: cnoveterans
+                  WPE_ENV: choctawvetstg
