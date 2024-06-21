@@ -4,6 +4,10 @@ A custom theme that powers the Choctaw Veterans Archive
 
 # Changelog
 
+## v1.1.3
+
+-   Fixed issue with single veterans page
+
 ## v1.1.2
 
 -   Swap pagination for infinite scroll
