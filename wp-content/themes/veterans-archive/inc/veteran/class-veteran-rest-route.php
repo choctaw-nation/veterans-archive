@@ -20,7 +20,8 @@ class Veteran_Rest_Route extends \WP_REST_Controller {
 	 *
 	 * @var int $transient_expiration
 	 */
-	private int $transient_expiration = 60 * 60 * 24; // 24 hours
+	private int $transient_expiration = 600; // 10 minutes
+
 
 	// phpcs:ignore
 	public function register_routes() {

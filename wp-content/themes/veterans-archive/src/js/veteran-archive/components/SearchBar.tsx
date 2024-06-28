@@ -34,7 +34,7 @@ export function SearchBar( {
 						type="text"
 						className="form-control flex-grow-1 flex-shrink-0"
 						id="search-bar"
-						name="search-bar"
+						name="s"
 						value={ searchTerm }
 						onChange={ handleSearch }
 						placeholder="Try searching by name, rank, hometown, or more"

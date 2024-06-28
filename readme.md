@@ -6,6 +6,8 @@ A custom theme that powers the Choctaw Veterans Archive
 
 ## v1.1.3
 
+-   Update the cache expiry to 10 minutes
+-   Update how the veteran data is enqueued locally to always use the rest route `GET` method instead of trying to handle the cached data (which was redundant and caused the bug in the first place).
 -   Fixed issue with single veterans page
 
 ## v1.1.2
